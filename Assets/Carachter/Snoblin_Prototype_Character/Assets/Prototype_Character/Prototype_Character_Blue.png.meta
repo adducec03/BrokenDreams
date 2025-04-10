@@ -192,6 +192,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -934,7 +947,40 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Prototype_Character_Blue_0: -2065216357440020428
+      Prototype_Character_Blue_1: 3073038649727059666
+      Prototype_Character_Blue_10: 613436706486726937
+      Prototype_Character_Blue_11: -5192644774719857206
+      Prototype_Character_Blue_12: -5708409137265337034
+      Prototype_Character_Blue_13: 8772864357780059275
+      Prototype_Character_Blue_14: -383318230292621754
+      Prototype_Character_Blue_15: -5535442912030048907
+      Prototype_Character_Blue_16: -7649479680990480853
+      Prototype_Character_Blue_17: 8882334857874053257
+      Prototype_Character_Blue_18: 5304717119426211972
+      Prototype_Character_Blue_19: 7224921807008472802
+      Prototype_Character_Blue_2: -4089622865767383997
+      Prototype_Character_Blue_20: -3414618927933917395
+      Prototype_Character_Blue_21: 2811024790802566996
+      Prototype_Character_Blue_22: -9021705442571007535
+      Prototype_Character_Blue_23: 3154311507126033256
+      Prototype_Character_Blue_24: 9220199610701293050
+      Prototype_Character_Blue_25: -4416516681584860876
+      Prototype_Character_Blue_26: 6121858321185310709
+      Prototype_Character_Blue_27: 2057282818445541827
+      Prototype_Character_Blue_28: -7872788710775645994
+      Prototype_Character_Blue_29: -5589266853113979269
+      Prototype_Character_Blue_3: 3597724663971254369
+      Prototype_Character_Blue_30: 6926884952447093382
+      Prototype_Character_Blue_31: 6641735989219476511
+      Prototype_Character_Blue_32: -7045132715806290133
+      Prototype_Character_Blue_4: 2749865099961600902
+      Prototype_Character_Blue_5: 6763735995969687302
+      Prototype_Character_Blue_6: -7041520151088514998
+      Prototype_Character_Blue_7: -1339504361811268901
+      Prototype_Character_Blue_8: -469324786456962324
+      Prototype_Character_Blue_9: 5931722146188979631
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
