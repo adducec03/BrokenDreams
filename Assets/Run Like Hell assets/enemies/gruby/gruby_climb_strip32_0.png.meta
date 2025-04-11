@@ -186,6 +186,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -884,7 +897,38 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_climb_strip32_0_0: 933177875498661230
+      gruby_climb_strip32_0_1: 3181087005480582632
+      gruby_climb_strip32_0_10: -3240051335893575034
+      gruby_climb_strip32_0_11: 2263686419538484722
+      gruby_climb_strip32_0_12: -6338504804682650927
+      gruby_climb_strip32_0_13: -8933506998569319386
+      gruby_climb_strip32_0_14: -7604501852077748182
+      gruby_climb_strip32_0_15: 7337747756373143480
+      gruby_climb_strip32_0_16: -6053520350642687905
+      gruby_climb_strip32_0_17: -7214293425099082377
+      gruby_climb_strip32_0_18: -5382354499674796036
+      gruby_climb_strip32_0_19: 6549209928392894916
+      gruby_climb_strip32_0_2: 3855782711327353748
+      gruby_climb_strip32_0_20: -761430938844250028
+      gruby_climb_strip32_0_21: -4727252515586671794
+      gruby_climb_strip32_0_22: 1467236535643751487
+      gruby_climb_strip32_0_23: 3481002033396768423
+      gruby_climb_strip32_0_24: 5740336992100133933
+      gruby_climb_strip32_0_25: 8587754124356786170
+      gruby_climb_strip32_0_26: -7067797673431604340
+      gruby_climb_strip32_0_27: 3941180767501345864
+      gruby_climb_strip32_0_28: 371528974560562844
+      gruby_climb_strip32_0_29: -5993969046986773439
+      gruby_climb_strip32_0_3: 9196394284381769658
+      gruby_climb_strip32_0_30: -2018279746791943307
+      gruby_climb_strip32_0_4: 2672704869677618639
+      gruby_climb_strip32_0_5: 7956340898648151544
+      gruby_climb_strip32_0_6: -6401871595485112047
+      gruby_climb_strip32_0_7: 3404108434969133959
+      gruby_climb_strip32_0_8: 5762363873625139788
+      gruby_climb_strip32_0_9: 193292001503830173
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

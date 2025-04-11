@@ -147,6 +147,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -559,7 +572,25 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      harpy_fly_strip16_0: -7833074351276430006
+      harpy_fly_strip16_1: -4186582220141633131
+      harpy_fly_strip16_10: -3277487650738350763
+      harpy_fly_strip16_11: 8663798942496616718
+      harpy_fly_strip16_12: 2690907786992499126
+      harpy_fly_strip16_13: 3617210881674587030
+      harpy_fly_strip16_14: -6664278919890319563
+      harpy_fly_strip16_15: -8954946754720899510
+      harpy_fly_strip16_16: 9174224471871461968
+      harpy_fly_strip16_17: 2875594733600179848
+      harpy_fly_strip16_2: 4065140858731425
+      harpy_fly_strip16_3: -7844505858741755780
+      harpy_fly_strip16_4: -5148105573955044518
+      harpy_fly_strip16_5: -65594017694241540
+      harpy_fly_strip16_6: 1691917029964003005
+      harpy_fly_strip16_7: -8336137929755006674
+      harpy_fly_strip16_8: 1749108038668787466
+      harpy_fly_strip16_9: 2929261023898237177
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

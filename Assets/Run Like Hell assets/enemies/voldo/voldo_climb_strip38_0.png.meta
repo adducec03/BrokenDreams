@@ -165,6 +165,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -709,7 +722,31 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      voldo_climb_strip38_0_0: -305265044518900526
+      voldo_climb_strip38_0_1: -7741635356704454801
+      voldo_climb_strip38_0_10: 2515150137029334085
+      voldo_climb_strip38_0_11: -5128911938971237234
+      voldo_climb_strip38_0_12: -801184703371557245
+      voldo_climb_strip38_0_13: -2453202866072673889
+      voldo_climb_strip38_0_14: -2227445442219424394
+      voldo_climb_strip38_0_15: 7573927753440263854
+      voldo_climb_strip38_0_16: 5739867804548153480
+      voldo_climb_strip38_0_17: -6269148457940272806
+      voldo_climb_strip38_0_18: -5771684867884974107
+      voldo_climb_strip38_0_19: -5363731988946569853
+      voldo_climb_strip38_0_2: 116973142478709472
+      voldo_climb_strip38_0_20: 6791759095699721252
+      voldo_climb_strip38_0_21: -2351662938508019460
+      voldo_climb_strip38_0_22: 7448956958650594684
+      voldo_climb_strip38_0_23: -1907427022621372424
+      voldo_climb_strip38_0_3: 337549106791722317
+      voldo_climb_strip38_0_4: 4564340451710844213
+      voldo_climb_strip38_0_5: 5779451696124572271
+      voldo_climb_strip38_0_6: 4887273923179248826
+      voldo_climb_strip38_0_7: 5351401805155023462
+      voldo_climb_strip38_0_8: -1809824734412090172
+      voldo_climb_strip38_0_9: 3871468337847080562
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

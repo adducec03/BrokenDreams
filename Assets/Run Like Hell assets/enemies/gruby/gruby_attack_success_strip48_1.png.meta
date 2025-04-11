@@ -147,6 +147,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -559,7 +572,25 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_attack_success_strip48_1_0: -6170186006602154586
+      gruby_attack_success_strip48_1_1: 87317569588457137
+      gruby_attack_success_strip48_1_10: -230223388017935446
+      gruby_attack_success_strip48_1_11: -6648691791619296277
+      gruby_attack_success_strip48_1_12: 6657848866480178314
+      gruby_attack_success_strip48_1_13: 5483482233122115851
+      gruby_attack_success_strip48_1_14: -621411947106464544
+      gruby_attack_success_strip48_1_15: 4267141212652259631
+      gruby_attack_success_strip48_1_16: -3021479013117350942
+      gruby_attack_success_strip48_1_17: -4639575580350100730
+      gruby_attack_success_strip48_1_2: -8486073917290276893
+      gruby_attack_success_strip48_1_3: -6289959298363969932
+      gruby_attack_success_strip48_1_4: 8533098139899333972
+      gruby_attack_success_strip48_1_5: 8298917409321393398
+      gruby_attack_success_strip48_1_6: 4833155997632908991
+      gruby_attack_success_strip48_1_7: 1410067720118192148
+      gruby_attack_success_strip48_1_8: -7896031119971594094
+      gruby_attack_success_strip48_1_9: -6395718769000281532
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

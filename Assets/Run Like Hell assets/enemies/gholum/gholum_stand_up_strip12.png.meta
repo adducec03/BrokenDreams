@@ -129,6 +129,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -409,7 +422,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gholum_stand_up_strip12_0: -5717490732555071054
+      gholum_stand_up_strip12_1: -6484368614089647012
+      gholum_stand_up_strip12_10: 6878985365298608095
+      gholum_stand_up_strip12_11: -6668039865130065342
+      gholum_stand_up_strip12_2: -573681371388541339
+      gholum_stand_up_strip12_3: 6731449909685884205
+      gholum_stand_up_strip12_4: -7317788966865956125
+      gholum_stand_up_strip12_5: 385514830354385922
+      gholum_stand_up_strip12_6: -5245650000302133743
+      gholum_stand_up_strip12_7: 3914161198827209598
+      gholum_stand_up_strip12_8: -8580336449353825181
+      gholum_stand_up_strip12_9: -5362256989758538943
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

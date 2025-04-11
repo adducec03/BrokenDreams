@@ -180,6 +180,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -834,7 +847,36 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_attack_fail_strip29_0: 2884366401011262092
+      gruby_attack_fail_strip29_1: -3697939536118371167
+      gruby_attack_fail_strip29_10: -139476619233313576
+      gruby_attack_fail_strip29_11: -4171804797372210953
+      gruby_attack_fail_strip29_12: -4728855069961604668
+      gruby_attack_fail_strip29_13: 2879851253021655822
+      gruby_attack_fail_strip29_14: 3362474089150690837
+      gruby_attack_fail_strip29_15: 3294796270770357546
+      gruby_attack_fail_strip29_16: -1286237956462449664
+      gruby_attack_fail_strip29_17: 5098373161098571959
+      gruby_attack_fail_strip29_18: -89903918923135633
+      gruby_attack_fail_strip29_19: -1099556747836805370
+      gruby_attack_fail_strip29_2: -5592554451840987098
+      gruby_attack_fail_strip29_20: 7694888857663940270
+      gruby_attack_fail_strip29_21: 2866210815204407063
+      gruby_attack_fail_strip29_22: 4909227914989443405
+      gruby_attack_fail_strip29_23: 2928899510757208234
+      gruby_attack_fail_strip29_24: 375618945146307620
+      gruby_attack_fail_strip29_25: 3824621527869526865
+      gruby_attack_fail_strip29_26: 4503992383658332906
+      gruby_attack_fail_strip29_27: -4763139150564866122
+      gruby_attack_fail_strip29_28: 8011731880316552233
+      gruby_attack_fail_strip29_3: 8697722305361678346
+      gruby_attack_fail_strip29_4: -5840293984315658215
+      gruby_attack_fail_strip29_5: -8789496809082788059
+      gruby_attack_fail_strip29_6: -2379472355873780352
+      gruby_attack_fail_strip29_7: -4087909948709657839
+      gruby_attack_fail_strip29_8: -1857127574123623952
+      gruby_attack_fail_strip29_9: 4834124158152202940
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

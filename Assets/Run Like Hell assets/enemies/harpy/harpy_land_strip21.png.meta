@@ -156,6 +156,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -634,7 +647,28 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      harpy_land_strip21_0: -8674025879734346916
+      harpy_land_strip21_1: -8953207410095036105
+      harpy_land_strip21_10: -6467325168039087915
+      harpy_land_strip21_11: 2657071172270153307
+      harpy_land_strip21_12: 6087664720111971224
+      harpy_land_strip21_13: -2793652895983085281
+      harpy_land_strip21_14: -3239265696152589475
+      harpy_land_strip21_15: 2299161623584759799
+      harpy_land_strip21_16: 2613512658271341731
+      harpy_land_strip21_17: -6382775665668869816
+      harpy_land_strip21_18: 3341781212216610687
+      harpy_land_strip21_19: 1938221917694859028
+      harpy_land_strip21_2: 1958548196896678513
+      harpy_land_strip21_20: -2137209709936617520
+      harpy_land_strip21_3: -2868046870636511945
+      harpy_land_strip21_4: -9082783044225581952
+      harpy_land_strip21_5: 6732291481272730881
+      harpy_land_strip21_6: 8894181039218062479
+      harpy_land_strip21_7: -1668620775342045146
+      harpy_land_strip21_8: -6238126064874183994
+      harpy_land_strip21_9: 8894114071497844452
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

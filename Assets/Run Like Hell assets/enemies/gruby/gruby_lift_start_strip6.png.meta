@@ -111,6 +111,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -259,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_lift_start_strip6_0: 1638176134990891602
+      gruby_lift_start_strip6_1: -8614517276631480359
+      gruby_lift_start_strip6_2: -5227897621823489920
+      gruby_lift_start_strip6_3: 3759946449263984066
+      gruby_lift_start_strip6_4: 9200704711112989110
+      gruby_lift_start_strip6_5: -6856913697056532688
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

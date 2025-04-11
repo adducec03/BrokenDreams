@@ -156,6 +156,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -634,7 +647,28 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hero_legs_jump_strip18_0: 2913715466291451976
+      hero_legs_jump_strip18_1: 8164938293457112378
+      hero_legs_jump_strip18_10: -1317561472136701341
+      hero_legs_jump_strip18_11: 4375412803908408426
+      hero_legs_jump_strip18_12: 4184232406857045417
+      hero_legs_jump_strip18_13: -1530049469709474744
+      hero_legs_jump_strip18_14: 5098114178826097084
+      hero_legs_jump_strip18_15: 1365815045644706996
+      hero_legs_jump_strip18_16: 4832083704012978513
+      hero_legs_jump_strip18_17: 2805716483009729913
+      hero_legs_jump_strip18_18: -6598947510587174739
+      hero_legs_jump_strip18_19: 865058829960447215
+      hero_legs_jump_strip18_2: 2039417263133801996
+      hero_legs_jump_strip18_20: 5054550557750279886
+      hero_legs_jump_strip18_3: 7173846887385937160
+      hero_legs_jump_strip18_4: 3593195119299095759
+      hero_legs_jump_strip18_5: -1263004456290674203
+      hero_legs_jump_strip18_6: -1689546082950201179
+      hero_legs_jump_strip18_7: -7071035807544608512
+      hero_legs_jump_strip18_8: -8942533731402368754
+      hero_legs_jump_strip18_9: 6395872766883712101
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

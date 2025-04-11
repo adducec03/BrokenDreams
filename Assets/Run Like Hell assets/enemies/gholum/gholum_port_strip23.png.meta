@@ -240,6 +240,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1334,7 +1347,56 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gholum_port_strip23_0: -6395844429335625492
+      gholum_port_strip23_1: -3005956124989884065
+      gholum_port_strip23_10: 1385225444114056332
+      gholum_port_strip23_11: -7555292903617023884
+      gholum_port_strip23_12: 8708245949602233345
+      gholum_port_strip23_13: 734526475545865545
+      gholum_port_strip23_14: 1468582069017289206
+      gholum_port_strip23_15: -4208688710346937725
+      gholum_port_strip23_16: -1481655592164298663
+      gholum_port_strip23_17: 6800424312995608357
+      gholum_port_strip23_18: 2617885128162246353
+      gholum_port_strip23_19: 3389194425310425647
+      gholum_port_strip23_2: -6024406458327641311
+      gholum_port_strip23_20: -7514605907110150555
+      gholum_port_strip23_21: -496519650254407933
+      gholum_port_strip23_22: -593964606570920501
+      gholum_port_strip23_23: 5550887456723695342
+      gholum_port_strip23_24: 4979379281614545551
+      gholum_port_strip23_25: 1708832609199153330
+      gholum_port_strip23_26: 2659529293761549357
+      gholum_port_strip23_27: -1792414869473368263
+      gholum_port_strip23_28: 2821390415835725227
+      gholum_port_strip23_29: -3395480374195123052
+      gholum_port_strip23_3: -8929116987040575523
+      gholum_port_strip23_30: -7659518401387032369
+      gholum_port_strip23_31: 6615767971500000723
+      gholum_port_strip23_32: 2549366573419558194
+      gholum_port_strip23_33: -8606046764825763064
+      gholum_port_strip23_34: 2531017109537432902
+      gholum_port_strip23_35: 2460104040260823960
+      gholum_port_strip23_36: 4437988560863043045
+      gholum_port_strip23_37: -9026429256897306047
+      gholum_port_strip23_38: -7495220167701206573
+      gholum_port_strip23_39: 6768249980154200257
+      gholum_port_strip23_4: -2448871167937052119
+      gholum_port_strip23_40: 1988234183738930835
+      gholum_port_strip23_41: -2134564691869059244
+      gholum_port_strip23_42: 3105888930990080806
+      gholum_port_strip23_43: 5034725598923346979
+      gholum_port_strip23_44: -3926794391391078289
+      gholum_port_strip23_45: 4556235860521337816
+      gholum_port_strip23_46: 6271264127883202084
+      gholum_port_strip23_47: 8121698752859662679
+      gholum_port_strip23_48: -418904910719864150
+      gholum_port_strip23_5: -3740521502429869453
+      gholum_port_strip23_6: -3617797126063971897
+      gholum_port_strip23_7: -5485448101431892973
+      gholum_port_strip23_8: 9082545590314464860
+      gholum_port_strip23_9: 8143952350182740611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

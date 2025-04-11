@@ -126,6 +126,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -384,7 +397,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      voldo_attack_success_strip29_1_0: 4973484299803003096
+      voldo_attack_success_strip29_1_1: -3131322283820539592
+      voldo_attack_success_strip29_1_10: 822898848946745591
+      voldo_attack_success_strip29_1_2: -6542468955114930752
+      voldo_attack_success_strip29_1_3: 3850957110261287608
+      voldo_attack_success_strip29_1_4: 5707143793935976352
+      voldo_attack_success_strip29_1_5: 4483234186669638283
+      voldo_attack_success_strip29_1_6: -2161202650727992691
+      voldo_attack_success_strip29_1_7: 3112413160890701889
+      voldo_attack_success_strip29_1_8: 3883862836834181203
+      voldo_attack_success_strip29_1_9: 2277667394673899202
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

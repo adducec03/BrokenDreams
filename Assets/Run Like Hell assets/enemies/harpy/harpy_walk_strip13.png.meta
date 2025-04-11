@@ -132,6 +132,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -434,7 +447,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      harpy_walk_strip13_0: -3926069073570056086
+      harpy_walk_strip13_1: 3572286275240866922
+      harpy_walk_strip13_10: -8186234550905571466
+      harpy_walk_strip13_11: -6537278169206189679
+      harpy_walk_strip13_12: -4700317662989106345
+      harpy_walk_strip13_2: -8116145836910044552
+      harpy_walk_strip13_3: -5648756555025528547
+      harpy_walk_strip13_4: 2383305774306069460
+      harpy_walk_strip13_5: 197963135905996798
+      harpy_walk_strip13_6: 6414124721540475232
+      harpy_walk_strip13_7: 6947959763830857182
+      harpy_walk_strip13_8: 2294355880867129331
+      harpy_walk_strip13_9: -2213914642817308643
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

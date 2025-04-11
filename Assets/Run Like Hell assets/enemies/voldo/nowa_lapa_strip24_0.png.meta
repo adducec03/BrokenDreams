@@ -168,6 +168,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -734,7 +747,32 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      nowa_lapa_strip24_0_0: 3587477348833197020
+      nowa_lapa_strip24_0_1: -7215011054436659004
+      nowa_lapa_strip24_0_10: 4207593391568019777
+      nowa_lapa_strip24_0_11: -8941925616191986160
+      nowa_lapa_strip24_0_12: 6555021839749503659
+      nowa_lapa_strip24_0_13: 2882297858668866268
+      nowa_lapa_strip24_0_14: -5170740831681794806
+      nowa_lapa_strip24_0_15: 6792804777817647544
+      nowa_lapa_strip24_0_16: 6399287875097142618
+      nowa_lapa_strip24_0_17: 8875149815836256113
+      nowa_lapa_strip24_0_18: -8102752754641386121
+      nowa_lapa_strip24_0_19: 3344555515630708186
+      nowa_lapa_strip24_0_2: 2415607163375222446
+      nowa_lapa_strip24_0_20: 8647924810698886060
+      nowa_lapa_strip24_0_21: 6188348329942496026
+      nowa_lapa_strip24_0_22: 3815734052038376573
+      nowa_lapa_strip24_0_23: -2967425981199905755
+      nowa_lapa_strip24_0_24: 7343882025740180400
+      nowa_lapa_strip24_0_3: -2745703477685971910
+      nowa_lapa_strip24_0_4: -6338765831460331492
+      nowa_lapa_strip24_0_5: 3747058111600639356
+      nowa_lapa_strip24_0_6: 4579467188228936868
+      nowa_lapa_strip24_0_7: 448566018539652985
+      nowa_lapa_strip24_0_8: -5611774680835427502
+      nowa_lapa_strip24_0_9: 1997517777731862802
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

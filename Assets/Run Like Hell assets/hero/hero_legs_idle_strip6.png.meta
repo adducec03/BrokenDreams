@@ -126,6 +126,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -384,7 +397,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hero_legs_idle_strip6_0: -3456301387871000927
+      hero_legs_idle_strip6_1: -8961776942453610389
+      hero_legs_idle_strip6_10: 6773808274849429403
+      hero_legs_idle_strip6_2: 7998613297264010521
+      hero_legs_idle_strip6_3: 3258255818801803201
+      hero_legs_idle_strip6_4: -5492722149165430927
+      hero_legs_idle_strip6_5: -5257466627668974279
+      hero_legs_idle_strip6_6: -8211989232088817767
+      hero_legs_idle_strip6_7: 7356153475635329357
+      hero_legs_idle_strip6_8: -2680087241086105051
+      hero_legs_idle_strip6_9: -6108171078735765217
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

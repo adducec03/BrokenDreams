@@ -150,6 +150,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -584,7 +597,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      voldo_walk_strip18_0: 8718420771958077843
+      voldo_walk_strip18_1: 2277070470498485578
+      voldo_walk_strip18_10: 4375855104108455252
+      voldo_walk_strip18_11: -2152767606013750876
+      voldo_walk_strip18_12: 6189595189059675796
+      voldo_walk_strip18_13: -686100864607790774
+      voldo_walk_strip18_14: -5323478205507840012
+      voldo_walk_strip18_15: 3649025876269957456
+      voldo_walk_strip18_16: -6809667334835803787
+      voldo_walk_strip18_17: -5863691326438495165
+      voldo_walk_strip18_18: 6454195983522408946
+      voldo_walk_strip18_2: 3223249366830736676
+      voldo_walk_strip18_3: -311126134490980507
+      voldo_walk_strip18_4: 6774885644809607295
+      voldo_walk_strip18_5: -2788384041592869147
+      voldo_walk_strip18_6: 5709224664383519560
+      voldo_walk_strip18_7: 7037252121565011215
+      voldo_walk_strip18_8: -6497110188082627212
+      voldo_walk_strip18_9: -4631096884840151385
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

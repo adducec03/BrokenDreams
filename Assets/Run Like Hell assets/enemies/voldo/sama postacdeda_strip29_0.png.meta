@@ -159,6 +159,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -659,7 +672,29 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sama postacdeda_strip29_0_0: -5314775293292843277
+      sama postacdeda_strip29_0_1: 7485309541203854938
+      sama postacdeda_strip29_0_10: 7183516615551269598
+      sama postacdeda_strip29_0_11: 369187997505268202
+      sama postacdeda_strip29_0_12: -1916402504243505318
+      sama postacdeda_strip29_0_13: -8043519718106498625
+      sama postacdeda_strip29_0_14: -1363276957639470195
+      sama postacdeda_strip29_0_15: -1294824199107617841
+      sama postacdeda_strip29_0_16: 8992268141979105997
+      sama postacdeda_strip29_0_17: -7103226441315712004
+      sama postacdeda_strip29_0_18: 5695773556899781952
+      sama postacdeda_strip29_0_19: -8819226100577386132
+      sama postacdeda_strip29_0_2: -7235733768970930461
+      sama postacdeda_strip29_0_20: 5448617874650954668
+      sama postacdeda_strip29_0_21: 8100396387474295761
+      sama postacdeda_strip29_0_3: 537979694030888143
+      sama postacdeda_strip29_0_4: 6815361221820756913
+      sama postacdeda_strip29_0_5: -6409202808348213180
+      sama postacdeda_strip29_0_6: -6665002703568269591
+      sama postacdeda_strip29_0_7: 3027096312812356691
+      sama postacdeda_strip29_0_8: 973176216170937998
+      sama postacdeda_strip29_0_9: 6361216219882208354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

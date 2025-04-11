@@ -156,6 +156,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -634,7 +647,28 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      voldo_jump_strip20_0: 1167085853767352681
+      voldo_jump_strip20_1: 1801533321002944761
+      voldo_jump_strip20_10: 3884846693594367254
+      voldo_jump_strip20_11: -6017241869422380037
+      voldo_jump_strip20_12: 3021072996168829337
+      voldo_jump_strip20_13: -5273069786996018030
+      voldo_jump_strip20_14: 7862377218039095151
+      voldo_jump_strip20_15: 8012770483784977094
+      voldo_jump_strip20_16: -7453902504037494147
+      voldo_jump_strip20_17: 3684371938649163632
+      voldo_jump_strip20_18: 3910515851016882539
+      voldo_jump_strip20_19: -6682726348434752646
+      voldo_jump_strip20_2: -5154056361343503150
+      voldo_jump_strip20_20: 1304293899487810600
+      voldo_jump_strip20_3: -4644323299605864803
+      voldo_jump_strip20_4: 3357825489967446977
+      voldo_jump_strip20_5: -9161446050547892611
+      voldo_jump_strip20_6: 7806307842798120261
+      voldo_jump_strip20_7: 1453409695582576411
+      voldo_jump_strip20_8: -7740350142222056837
+      voldo_jump_strip20_9: 5508233443633894370
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

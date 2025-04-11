@@ -150,6 +150,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -584,7 +597,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gholum_jump_strip18_0: -4680013163549118157
+      gholum_jump_strip18_1: 4281596815853232479
+      gholum_jump_strip18_10: 2153726379178738116
+      gholum_jump_strip18_11: -8392225742922312040
+      gholum_jump_strip18_12: 8671044812629705437
+      gholum_jump_strip18_13: 8580905026230456183
+      gholum_jump_strip18_14: -158106055954212612
+      gholum_jump_strip18_15: 5297861451835565448
+      gholum_jump_strip18_16: -2232283534533156921
+      gholum_jump_strip18_17: -1486369158276162504
+      gholum_jump_strip18_18: 5569644857244736228
+      gholum_jump_strip18_2: -576603757335891850
+      gholum_jump_strip18_3: -2090325540471674743
+      gholum_jump_strip18_4: 6769174897672152435
+      gholum_jump_strip18_5: 557749990667366539
+      gholum_jump_strip18_6: -1641381475691844143
+      gholum_jump_strip18_7: 6476256198434917098
+      gholum_jump_strip18_8: 7453431104532567428
+      gholum_jump_strip18_9: -709173958744219047
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
