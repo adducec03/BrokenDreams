@@ -162,6 +162,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -684,7 +697,30 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_port_strip21_0: 4868304848023005176
+      gruby_port_strip21_1: 5904263777813710736
+      gruby_port_strip21_10: 4087803381327942649
+      gruby_port_strip21_11: -4537920545865873458
+      gruby_port_strip21_12: 8700003555437050372
+      gruby_port_strip21_13: 3489560989458643731
+      gruby_port_strip21_14: 1521539126567721141
+      gruby_port_strip21_15: 7787876732005083753
+      gruby_port_strip21_16: 9218988357461714497
+      gruby_port_strip21_17: -6445800025954236203
+      gruby_port_strip21_18: 4726044798418265363
+      gruby_port_strip21_19: 3456744167409298333
+      gruby_port_strip21_2: -705930212307788766
+      gruby_port_strip21_20: 8787729354244650401
+      gruby_port_strip21_21: -1489754910651075784
+      gruby_port_strip21_22: -5028456459511972533
+      gruby_port_strip21_3: -5181880289142670894
+      gruby_port_strip21_4: -5197645946497919943
+      gruby_port_strip21_5: 7434350183742642646
+      gruby_port_strip21_6: 1479672237374191165
+      gruby_port_strip21_7: -3289543481086515597
+      gruby_port_strip21_8: 2654845787825421700
+      gruby_port_strip21_9: 6979588272241835542
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

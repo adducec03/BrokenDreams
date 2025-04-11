@@ -156,6 +156,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -634,7 +647,28 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gholum_attack_fail_strip20_0: -7381307810540114835
+      gholum_attack_fail_strip20_1: 3137011109653255602
+      gholum_attack_fail_strip20_10: -4588847191075268133
+      gholum_attack_fail_strip20_11: -1117645167719874121
+      gholum_attack_fail_strip20_12: -3370936925344291664
+      gholum_attack_fail_strip20_13: -4285967262924527289
+      gholum_attack_fail_strip20_14: -1169674742160331683
+      gholum_attack_fail_strip20_15: 7157756025040717027
+      gholum_attack_fail_strip20_16: 6888961222846217023
+      gholum_attack_fail_strip20_17: 742903668416318259
+      gholum_attack_fail_strip20_18: 3077988440321602041
+      gholum_attack_fail_strip20_19: 1471565089924960890
+      gholum_attack_fail_strip20_2: 4860733332426321921
+      gholum_attack_fail_strip20_20: -3334998144316368737
+      gholum_attack_fail_strip20_3: -4407703632247957882
+      gholum_attack_fail_strip20_4: -8430142045097624316
+      gholum_attack_fail_strip20_5: -3176036869792404834
+      gholum_attack_fail_strip20_6: 7180985303374905208
+      gholum_attack_fail_strip20_7: 2752052992346563700
+      gholum_attack_fail_strip20_8: 392068423048078840
+      gholum_attack_fail_strip20_9: 6640184559306353360
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

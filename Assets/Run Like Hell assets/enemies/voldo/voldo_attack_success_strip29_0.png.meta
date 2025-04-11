@@ -183,6 +183,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -859,7 +872,37 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      voldo_attack_success_strip29_0_0: -2859362419109605216
+      voldo_attack_success_strip29_0_1: 2082089897605603252
+      voldo_attack_success_strip29_0_10: 4375638907139584455
+      voldo_attack_success_strip29_0_11: 1687010247813934991
+      voldo_attack_success_strip29_0_12: -8268872024847090882
+      voldo_attack_success_strip29_0_13: 716293777549099752
+      voldo_attack_success_strip29_0_14: -2577898015081560245
+      voldo_attack_success_strip29_0_15: -2809629579098309739
+      voldo_attack_success_strip29_0_16: -1431687888896888582
+      voldo_attack_success_strip29_0_17: 2122700775375777987
+      voldo_attack_success_strip29_0_18: -8113343998266872802
+      voldo_attack_success_strip29_0_19: 6381924461649161464
+      voldo_attack_success_strip29_0_2: -3884764952663347751
+      voldo_attack_success_strip29_0_20: 2334858387565992619
+      voldo_attack_success_strip29_0_21: 4877207455309496079
+      voldo_attack_success_strip29_0_22: 838497010845219521
+      voldo_attack_success_strip29_0_23: 5257656478080804279
+      voldo_attack_success_strip29_0_24: -6160586846709966108
+      voldo_attack_success_strip29_0_25: 8162177422713913174
+      voldo_attack_success_strip29_0_26: 3479211171544418930
+      voldo_attack_success_strip29_0_27: -1013054512046527044
+      voldo_attack_success_strip29_0_28: -1346975465843281941
+      voldo_attack_success_strip29_0_29: 1352040378183718870
+      voldo_attack_success_strip29_0_3: -7202979153885143580
+      voldo_attack_success_strip29_0_4: 4733914150987547405
+      voldo_attack_success_strip29_0_5: -9115819711104204556
+      voldo_attack_success_strip29_0_6: 4832560586234552817
+      voldo_attack_success_strip29_0_7: -866591919014364216
+      voldo_attack_success_strip29_0_8: -5625919088134200578
+      voldo_attack_success_strip29_0_9: 5584384883943316056
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

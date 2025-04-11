@@ -153,6 +153,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -609,7 +622,27 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      harpy_attack_miss_strip20_0: 5052630193823294005
+      harpy_attack_miss_strip20_1: 3935948529088972196
+      harpy_attack_miss_strip20_10: 3949107171872141180
+      harpy_attack_miss_strip20_11: 7195367064272900890
+      harpy_attack_miss_strip20_12: -7787537335419206579
+      harpy_attack_miss_strip20_13: -5301844441408998711
+      harpy_attack_miss_strip20_14: -1734011761378812098
+      harpy_attack_miss_strip20_15: -8118475180347280761
+      harpy_attack_miss_strip20_16: 5716072562104631051
+      harpy_attack_miss_strip20_17: -2478659557265808510
+      harpy_attack_miss_strip20_18: 1921783777031517159
+      harpy_attack_miss_strip20_19: -1609235057090625384
+      harpy_attack_miss_strip20_2: -5517862660002426665
+      harpy_attack_miss_strip20_3: -2150550131605347379
+      harpy_attack_miss_strip20_4: -8323423119369306886
+      harpy_attack_miss_strip20_5: -8175314894795252812
+      harpy_attack_miss_strip20_6: 1053276379514562164
+      harpy_attack_miss_strip20_7: -7416951817783200751
+      harpy_attack_miss_strip20_8: -3834983808068466874
+      harpy_attack_miss_strip20_9: 4386861041552508636
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -183,6 +183,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -859,7 +872,37 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_death_strip17_0: 5633666079009228961
+      gruby_death_strip17_1: -6836519029548975074
+      gruby_death_strip17_10: 3216683687561354102
+      gruby_death_strip17_11: -107990596148272445
+      gruby_death_strip17_12: -1073017349428776450
+      gruby_death_strip17_13: 1404435090230012247
+      gruby_death_strip17_14: -5316447992198048138
+      gruby_death_strip17_15: 2607855923755696453
+      gruby_death_strip17_16: 287888543224525577
+      gruby_death_strip17_17: -4355235951080646270
+      gruby_death_strip17_18: -4908349452191548291
+      gruby_death_strip17_19: 7017828094405597345
+      gruby_death_strip17_2: 6876106042016428233
+      gruby_death_strip17_20: -3482668490042054483
+      gruby_death_strip17_21: 2045008840532942128
+      gruby_death_strip17_22: 638895065104133649
+      gruby_death_strip17_23: -3967634413035752485
+      gruby_death_strip17_24: 2052869055369032424
+      gruby_death_strip17_25: -5187873013607634064
+      gruby_death_strip17_26: 7599059124215815560
+      gruby_death_strip17_27: 3828818929396185818
+      gruby_death_strip17_28: 400182507159795569
+      gruby_death_strip17_29: -4679586031458713959
+      gruby_death_strip17_3: 3994960003813644870
+      gruby_death_strip17_4: 2910200102051958458
+      gruby_death_strip17_5: -8065846414124138766
+      gruby_death_strip17_6: -67674081554098907
+      gruby_death_strip17_7: -3654597056710761985
+      gruby_death_strip17_8: -8018221203110389454
+      gruby_death_strip17_9: -287592285953685974
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

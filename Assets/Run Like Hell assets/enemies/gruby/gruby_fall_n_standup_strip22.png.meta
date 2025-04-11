@@ -159,6 +159,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -659,7 +672,29 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_fall_n_standup_strip22_0: 8819153870143073705
+      gruby_fall_n_standup_strip22_1: -1877480605588360223
+      gruby_fall_n_standup_strip22_10: 1110340732285345489
+      gruby_fall_n_standup_strip22_11: 8885758358274716980
+      gruby_fall_n_standup_strip22_12: 7382445487993902046
+      gruby_fall_n_standup_strip22_13: -8898330365463878310
+      gruby_fall_n_standup_strip22_14: -8568188066201400715
+      gruby_fall_n_standup_strip22_15: -5654889445999499974
+      gruby_fall_n_standup_strip22_16: 4979399586881779904
+      gruby_fall_n_standup_strip22_17: 6079448421589903673
+      gruby_fall_n_standup_strip22_18: 3933359193791149998
+      gruby_fall_n_standup_strip22_19: -4600297468945449474
+      gruby_fall_n_standup_strip22_2: 1542400347655690171
+      gruby_fall_n_standup_strip22_20: -2525050909246508928
+      gruby_fall_n_standup_strip22_21: -5491923627735719958
+      gruby_fall_n_standup_strip22_3: 465769557555851291
+      gruby_fall_n_standup_strip22_4: -1557776428340483583
+      gruby_fall_n_standup_strip22_5: -7167478302431750963
+      gruby_fall_n_standup_strip22_6: 2490421066135179650
+      gruby_fall_n_standup_strip22_7: -4721138532906351947
+      gruby_fall_n_standup_strip22_8: 4670574629933694248
+      gruby_fall_n_standup_strip22_9: -3966807364753528226
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

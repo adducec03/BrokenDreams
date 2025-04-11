@@ -135,6 +135,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -459,7 +472,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_walk_strip14_0: 7254196307749029861
+      gruby_walk_strip14_1: -9141801308500831541
+      gruby_walk_strip14_10: -4888439801796775342
+      gruby_walk_strip14_11: 5400158764226742440
+      gruby_walk_strip14_12: 8815782937172042622
+      gruby_walk_strip14_13: 1698191238156036185
+      gruby_walk_strip14_2: -3371789484617674233
+      gruby_walk_strip14_3: -21270611634468178
+      gruby_walk_strip14_4: -3173952607267037767
+      gruby_walk_strip14_5: -3533873276854537617
+      gruby_walk_strip14_6: -8486119966424728096
+      gruby_walk_strip14_7: 9139426294597761861
+      gruby_walk_strip14_8: -7200396982507779254
+      gruby_walk_strip14_9: 442036262781880201
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

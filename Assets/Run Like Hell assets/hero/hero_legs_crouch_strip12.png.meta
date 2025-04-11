@@ -135,6 +135,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -459,7 +472,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hero_legs_crouch_strip12_0: 5888922995165604171
+      hero_legs_crouch_strip12_1: 3521278678777190251
+      hero_legs_crouch_strip12_10: 1782924522017208124
+      hero_legs_crouch_strip12_11: 3568770227005076276
+      hero_legs_crouch_strip12_12: 4978458033023178045
+      hero_legs_crouch_strip12_13: 4420763213160407974
+      hero_legs_crouch_strip12_2: -516719509229764749
+      hero_legs_crouch_strip12_3: 5375863574450078258
+      hero_legs_crouch_strip12_4: 1316852978026184810
+      hero_legs_crouch_strip12_5: 8528983958189671195
+      hero_legs_crouch_strip12_6: -2552656516117800641
+      hero_legs_crouch_strip12_7: 5650206144505506444
+      hero_legs_crouch_strip12_8: 3481873512247188153
+      hero_legs_crouch_strip12_9: 6624481227141651441
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a2ee6f08db66a498ca860614a6b67225
+guid: 6310865a4b5ea2d4eba8f2096fac2606
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3014827941001943286
-    second: task_background_0
+      213: -6311258241544421288
+    second: TabBackground-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: task_background_0
+      name: TabBackground-removebg-preview_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 261
-        height: 39
+        y: 250
+        width: 408
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a0728adf5fd2926d0800000000000000
-      internalID: -3014827941001943286
+      spriteID: 8500dfa5118e968a0800000000000000
+      internalID: -6311258241544421288
       vertices: []
       indices: 
       edges: []

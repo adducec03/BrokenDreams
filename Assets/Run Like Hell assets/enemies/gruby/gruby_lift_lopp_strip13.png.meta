@@ -132,6 +132,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -434,7 +447,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_lift_lopp_strip13_0: 7914452010097990837
+      gruby_lift_lopp_strip13_1: -5517407841885516312
+      gruby_lift_lopp_strip13_10: 7652595957910358890
+      gruby_lift_lopp_strip13_11: -6174086149326764036
+      gruby_lift_lopp_strip13_12: -8540697780325741095
+      gruby_lift_lopp_strip13_2: 2094261059454132758
+      gruby_lift_lopp_strip13_3: -5752928270731635373
+      gruby_lift_lopp_strip13_4: -7506967397693626265
+      gruby_lift_lopp_strip13_5: 4205078657850984123
+      gruby_lift_lopp_strip13_6: -1432175278376925064
+      gruby_lift_lopp_strip13_7: -5969296346020608372
+      gruby_lift_lopp_strip13_8: -824327803641410418
+      gruby_lift_lopp_strip13_9: 6837998311936493669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

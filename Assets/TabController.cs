@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +7,7 @@ public class TabController : MonoBehaviour
 {
     public Image[] tabImages;
     public GameObject[] pages;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,7 +19,7 @@ public class TabController : MonoBehaviour
         for (int i = 0; i < pages.Length; i++)
         {
             pages[i].SetActive(false);
-            tabImages[i].color = Color.blue;
+            tabImages[i].color = Color.black;
         }
         pages[tabNo].SetActive(true);
         tabImages[tabNo].color = Color.red;

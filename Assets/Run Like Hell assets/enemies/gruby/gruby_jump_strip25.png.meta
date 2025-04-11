@@ -168,6 +168,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -734,7 +747,32 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gruby_jump_strip25_0: -3543996675089702530
+      gruby_jump_strip25_1: -1317474491173139623
+      gruby_jump_strip25_10: 7287018893953192492
+      gruby_jump_strip25_11: 2666366466364002413
+      gruby_jump_strip25_12: -5380522545142638733
+      gruby_jump_strip25_13: -7378260131708502051
+      gruby_jump_strip25_14: -2706865899756186902
+      gruby_jump_strip25_15: 8442838929933785933
+      gruby_jump_strip25_16: -3669317645933182808
+      gruby_jump_strip25_17: 8261749219807642734
+      gruby_jump_strip25_18: 5719333818825941094
+      gruby_jump_strip25_19: -5581855285548555850
+      gruby_jump_strip25_2: 2271346791321571441
+      gruby_jump_strip25_20: -5040904016383120433
+      gruby_jump_strip25_21: -1607112177353062216
+      gruby_jump_strip25_22: -7425617252125166895
+      gruby_jump_strip25_23: -703702812315556526
+      gruby_jump_strip25_24: -3978684741087022413
+      gruby_jump_strip25_3: -4583862059170310364
+      gruby_jump_strip25_4: 8798925492376303368
+      gruby_jump_strip25_5: -7480274053444747046
+      gruby_jump_strip25_6: -5206431590329245569
+      gruby_jump_strip25_7: -1888317941305639127
+      gruby_jump_strip25_8: 6296099968927218883
+      gruby_jump_strip25_9: 213543425280744666
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

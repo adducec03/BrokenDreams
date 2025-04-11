@@ -243,6 +243,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1359,7 +1372,57 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      harpy_attack_success_strip38_0_0: -1742451321793933452
+      harpy_attack_success_strip38_0_1: 659247684926117508
+      harpy_attack_success_strip38_0_10: 8010373077705017183
+      harpy_attack_success_strip38_0_11: -52661865178619696
+      harpy_attack_success_strip38_0_12: -3598350919369784173
+      harpy_attack_success_strip38_0_13: 7166435606578432390
+      harpy_attack_success_strip38_0_14: 3776273448517577692
+      harpy_attack_success_strip38_0_15: 7673914505314087795
+      harpy_attack_success_strip38_0_16: 8673542190471190919
+      harpy_attack_success_strip38_0_17: 7967381900900695755
+      harpy_attack_success_strip38_0_18: 8241800734703032004
+      harpy_attack_success_strip38_0_19: 7194760109425869024
+      harpy_attack_success_strip38_0_2: -6611157925622772921
+      harpy_attack_success_strip38_0_20: 7603998915378674519
+      harpy_attack_success_strip38_0_21: -5084684354067712154
+      harpy_attack_success_strip38_0_22: 5754930135300490947
+      harpy_attack_success_strip38_0_23: 3141897271310792841
+      harpy_attack_success_strip38_0_24: -6407182497647472526
+      harpy_attack_success_strip38_0_25: 8271668894886933210
+      harpy_attack_success_strip38_0_26: -1772432220796842922
+      harpy_attack_success_strip38_0_27: -3862262446546396384
+      harpy_attack_success_strip38_0_28: 5003591180133442404
+      harpy_attack_success_strip38_0_29: -5104742496880326671
+      harpy_attack_success_strip38_0_3: -3586466314544787081
+      harpy_attack_success_strip38_0_30: 1140199970751654298
+      harpy_attack_success_strip38_0_31: -3991652753278587759
+      harpy_attack_success_strip38_0_32: 3103859524243821366
+      harpy_attack_success_strip38_0_33: 449488831887645061
+      harpy_attack_success_strip38_0_34: -2086393217152020218
+      harpy_attack_success_strip38_0_35: 5443945113501398555
+      harpy_attack_success_strip38_0_36: 4262491552772538446
+      harpy_attack_success_strip38_0_37: -7999343834721968203
+      harpy_attack_success_strip38_0_38: -1582197950261027686
+      harpy_attack_success_strip38_0_39: 4072234927187979332
+      harpy_attack_success_strip38_0_4: 5849522832578691431
+      harpy_attack_success_strip38_0_40: 132473809816580797
+      harpy_attack_success_strip38_0_41: -8404842398102573599
+      harpy_attack_success_strip38_0_42: -1287280124797861066
+      harpy_attack_success_strip38_0_43: 7273564152895383394
+      harpy_attack_success_strip38_0_44: 6392580661803509213
+      harpy_attack_success_strip38_0_45: -6563513294616248446
+      harpy_attack_success_strip38_0_46: -3129117671176099623
+      harpy_attack_success_strip38_0_47: -466415584954076612
+      harpy_attack_success_strip38_0_48: -1160948708331452443
+      harpy_attack_success_strip38_0_49: -5316832204279595231
+      harpy_attack_success_strip38_0_5: 8064949432652405715
+      harpy_attack_success_strip38_0_6: -1997297301486793061
+      harpy_attack_success_strip38_0_7: 3296758361259924568
+      harpy_attack_success_strip38_0_8: -4251559690773751418
+      harpy_attack_success_strip38_0_9: -7988362165502146438
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

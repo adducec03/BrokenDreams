@@ -150,6 +150,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -584,7 +597,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hero_legs_run_strip15_0: -1521494162227053814
+      hero_legs_run_strip15_1: 3473242947721521071
+      hero_legs_run_strip15_10: -1544157869566203156
+      hero_legs_run_strip15_11: 8866083603543919203
+      hero_legs_run_strip15_12: -6806798644120879253
+      hero_legs_run_strip15_13: 509277230397667086
+      hero_legs_run_strip15_14: -4032945974964199340
+      hero_legs_run_strip15_15: 667799642256737332
+      hero_legs_run_strip15_16: 1224158570886179300
+      hero_legs_run_strip15_17: 4922655228522999482
+      hero_legs_run_strip15_18: 6154408802092421413
+      hero_legs_run_strip15_2: 8488714459445166463
+      hero_legs_run_strip15_3: -9166577972766456039
+      hero_legs_run_strip15_4: -5373402460540630730
+      hero_legs_run_strip15_5: -3687981854524825793
+      hero_legs_run_strip15_6: -602943669712392430
+      hero_legs_run_strip15_7: 4632498245235924314
+      hero_legs_run_strip15_8: 8629290854479695696
+      hero_legs_run_strip15_9: -3541392955224746182
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
