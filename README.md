@@ -1,5 +1,5 @@
 # <div align="center"> PROGETTO MOBILE COMPUTING: BROKEN DREAMS </div>
-The following project is a small mobile game taken as a delivery for the Mobile Computing exam. It is the result of work carried out by myself and my colleague @adducec03 prova
+The following project is a small mobile game taken as a delivery for the Mobile Computing exam. It is the result of work carried out by myself and my colleague @adducec03
 
 ## Game Plot
 ## How to Install
