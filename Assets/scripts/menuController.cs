@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class menuController : MonoBehaviour
 {
     public GameObject menuCanvas;
     public Button menuButton; // Riferimento al pulsante del menu
+    public Button exitButton; // Riferimento al pulsante di uscita
     public Volume blurVolume; // Riferimento al volume del blur
     public GameObject joystick; // Riferimento al joystick virtuale
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,5 +48,9 @@ public class menuController : MonoBehaviour
         blurVolume.enabled = false; // Disabilita il blur quando il menu è chiuso
         menuButton.gameObject.SetActive(true); // Mostra il pulsante del menu
         joystick.SetActive(true); // Mostra il joystick quando il menu è aperto
+    }
+
+    public void ExitGame(){
+        SceneManager.LoadScene("MainMenu");
     }
 }
