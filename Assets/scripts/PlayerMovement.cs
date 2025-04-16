@@ -21,8 +21,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frameq
-    void Update()
-{
+    void FixedUpdate()
+    {
     // Se l'input da tastiera è attivo, usa quello, altrimenti joystick
     Vector2 finalInput = inputFromKeyboard.magnitude > 0.1f 
         ? inputFromKeyboard 
