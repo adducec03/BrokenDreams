@@ -53493,7 +53493,7 @@ GameObject:
   - component: {fileID: 258556281}
   - component: {fileID: 258556282}
   m_Layer: 8
-  m_Name: shadow2_0
+  m_Name: PlayerShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69562,7 +69562,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000047af159b1797fac9e147bf3a1fb62c1189857b03d790c7bf
+  m_ApplyToSortingLayers: 47af159b1fb62c11
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -69578,8 +69578,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -83220,7 +83220,7 @@ GameObject:
   - component: {fileID: 2089531732}
   - component: {fileID: 2089531731}
   - component: {fileID: 2089531730}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MapCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
