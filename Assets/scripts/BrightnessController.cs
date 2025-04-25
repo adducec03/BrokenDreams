@@ -9,8 +9,11 @@ public class BrightnessController : MonoBehaviour
 
     private void Start()
     {
-        // Imposta lo slider al valore iniziale della luce
-        brightnessSlider.value = globalLight.intensity;
+        // Imposta il valore iniziale dello slider a 0
+        brightnessSlider.value = 0f;
+
+        // Imposta la luminosità minima
+        globalLight.intensity = 0f;
 
         // Aggiunge il listener all'evento dello slider
         brightnessSlider.onValueChanged.AddListener(UpdateBrightness);

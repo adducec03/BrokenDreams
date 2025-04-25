@@ -9,8 +9,10 @@ public class HealthScript : MonoBehaviour
     public float maxShield = 50f;
     public float currentShield;
 
-    public HealthBar healthBar; // Cambiato da Image a HealthBar
-    public ShieldBar shieldBar;
+    public HealthBar healthBarGame;
+    public ShieldBar shieldBarGame;
+    public HealthBar healthBarMenu;
+    public ShieldBar shieldBarMenu;
 
     void Start()
     {
@@ -26,7 +28,8 @@ public class HealthScript : MonoBehaviour
         float shieldDamage = Mathf.Min(damage, currentShield);
         currentShield -= shieldDamage;
         damage -= shieldDamage; // Rimuovi la parte assorbita dallo scudo
-        shieldBar.SetShield(currentShield, maxShield);
+        shieldBarGame.SetShield(currentShield, maxShield);
+        shieldBarMenu.SetShield(currentShield, maxShield);
     }
 
     // 2. Se resta del danno, colpisci la salute
@@ -34,7 +37,8 @@ public class HealthScript : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        healthBar.SetHealth(currentHealth, maxHealth);
+        healthBarGame.SetHealth(currentHealth, maxHealth);
+        healthBarMenu.SetHealth(currentHealth, maxHealth);
     }
 
     // 3. Controllo morte
