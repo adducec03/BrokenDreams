@@ -10,4 +10,5 @@ public class HealthBar : MonoBehaviour
         float fillAmount = current / max;
         fillImage.fillAmount = Mathf.Clamp01(fillAmount);
     }
+
 }
