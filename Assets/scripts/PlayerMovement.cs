@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 inputFromKeyboard;
     private Animator animator;
     public Joystick joystick; // Riferimento al joystick virtuale
+    public bool playingFootsteps = false;
+    public float footstepSpeed = 0.5f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,10 +40,12 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("InputY", finalInput.y);
         animator.SetFloat("LastInputX", finalInput.x);
         animator.SetFloat("LastInputY", finalInput.y);
+        StartFootsteps();
     }
     else
     {
         animator.SetBool("isWalking", false);
+        StopFootsteps();
     }
 }
 
@@ -49,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     {
     inputFromKeyboard = context.ReadValue<Vector2>();
     }
+
+
 
     /*public void Move(InputAction.CallbackContext context)
     {
@@ -66,4 +73,22 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("InputY", moveInput.y);
 
     }*/
+
+
+    void StartFootsteps()
+    {
+        playingFootsteps = true;
+        InvokeRepeating(nameof(PlayFootstep), 0f, footstepSpeed);
+    }
+
+    void StopFootsteps()
+    {
+        playingFootsteps = false;
+        CancelInvoke(nameof(PlayFootstep));
+    }
+
+    void PlayFootstep()
+    {
+        SoundEffectManager.Play("Footstep");
+    }
 }
