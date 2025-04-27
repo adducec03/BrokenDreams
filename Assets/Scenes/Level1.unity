@@ -55921,9 +55921,27 @@ MonoBehaviour:
   soundEffectGroups:
   - name: Footstep
     audioClips:
-    - {fileID: 8300000, guid: 6434bf9b8b85bb5498a0b82c620ea96b, type: 3}
-    - {fileID: 8300000, guid: 8a19708f3f33ae84399b207960cee4f8, type: 3}
-    - {fileID: 8300000, guid: 6434bf9b8b85bb5498a0b82c620ea96b, type: 3}
+    - {fileID: 8300000, guid: 93bb588d53fb9644794755ddab4bd59c, type: 3}
+    - {fileID: 8300000, guid: 1fecc54e2aa14154da2ae5350dfbb887, type: 3}
+    - {fileID: 8300000, guid: 7ce3f6cfd2aec2c42b141eedadd17921, type: 3}
+    - {fileID: 8300000, guid: fae770110460d994182104bd12b6b2d8, type: 3}
+    - {fileID: 8300000, guid: 538cb4324ef16c547bc5478546a763a8, type: 3}
+    - {fileID: 8300000, guid: d18e92493f4a0bc479dd4320cfc5e840, type: 3}
+    - {fileID: 8300000, guid: d3510a34c496d4f4db0122ee3d8b010d, type: 3}
+    - {fileID: 8300000, guid: 47f3e863c16d7ca47a966d05f69e0b23, type: 3}
+    - {fileID: 8300000, guid: 26e65cfd66841b34795d48c85b80c782, type: 3}
+    - {fileID: 8300000, guid: c78fb3420152a2b4c8e4bec842d3589e, type: 3}
+    - {fileID: 8300000, guid: b64ac52ccfc519646aedc48152f1e41a, type: 3}
+    - {fileID: 8300000, guid: ac27f05670d8f3c4fb356bb909984666, type: 3}
+    - {fileID: 8300000, guid: 9f76be96fe6266a41ae18576d4598f3c, type: 3}
+    - {fileID: 8300000, guid: a6180bde9e22fa9458eda278b66135b0, type: 3}
+    - {fileID: 8300000, guid: 7738b4b629776654eb2ad0134bb55453, type: 3}
+    - {fileID: 8300000, guid: a1e373beb5e90344ab9a14c8a36c2658, type: 3}
+    - {fileID: 8300000, guid: 0f37fc914a49252478b6cfb543441925, type: 3}
+    - {fileID: 8300000, guid: a94e50021e50ae846bd3edc30f9e5fab, type: 3}
+    - {fileID: 8300000, guid: 8cc98c02151005e4fac7bfc1e40adf93, type: 3}
+    - {fileID: 8300000, guid: 006f3ee3581b25c41a55181d0c883d2b, type: 3}
+    - {fileID: 8300000, guid: 1ca3f68d08d160148a75b5ccac197e40, type: 3}
 --- !u!4 &912991771
 Transform:
   m_ObjectHideFlags: 0
