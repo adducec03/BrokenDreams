@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public Joystick joystick; // Riferimento al joystick virtuale
     public bool playingFootsteps = false;
-    public float footstepSpeed = 0.1f;
+    public float footstepSpeed = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         animator=GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frameq
+    // Update is called once per frame
     void FixedUpdate()
     {
     // Se l'input da tastiera è attivo, usa quello, altrimenti joystick
@@ -77,9 +77,13 @@ public class PlayerMovement : MonoBehaviour
 
     void StartFootsteps()
     {
+        if (playingFootsteps) return;
+
         playingFootsteps = true;
-        InvokeRepeating(nameof(PlayFootstep), 0f, footstepSpeed);
+        float speedFactor = moveSpeed > 0 ? 1f / moveSpeed : 0.5f; // più ti muovi veloce, più i passi sono rapidi
+        InvokeRepeating(nameof(PlayFootstep), 0f, footstepSpeed * speedFactor);
     }
+
 
     void StopFootsteps()
     {
