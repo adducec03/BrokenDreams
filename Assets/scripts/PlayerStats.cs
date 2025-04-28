@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class HealthScript : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     public int lives = 3; // Vite totali
     public Transform respawnPoint; // Ultimo checkpoint raggiunto
@@ -16,11 +16,15 @@ public class HealthScript : MonoBehaviour
     public ShieldBar shieldBarGame;
     public HealthBar healthBarMenu;
     public ShieldBar shieldBarMenu;
+    public HeartsManager heartsManager;
+
 
     void Start()
     {
         currentHealth = maxHealth;
         currentShield = maxShield;
+        heartsManager = FindFirstObjectByType<HeartsManager>();
+        heartsManager.UpdateHearts(lives);
     }
 
     public void TakeDamage(float damage)
@@ -63,7 +67,8 @@ public class HealthScript : MonoBehaviour
 
     void Die()
     {
-        lives--;
+        lives=lives-1;
+        heartsManager.UpdateHearts(lives);
 
         if (lives > 0)
         {
