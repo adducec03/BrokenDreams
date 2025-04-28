@@ -12,6 +12,7 @@ public class menuController : MonoBehaviour
     public GameObject joystick; // Riferimento al joystick virtuale
     public GameObject healthBarUI;
     public GameObject shieldBarUI;
+    public GameObject livesPanelUI;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +46,7 @@ public class menuController : MonoBehaviour
         // Nascondi barre
         healthBarUI.SetActive(false);
         shieldBarUI.SetActive(false);
+        livesPanelUI.SetActive(true); // Nasconde il pannello delle vite quando il menu è aperto
     }
 
     public void ReturnToGame()
@@ -57,6 +59,7 @@ public class menuController : MonoBehaviour
         // Mostra barre
         healthBarUI.SetActive(true);
         shieldBarUI.SetActive(true);
+        livesPanelUI.SetActive(true);
     }
 
     public void ExitGame(){

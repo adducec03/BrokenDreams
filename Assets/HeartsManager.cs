@@ -10,7 +10,10 @@ public class HeartsManager : MonoBehaviour
 
     public void UpdateHearts(int lives)
     {
-        for (int i = 0; i < hearts.Length; i++)
+       int half = hearts.Length / 2;
+
+    // Aggiorna i cuori della Game View
+        for (int i = 0; i < half; i++)
         {
             if (i < lives)
             {
@@ -19,6 +22,19 @@ public class HeartsManager : MonoBehaviour
             else
             {
                 hearts[i].sprite = emptyHeart;
+            }
+        }
+
+        // Aggiorna i cuori del Menu
+        for (int i = 0; i < half; i++)
+        {
+            if (i < lives)
+            {
+                hearts[i + half].sprite = fullHeart;  // ATTENZIONE: qui usi i+half
+            }
+            else
+            {
+                hearts[i + half].sprite = emptyHeart; // ATTENZIONE: qui usi i+half
             }
         }
     }
