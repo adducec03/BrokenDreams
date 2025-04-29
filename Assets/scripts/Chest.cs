@@ -33,16 +33,14 @@ public class Chest : MonoBehaviour, IInteractable
         }
     }
 
-    public void TryUnlock(string enteredPassword)
+    public bool TryUnlock(string enteredPassword)
     {
         if (enteredPassword == requiredPassword)
         {
             OpenChest();
+            return true;
         }
-        else
-        {
-            Debug.Log("Password sbagliata!");
-        }
+        return false;
     }
 
     private void OpenChest()
