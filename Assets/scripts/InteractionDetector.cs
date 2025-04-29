@@ -6,22 +6,13 @@ using UnityEngine.InputSystem;
 public class InteractionDetector : MonoBehaviour
 {
     private IInteractable interactableInRange = null;
+    public PasswordPanel passwordPanel;
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed && passwordPanel != null && !passwordPanel.IsPanelActive())
         {
-            Debug.Log("Hai premuto E!");
-
-            if(interactableInRange != null)
-            {
-                Debug.Log($"Interagisco con {interactableInRange}");
-                interactableInRange.Interact();
-            }
-            else
-            {
-                Debug.Log("Nessun oggetto con cui interagire.");
-            }
+            interactableInRange?.Interact();
         }
     }
 
