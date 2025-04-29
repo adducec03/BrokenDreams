@@ -10,6 +10,8 @@ public class Chest : MonoBehaviour, IInteractable
     public Sprite openedSprite;
     public string requiredPassword = "1234";
     private PasswordPanel passwordPanel;
+    [TextArea]
+    public string passwordPlaceholder = "Inserisci la password...";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

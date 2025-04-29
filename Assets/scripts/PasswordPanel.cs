@@ -9,11 +9,14 @@ public class PasswordPanel : MonoBehaviour
     private Chest currentChest;
     public TextMeshProUGUI errorMessageText;
     private bool isActive = false;
+    private MonoBehaviour playerMovementScript;
+    public GameObject pauseButton;
 
 
     void Start()
     {
         panel.SetActive(false);
+        playerMovementScript = FindFirstObjectByType<PlayerMovement>();
     }
 
     public bool IsPanelActive()
@@ -27,9 +30,28 @@ public class PasswordPanel : MonoBehaviour
         currentChest = chest;
         passwordInput.text = "";
         errorMessageText.text = "";
+
+        var placeholder = passwordInput.placeholder as TextMeshProUGUI;
+        if (placeholder != null)
+        {
+            placeholder.text = chest.passwordPlaceholder;
+        }
+
         panel.SetActive(true);
         passwordInput.ActivateInputField();
         isActive = true;
+        
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.enabled = false;
+        }
+        
+        if (pauseButton != null)
+        {
+            pauseButton.SetActive(false);
+        }
+    
+
     }
 
      public void OnConfirmButtonPressed()
@@ -58,5 +80,14 @@ public class PasswordPanel : MonoBehaviour
     {
         panel.SetActive(false);
         isActive = false;
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.enabled = true;
+        }
+        if (pauseButton != null)
+        {
+            pauseButton.SetActive(true);
+        }
+
     }
 }
