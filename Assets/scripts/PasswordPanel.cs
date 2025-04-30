@@ -11,6 +11,7 @@ public class PasswordPanel : MonoBehaviour
     private bool isActive = false;
     private MonoBehaviour playerMovementScript;
     public GameObject pauseButton;
+    public TextMeshProUGUI optionalMessageText;
 
 
     void Start()
@@ -49,6 +50,17 @@ public class PasswordPanel : MonoBehaviour
         if (pauseButton != null)
         {
             pauseButton.SetActive(false);
+        }
+
+        string message = chest.GetOptionalMessage();
+        if(!string.IsNullOrEmpty(message))
+        {
+            optionalMessageText.text = message;
+            optionalMessageText.gameObject.SetActive(true);
+        }
+        else
+        {
+            optionalMessageText.gameObject.SetActive(false);
         }
     
 
