@@ -8,10 +8,11 @@ public class Chest : MonoBehaviour, IInteractable
     public string ChestID { get; private set; }
     public GameObject itemPrefab; //Item that chest drops
     public Sprite openedSprite;
-    public string requiredPassword = "1234";
+    public string requiredPassword = "";
     private PasswordPanel passwordPanel;
     [TextArea]
-    public string passwordPlaceholder = "Inserisci la password...";
+    public string passwordPlaceholder = "";
+    [SerializeField] private string optionalMessage = "";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -61,5 +62,10 @@ public class Chest : MonoBehaviour, IInteractable
         {
             GetComponent<SpriteRenderer>().sprite = openedSprite;
         }
+    }
+
+    public string GetOptionalMessage()
+    {
+        return optionalMessage;
     }
 }
