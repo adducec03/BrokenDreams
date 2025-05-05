@@ -27,27 +27,27 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
     // Se l'input da tastiera è attivo, usa quello, altrimenti joystick
-    Vector2 finalInput = inputFromKeyboard.magnitude > 0.1f 
-        ? inputFromKeyboard 
-        : new Vector2(joystick.Horizontal, joystick.Vertical);
+        Vector2 finalInput = inputFromKeyboard.magnitude > 0.1f 
+            ? inputFromKeyboard 
+            : new Vector2(joystick.Horizontal, joystick.Vertical);
 
-    rb.linearVelocity = finalInput * moveSpeed;
+        rb.linearVelocity = finalInput * moveSpeed;
 
-    if (finalInput.magnitude > 0.1f)
-    {
-        animator.SetBool("isWalking", true);
-        animator.SetFloat("InputX", finalInput.x);
-        animator.SetFloat("InputY", finalInput.y);
-        animator.SetFloat("LastInputX", finalInput.x);
-        animator.SetFloat("LastInputY", finalInput.y);
-        StartFootsteps();
+        if (finalInput.magnitude > 0.1f)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetFloat("InputX", finalInput.x);
+            animator.SetFloat("InputY", finalInput.y);
+            animator.SetFloat("LastInputX", finalInput.x);
+            animator.SetFloat("LastInputY", finalInput.y);
+            StartFootsteps();
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+            StopFootsteps();
+        }
     }
-    else
-    {
-        animator.SetBool("isWalking", false);
-        StopFootsteps();
-    }
-}
 
     // Callback della Input System (via InputActions)
     public void OnMove(InputAction.CallbackContext context)
