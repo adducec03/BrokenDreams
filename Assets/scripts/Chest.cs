@@ -1,24 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Chest : MonoBehaviour, IInteractable
 {
     public bool IsOpened { get; private set; }
     public string ChestID { get; private set; }
-    public GameObject itemPrefab; //Item that chest drops
+    public GameObject itemPrefab;
     public Sprite openedSprite;
     public string requiredPassword = "";
     private PasswordPanel passwordPanel;
-    [TextArea]
-    public string passwordPlaceholder = "";
+
+    [TextArea] public string passwordPlaceholder = "";
     [SerializeField] private string optionalMessage = "";
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         passwordPanel = FindFirstObjectByType<PasswordPanel>();
-        ChestID ??= GlobalHelper.GenerateUniqueID(gameObject);  
+        ChestID ??= GlobalHelper.GenerateUniqueID(gameObject);
     }
 
     public bool CanInteract()
@@ -50,15 +47,32 @@ public class Chest : MonoBehaviour, IInteractable
     {
         SetOpened(true);
 
-        if(itemPrefab)
+        if (itemPrefab)
         {
             GameObject droppedItem = Instantiate(itemPrefab, transform.position + Vector3.down, Quaternion.identity);
+
+            CollectibleItem collectible = droppedItem.GetComponent<CollectibleItem>();
+            if (collectible == null)
+            {
+                collectible = droppedItem.AddComponent<CollectibleItem>();
+            }
+
+            collectible.itemID = ChestID + "_drop";
+
+            SaveController saveController = FindFirstObjectByType<SaveController>();
+            if (saveController != null)
+            {
+                saveController.RegisterSceneItem(collectible);
+            }
+
+            droppedItem.tag = "Item";            
         }
     }
 
     public void SetOpened(bool opened)
     {
-        if(IsOpened = opened)
+        IsOpened = opened;
+        if (IsOpened)
         {
             GetComponent<SpriteRenderer>().sprite = openedSprite;
         }
