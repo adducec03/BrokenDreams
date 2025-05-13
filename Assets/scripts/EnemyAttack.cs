@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAttack : MonoBehaviour
@@ -10,13 +11,20 @@ public class EnemyAttack : MonoBehaviour
     public float attackRate = 1f;
 
     private float nextAttackTime = 0f;
-    private Transform player;
+    public Transform player;
     private Rigidbody2D rb;
+    private NavMeshAgent agent;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
         rb = GetComponent<Rigidbody2D>();
+        agent = GetComponent<NavMeshAgent>();
+
+        if (agent != null)
+        {
+            agent.updateRotation = false;
+            agent.updateUpAxis = false; // Imposta il movimento solo sul piano X-Y
+        }
 
         if (player == null)
         {
@@ -36,8 +44,7 @@ public class EnemyAttack : MonoBehaviour
             if (distance > attackRange)
             {
                 // Inseguimento
-                Vector2 direction = (player.position - transform.position).normalized;
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+                agent.SetDestination(player.position);
             }
             else
             {
