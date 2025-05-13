@@ -14,22 +14,22 @@ public class EnemyAttack : MonoBehaviour
     public Transform player;
     private Rigidbody2D rb;
     private NavMeshAgent agent;
+    private LayerMask obstacleMask;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
-
-        if (agent != null)
-        {
-            agent.updateRotation = false;
-            agent.updateUpAxis = false; // Imposta il movimento solo sul piano X-Y
-        }
-
+        agent.updateRotation = false;
+        agent.updateUpAxis = false; // Imposta il movimento solo sul piano X-Y
+        
         if (player == null)
         {
             Debug.LogError("Player non trovato!");
         }
+
+        // Imposta il layer degli ostacoli (muri) come "NotWalkable"
+        obstacleMask = LayerMask.GetMask("NotWalkable");
     }
 
     void FixedUpdate()
@@ -38,13 +38,31 @@ public class EnemyAttack : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
+        // Controllo linea di vista usando Linecast
+        bool hasLineOfSight = false;
         if (distance <= visionRange)
         {
-            // Se il player è nel raggio visivo
+            Vector2 direction = (player.position - transform.position).normalized;
+            
+            // Linecast tra nemico e giocatore per verificare se ci sono muri nel mezzo
+            RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position, obstacleMask);
+
+            // Se il raycast non colpisce nulla o colpisce il player, il nemico ha la linea di vista
+            if (hit.collider == null || hit.collider.CompareTag("Player"))
+            {
+                hasLineOfSight = true;
+            }
+        }
+
+        if (hasLineOfSight)
+        {
             if (distance > attackRange)
             {
-                // Inseguimento
-                agent.SetDestination(player.position);
+                // Inseguimento continuo senza scatti
+                if (agent.isOnNavMesh)
+                {
+                    agent.SetDestination(player.position);
+                }
             }
             else
             {
@@ -55,6 +73,11 @@ public class EnemyAttack : MonoBehaviour
                     nextAttackTime = Time.time + 1f / attackRate;
                 }
             }
+        }
+        else
+        {
+            // Ferma il nemico se non vede il player
+            agent.ResetPath();
         }
     }
 
