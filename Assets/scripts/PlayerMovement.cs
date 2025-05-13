@@ -3,30 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 6f;
+    [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 inputFromKeyboard;
     private Animator animator;
-    public Joystick joystick; // Riferimento al joystick virtuale
+    public Joystick joystick;
     public bool playingFootsteps = false;
     public float footstepSpeed = 0.5f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Traccia del player
+    public GameObject trailPrefab;
+    public float trailInterval = 0.2f; 
+    private float nextTrailTime = 0f;
+
     void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
-        animator=GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-    // Se l'input da tastiera è attivo, usa quello, altrimenti joystick
         Vector2 finalInput = inputFromKeyboard.magnitude > 0.1f 
             ? inputFromKeyboard 
             : new Vector2(joystick.Horizontal, joystick.Vertical);
@@ -47,43 +47,34 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isWalking", false);
             StopFootsteps();
         }
+
+        // Lascia la traccia ogni tot secondi
+        if (Time.time >= nextTrailTime)
+        {
+            LeaveTrail();
+            nextTrailTime = Time.time + trailInterval;
+        }
     }
 
-    // Callback della Input System (via InputActions)
     public void OnMove(InputAction.CallbackContext context)
     {
-    inputFromKeyboard = context.ReadValue<Vector2>();
+        inputFromKeyboard = context.ReadValue<Vector2>();
     }
 
-
-
-    /*public void Move(InputAction.CallbackContext context)
+    void LeaveTrail()
     {
-        animator.SetBool("isWalking", true);
-
-        if (context.canceled)
-        {
-            animator.SetBool("isWalking", false);
-            animator.SetFloat("LastInputX", moveInput.x);
-            animator.SetFloat("LastInputY", moveInput.y);
-        }
-
-        moveInput = context.ReadValue<Vector2>();
-        animator.SetFloat("InputX", moveInput.x);
-        animator.SetFloat("InputY", moveInput.y);
-
-    }*/
-
+        GameObject trail = Instantiate(trailPrefab, transform.position, Quaternion.identity);
+        trail.tag = "TrailPoint"; // Assegna il tag per il nemico
+        Destroy(trail, 2f); // La traccia scompare dopo 5 secondi
+    }
 
     void StartFootsteps()
     {
         if (playingFootsteps) return;
-
         playingFootsteps = true;
-        float speedFactor = moveSpeed > 0 ? 1f / moveSpeed : 0.5f; // più ti muovi veloce, più i passi sono rapidi
+        float speedFactor = moveSpeed > 0 ? 1f / moveSpeed : 0.5f;
         InvokeRepeating(nameof(PlayFootstep), 0f, footstepSpeed * speedFactor);
     }
-
 
     void StopFootsteps()
     {
