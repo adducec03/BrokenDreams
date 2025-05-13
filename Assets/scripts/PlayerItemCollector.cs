@@ -17,13 +17,15 @@ public class PlayerItemCollector : MonoBehaviour
         if(collision.CompareTag("Item"))
         {
             Item item = collision.GetComponent<Item>();
+            CollectibleItem collectible = collision.GetComponent<CollectibleItem>();
+
             if(item != null)
             {
                 bool itemAdded = inventoryController.AddItem(collision.gameObject);
 
                 if(itemAdded)
                 {
-                    Destroy(collision.gameObject);
+                    collectible.MarkCollected();
                 }
             }
         }
