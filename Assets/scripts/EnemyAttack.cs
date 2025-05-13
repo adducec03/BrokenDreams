@@ -6,12 +6,14 @@ public class EnemyAttack : MonoBehaviour
 {
     public float visionRange = 5f;
     public float attackRange = 1.2f;
-    public float moveSpeed = 2f;
+    public float moveSpeed = 4f;
     public int attackDamage = 10;
     public float attackRate = 1f;
+    public float trailPersistence = 5f; // Quanto durano le tracce
 
     private float nextAttackTime = 0f;
     public Transform player;
+    private Transform target;
     private Rigidbody2D rb;
     private NavMeshAgent agent;
     private LayerMask obstacleMask;
@@ -21,14 +23,13 @@ public class EnemyAttack : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
-        agent.updateUpAxis = false; // Imposta il movimento solo sul piano X-Y
-        
+        agent.updateUpAxis = false;
+
         if (player == null)
         {
-            Debug.LogError("Player non trovato!");
+            Debug.LogError("Player non assegnato nell'Inspector!");
         }
 
-        // Imposta il layer degli ostacoli (muri) come "NotWalkable"
         obstacleMask = LayerMask.GetMask("NotWalkable");
     }
 
@@ -36,55 +37,86 @@ public class EnemyAttack : MonoBehaviour
     {
         if (player == null) return;
 
-        float distance = Vector2.Distance(transform.position, player.position);
-
-        // Controllo linea di vista usando Linecast
-        bool hasLineOfSight = false;
-        if (distance <= visionRange)
+        // Cerca di inseguire direttamente il player se possibile
+        if (IsPlayerVisible())
         {
-            Vector2 direction = (player.position - transform.position).normalized;
-            
-            // Linecast tra nemico e giocatore per verificare se ci sono muri nel mezzo
-            RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position, obstacleMask);
-
-            // Se il raycast non colpisce nulla o colpisce il player, il nemico ha la linea di vista
-            if (hit.collider == null || hit.collider.CompareTag("Player"))
-            {
-                hasLineOfSight = true;
-            }
+            target = player;
+        }
+        else
+        {
+            // Se non vede il player, cerca l'ultima traccia visibile
+            FindLatestVisibleTrail();
         }
 
-        if (hasLineOfSight)
+        // Muovi il nemico verso il target (player o traccia)
+        if (target != null)
         {
+            float distance = Vector2.Distance(transform.position, target.position);
+
             if (distance > attackRange)
             {
-                // Inseguimento continuo senza scatti
                 if (agent.isOnNavMesh)
                 {
-                    agent.SetDestination(player.position);
+                    agent.SetDestination(target.position);
                 }
             }
-            else
+            else if (target == player && Time.time >= nextAttackTime)
             {
-                // Attacco
-                if (Time.time >= nextAttackTime)
-                {
-                    Attack();
-                    nextAttackTime = Time.time + 1f / attackRate;
-                }
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
             }
         }
         else
         {
-            // Ferma il nemico se non vede il player
             agent.ResetPath();
         }
+    }
+
+    bool IsPlayerVisible()
+    {
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        if (distance <= visionRange)
+        {
+            RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position, obstacleMask);
+            return hit.collider == null || hit.collider.CompareTag("Player");
+        }
+
+        return false;
+    }
+
+    void FindLatestVisibleTrail()
+    {
+        GameObject[] trails = GameObject.FindGameObjectsWithTag("TrailPoint");
+        Transform latestTrail = null;
+        float shortestDistance = Mathf.Infinity;
+
+        foreach (GameObject trail in trails)
+        {
+            float distance = Vector2.Distance(transform.position, trail.transform.position);
+
+            if (distance <= visionRange && HasLineOfSight(trail.transform.position))
+            {
+                if (distance < shortestDistance)
+                {
+                    shortestDistance = distance;
+                    latestTrail = trail.transform;
+                }
+            }
+        }
+
+        target = latestTrail;
+    }
+
+    bool HasLineOfSight(Vector2 targetPos)
+    {
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, targetPos, obstacleMask);
+        return hit.collider == null || hit.collider.CompareTag("Player") || hit.collider.CompareTag("TrailPoint");
     }
 
     void Attack()
     {
         if (player == null) return;
-
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= attackRange)
         {
