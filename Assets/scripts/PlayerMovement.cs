@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject trail = Instantiate(trailPrefab, transform.position, Quaternion.identity);
         trail.tag = "TrailPoint"; // Assegna il tag per il nemico
-        Destroy(trail, 2f); // La traccia scompare dopo 5 secondi
+        Destroy(trail, 5f); // La traccia scompare dopo 5 secondi
     }
 
     void StartFootsteps()
