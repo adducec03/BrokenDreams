@@ -10,13 +10,19 @@ public class EnemyAttack : MonoBehaviour
     public int attackDamage = 10;
     public float attackRate = 1f;
     public float trailPersistence = 5f; // Quanto durano le tracce
+    public float dashSpeed = 12f;
+    public float dashCooldown = 2f;
+    public float dashDistance = 3f;
 
     private float nextAttackTime = 0f;
+    private float nextDashTime = 0f;
     public Transform player;
     private Transform target;
     private Rigidbody2D rb;
     private NavMeshAgent agent;
     private LayerMask obstacleMask;
+    private bool isDashing = false;
+    private Vector2 dashDirection;
 
     void Start()
     {
@@ -37,6 +43,13 @@ public class EnemyAttack : MonoBehaviour
     {
         if (player == null) return;
 
+        // Durante il dash, ignora il NavMesh
+        if (isDashing)
+        {
+            rb.linearVelocity = dashDirection * dashSpeed;
+            return;
+        }
+
         // Cerca di inseguire direttamente il player se possibile
         if (IsPlayerVisible())
         {
@@ -53,6 +66,14 @@ public class EnemyAttack : MonoBehaviour
         {
             float distance = Vector2.Distance(transform.position, target.position);
 
+            // Dash di Attacco
+            if (target == player && distance > attackRange && distance <= dashDistance && Time.time >= nextDashTime)
+            {
+                StartDash();
+                return;
+            }
+
+            // Movimento normale
             if (distance > attackRange)
             {
                 if (agent.isOnNavMesh)
@@ -70,6 +91,28 @@ public class EnemyAttack : MonoBehaviour
         {
             agent.ResetPath();
         }
+    }
+
+    void StartDash()
+    {
+        isDashing = true;
+        dashDirection = (player.position - transform.position).normalized;
+
+        // Ferma temporaneamente l'agente durante il dash
+        agent.enabled = false;
+
+        // Ferma il dash dopo una breve durata
+        Invoke(nameof(StopDash), dashDistance / dashSpeed);
+        nextDashTime = Time.time + dashCooldown;
+    }
+
+    void StopDash()
+    {
+        isDashing = false;
+        rb.linearVelocity = Vector2.zero;
+
+        // Riattiva l'agente NavMesh dopo il dash
+        agent.enabled = true;
     }
 
     bool IsPlayerVisible()
