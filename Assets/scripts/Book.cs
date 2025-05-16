@@ -2,32 +2,33 @@ using UnityEngine;
 
 public class Book : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string bookID;
-    [TextArea(5, 10)]
-    public string[] pages; // Testo per ogni pagina
-    public string bookTitle = "Libro";
+    public string BookID { get; private set; }
 
-    private BookUIManager uiManager;
+    [TextArea(2, 10)]
+    public string[] pages;
 
-    private void Start()
+    public string bookTitle = "Titolo del Libro";
+
+    private BookPanel bookPanel;
+
+    void Start()
     {
-        uiManager = FindFirstObjectByType<BookUIManager>();
-        if (string.IsNullOrEmpty(bookID))
-        {
-            bookID = GlobalHelper.GenerateUniqueID(gameObject);
-        }
+        bookPanel = FindFirstObjectByType<BookPanel>();
+        BookID ??= GlobalHelper.GenerateUniqueID(gameObject);
     }
 
     public bool CanInteract()
     {
-        return true;
+        return !bookPanel.IsPanelActive(); // Evita doppia apertura
     }
 
     public void Interact()
     {
-        if (uiManager != null)
+        if (!CanInteract()) return;
+
+        if (bookPanel != null)
         {
-            uiManager.OpenBook(bookTitle, pages);
+            bookPanel.OpenBook(this);
         }
     }
 }
