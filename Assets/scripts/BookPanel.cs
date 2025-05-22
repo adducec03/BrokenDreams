@@ -12,7 +12,6 @@ public class BookPanel : MonoBehaviour
     public Button nextPageButton;
     public Button prevPageButton;
     public Button closeButton;
-    public Volume blurVolume; // Riferimento al volume del blur
     private Book currentBook;
     private int currentPage = 0;
     private bool isActive = false;
@@ -22,6 +21,8 @@ public class BookPanel : MonoBehaviour
     public GameObject healthBarUI;
     public GameObject shieldBarUI;
     public GameObject livesPanelUI;
+    public Volume blurVolume; // Riferimento al volume del blur
+
 
     void Start()
     {
