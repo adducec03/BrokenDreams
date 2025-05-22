@@ -46,7 +46,7 @@ public class menuController : MonoBehaviour
         // Nascondi barre
         healthBarUI.SetActive(false);
         shieldBarUI.SetActive(false);
-        livesPanelUI.SetActive(true); // Nasconde il pannello delle vite quando il menu è aperto
+        livesPanelUI.SetActive(false); // Nasconde il pannello delle vite quando il menu è aperto
     }
 
     public void ReturnToGame()
