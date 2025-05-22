@@ -1,20 +1,21 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAttack : MonoBehaviour
 {
     public float visionRange = 5f;
-    public float attackRange = 1.2f;
+    public float attackRange = 1f;
     public float moveSpeed = 4f;
     public int attackDamage = 10;
-    public float attackRate = 1f;
+    public float attackRate = 0.5f;
     public float trailPersistence = 5f; // Quanto durano le tracce
     public float dashSpeed = 12f;
     public float dashCooldown = 2f;
     public float dashDistance = 3f;
 
-    private float nextAttackTime = 0f;
+    private float nextAttackTime = 1f;
     private float nextDashTime = 0f;
     public Transform player;
     private Transform target;
@@ -23,6 +24,9 @@ public class EnemyAttack : MonoBehaviour
     private LayerMask obstacleMask;
     private bool isDashing = false;
     private Vector2 dashDirection;
+    private Animator animator;
+
+    private bool isAttacking = false;
 
     void Start()
     {
@@ -30,6 +34,7 @@ public class EnemyAttack : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        animator = GetComponentInChildren<Animator>(); // o GetComponent<Animator>() se l’Animator è sullo stesso oggetto
 
         if (player == null)
         {
@@ -48,6 +53,28 @@ public class EnemyAttack : MonoBehaviour
         {
             rb.linearVelocity = dashDirection * dashSpeed;
             return;
+        }
+
+        // Specchia lo sprite in base alla direzione X del movimento
+        if (!isDashing)
+        {
+            float xVelocity = agent.velocity.x;
+            if (Mathf.Abs(xVelocity) > 0.01f)
+            {
+                Vector3 localScale = transform.localScale;
+                localScale.x = xVelocity > 0 ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
+                transform.localScale = localScale;
+            }
+        }
+        else
+        {
+            // Durante il dash, usa la direzione del dash per il flip
+            if (Mathf.Abs(dashDirection.x) > 0.01f)
+            {
+                Vector3 localScale = transform.localScale;
+                localScale.x = dashDirection.x > 0 ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
+                transform.localScale = localScale;
+            }
         }
 
         // Cerca di inseguire direttamente il player se possibile
@@ -90,6 +117,17 @@ public class EnemyAttack : MonoBehaviour
         else
         {
             agent.ResetPath();
+        }
+
+        if (!isDashing)
+        {
+            float speed = agent.velocity.magnitude;
+            animator.SetFloat("Speed", speed);
+        }
+        else
+        {
+            // Durante il dash puoi settare Speed a 0 per evitare interferenze
+            animator.SetFloat("Speed", 0f);
         }
     }
 
@@ -160,15 +198,29 @@ public class EnemyAttack : MonoBehaviour
     void Attack()
     {
         if (player == null) return;
+
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= attackRange)
         {
+            animator.SetTrigger("Attack");
+            isAttacking = true;
+            agent.ResetPath(); // ferma il movimento
+
             PlayerStats stats = FindFirstObjectByType<PlayerStats>();
             if (stats != null)
             {
                 Debug.Log("Danno inflitto al player.");
                 stats.TakeDamage(attackDamage);
             }
+
+            // Riattiva il movimento dopo un breve delay (es. durata dell’animazione)
+            Invoke(nameof(ResumeMovement), 0.6f); // adatta il tempo all’animazione
         }
     }
+
+    void ResumeMovement()
+    {
+        isAttacking = false;
+    }
+
 }
