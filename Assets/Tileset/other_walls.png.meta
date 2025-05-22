@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 9bd5cc0edf0fd4cd0a4b0d10a48cb64e
+guid: 3ff845715668269428d2cec88adc473d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8390710826850948369
-    second: wall_left_0
+      213: -4241904612482360910
+    second: other_walls_0
+  - first:
+      213: 5450027739179165335
+    second: other_walls_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +99,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wall_left_0
+      name: other_walls_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +118,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fea668875f43e8b80800000000000000
-      internalID: -8390710826850948369
+      spriteID: 2b9d5e1ca3ab125c0800000000000000
+      internalID: -4241904612482360910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: other_walls_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 796acc17a5362ab40800000000000000
+      internalID: 5450027739179165335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: other_walls_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3258c8053f2add24bb23d23b1b75985c
+      internalID: 620945186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: other_walls_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07c062666eed418409a6fc0ea9a7658d
+      internalID: 908143596
       vertices: []
       indices: 
       edges: []
@@ -138,7 +194,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fa9eca997176ac244a4310478b4867c5
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +204,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      wall_left_0: -8390710826850948369
+      other_walls_0: -4241904612482360910
+      other_walls_1: 5450027739179165335
+      other_walls_2: 620945186
+      other_walls_3: 908143596
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
