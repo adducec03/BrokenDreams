@@ -1,226 +1,148 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAttack : MonoBehaviour
 {
-    public float visionRange = 5f;
-    public float attackRange = 1f;
-    public float moveSpeed = 4f;
+    public float visionRange = 6f;
+    public float attackRange = 0f;
     public int attackDamage = 10;
-    public float attackRate = 0.5f;
-    public float trailPersistence = 5f; // Quanto durano le tracce
-    public float dashSpeed = 12f;
-    public float dashCooldown = 2f;
-    public float dashDistance = 3f;
-
-    private float nextAttackTime = 1f;
-    private float nextDashTime = 0f;
+    public float attackRate = 1f;
     public Transform player;
+
     private Transform target;
     private Rigidbody2D rb;
     private NavMeshAgent agent;
-    private LayerMask obstacleMask;
-    private bool isDashing = false;
-    private Vector2 dashDirection;
     private Animator animator;
+    private LayerMask obstacleMask;
 
+    private float nextAttackTime = 0f;
     private bool isAttacking = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        animator = GetComponentInChildren<Animator>(); // o GetComponent<Animator>() se l’Animator è sullo stesso oggetto
-
-        if (player == null)
-        {
-            Debug.LogError("Player non assegnato nell'Inspector!");
-        }
 
         obstacleMask = LayerMask.GetMask("NotWalkable");
+
+        if (player == null)
+            Debug.LogError("Player non assegnato!");
     }
 
     void FixedUpdate()
     {
         if (player == null) return;
 
-        // Durante il dash, ignora il NavMesh
-        if (isDashing)
-        {
-            rb.linearVelocity = dashDirection * dashSpeed;
-            return;
-        }
+        UpdateSpriteFlip();
 
-        // Specchia lo sprite in base alla direzione X del movimento
-        if (!isDashing)
-        {
-            float xVelocity = agent.velocity.x;
-            if (Mathf.Abs(xVelocity) > 0.01f)
-            {
-                Vector3 localScale = transform.localScale;
-                localScale.x = xVelocity > 0 ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
-                transform.localScale = localScale;
-            }
-        }
-        else
-        {
-            // Durante il dash, usa la direzione del dash per il flip
-            if (Mathf.Abs(dashDirection.x) > 0.01f)
-            {
-                Vector3 localScale = transform.localScale;
-                localScale.x = dashDirection.x > 0 ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
-                transform.localScale = localScale;
-            }
-        }
-
-        // Cerca di inseguire direttamente il player se possibile
+        // Target prioritario: il player visibile
         if (IsPlayerVisible())
         {
             target = player;
         }
         else
         {
-            // Se non vede il player, cerca l'ultima traccia visibile
             FindLatestVisibleTrail();
         }
 
-        // Muovi il nemico verso il target (player o traccia)
         if (target != null)
         {
             float distance = Vector2.Distance(transform.position, target.position);
 
-            // Dash di Attacco
-            if (target == player && distance > attackRange && distance <= dashDistance && Time.time >= nextDashTime)
+            if (distance <= attackRange)
             {
-                StartDash();
-                return;
-            }
+                if (agent.hasPath)
+                    agent.ResetPath();
 
-            // Movimento normale
-            if (distance > attackRange)
-            {
-                if (agent.isOnNavMesh)
+                animator.SetFloat("Speed", 0);
+                rb.linearVelocity = Vector2.zero;
+
+                if (target == player && Time.time >= nextAttackTime)
                 {
-                    agent.SetDestination(target.position);
+                    Attack();
+                    nextAttackTime = Time.time + 1f / attackRate;
                 }
             }
-            else if (target == player && Time.time >= nextAttackTime)
+            else
             {
-                Attack();
-                nextAttackTime = Time.time + 1f / attackRate;
+                if (!isAttacking && agent.isOnNavMesh)
+                {
+                    agent.SetDestination(target.position);
+                    animator.SetFloat("Speed", agent.velocity.magnitude);
+                }
             }
         }
         else
         {
             agent.ResetPath();
-        }
-
-        if (!isDashing)
-        {
-            float speed = agent.velocity.magnitude;
-            animator.SetFloat("Speed", speed);
-        }
-        else
-        {
-            // Durante il dash puoi settare Speed a 0 per evitare interferenze
-            animator.SetFloat("Speed", 0f);
+            animator.SetFloat("Speed", 0);
         }
     }
 
-    void StartDash()
+    void Attack()
     {
-        isDashing = true;
-        dashDirection = (player.position - transform.position).normalized;
+        isAttacking = true;
+        animator.SetTrigger("Attack");
 
-        // Ferma temporaneamente l'agente durante il dash
-        agent.enabled = false;
+        PlayerStats stats = player.GetComponent<PlayerStats>();
+        if (stats != null)
+        {
+            stats.TakeDamage(attackDamage);
+        }
 
-        // Ferma il dash dopo una breve durata
-        Invoke(nameof(StopDash), dashDistance / dashSpeed);
-        nextDashTime = Time.time + dashCooldown;
+        Invoke(nameof(ResetAttack), 0.6f); // Adatta alla durata dell’animazione
     }
 
-    void StopDash()
+    void ResetAttack()
     {
-        isDashing = false;
-        rb.linearVelocity = Vector2.zero;
+        isAttacking = false;
+    }
 
-        // Riattiva l'agente NavMesh dopo il dash
-        agent.enabled = true;
+    void UpdateSpriteFlip()
+    {
+        if (agent.velocity.x != 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = agent.velocity.x > 0 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
     }
 
     bool IsPlayerVisible()
     {
-        float distance = Vector2.Distance(transform.position, player.position);
+        if (Vector2.Distance(transform.position, player.position) > visionRange)
+            return false;
 
-        if (distance <= visionRange)
-        {
-            RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position, obstacleMask);
-            return hit.collider == null || hit.collider.CompareTag("Player");
-        }
-
-        return false;
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position, obstacleMask);
+        return hit.collider == null || hit.collider.CompareTag("Player");
     }
 
     void FindLatestVisibleTrail()
     {
         GameObject[] trails = GameObject.FindGameObjectsWithTag("TrailPoint");
-        Transform latestTrail = null;
-        float shortestDistance = Mathf.Infinity;
+        Transform latest = null;
+        float shortestDist = Mathf.Infinity;
 
-        foreach (GameObject trail in trails)
+        foreach (var trail in trails)
         {
-            float distance = Vector2.Distance(transform.position, trail.transform.position);
-
-            if (distance <= visionRange && HasLineOfSight(trail.transform.position))
+            float dist = Vector2.Distance(transform.position, trail.transform.position);
+            if (dist <= visionRange && HasLineOfSight(trail.transform.position) && dist < shortestDist)
             {
-                if (distance < shortestDistance)
-                {
-                    shortestDistance = distance;
-                    latestTrail = trail.transform;
-                }
+                shortestDist = dist;
+                latest = trail.transform;
             }
         }
 
-        target = latestTrail;
+        target = latest;
     }
 
-    bool HasLineOfSight(Vector2 targetPos)
+    bool HasLineOfSight(Vector2 pos)
     {
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, targetPos, obstacleMask);
-        return hit.collider == null || hit.collider.CompareTag("Player") || hit.collider.CompareTag("TrailPoint");
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, pos, obstacleMask);
+        return hit.collider == null || hit.collider.CompareTag("TrailPoint");
     }
-
-    void Attack()
-    {
-        if (player == null) return;
-
-        float distance = Vector2.Distance(transform.position, player.position);
-        if (distance <= attackRange)
-        {
-            animator.SetTrigger("Attack");
-            isAttacking = true;
-            agent.ResetPath(); // ferma il movimento
-
-            PlayerStats stats = FindFirstObjectByType<PlayerStats>();
-            if (stats != null)
-            {
-                Debug.Log("Danno inflitto al player.");
-                stats.TakeDamage(attackDamage);
-            }
-
-            // Riattiva il movimento dopo un breve delay (es. durata dell’animazione)
-            Invoke(nameof(ResumeMovement), 0.6f); // adatta il tempo all’animazione
-        }
-    }
-
-    void ResumeMovement()
-    {
-        isAttacking = false;
-    }
-
 }
