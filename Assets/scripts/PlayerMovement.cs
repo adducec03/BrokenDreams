@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Traccia del player
     public GameObject trailPrefab;
-    public float trailInterval = 0.2f; 
+    public float trailInterval = 0.2f;
     private float nextTrailTime = 0f;
 
     void Start()
@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 finalInput = inputFromKeyboard.magnitude > 0.1f 
-            ? inputFromKeyboard 
+        Vector2 finalInput = inputFromKeyboard.magnitude > 0.1f
+            ? inputFromKeyboard
             : new Vector2(joystick.Horizontal, joystick.Vertical);
 
         rb.linearVelocity = finalInput * moveSpeed;
@@ -85,5 +85,13 @@ public class PlayerMovement : MonoBehaviour
     void PlayFootstep()
     {
         SoundEffectManager.Play("Footstep");
+    }
+    
+    public Vector2 GetLastDirection()
+    {
+        if (moveInput.magnitude > 0.1f)
+            return moveInput.normalized;
+
+        return new Vector2(animator.GetFloat("LastInputX"), animator.GetFloat("LastInputY"));
     }
 }
