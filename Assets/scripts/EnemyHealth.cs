@@ -1,19 +1,28 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 50;
+    public int maxHealth = 30;
     private int currentHealth;
+    private Animator animator;
+    private bool isDead = false;
 
     void Start()
     {
         currentHealth = maxHealth;
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void TakeDamage(int amount)
     {
+        if (isDead) return;
+
         currentHealth -= amount;
-        Debug.Log($"{gameObject.name} ha subito {amount} danni!");
+
+        // Animazione di danno
+        if (animator != null)
+            animator.SetTrigger("Hurt");
 
         if (currentHealth <= 0)
         {
@@ -23,7 +32,18 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log($"{gameObject.name} è morto.");
-        Destroy(gameObject); // o animazione di morte
+        if (isDead) return;
+        isDead = true;
+
+        // Blocca altre azioni e avvia animazione di morte
+        if (animator != null)
+            animator.SetTrigger("Die");
+
+        // Disattiva AI o movimento
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+
+        // Opzionale: distruggi l’oggetto dopo un po’
+        Destroy(gameObject, 1.5f);
     }
 }
