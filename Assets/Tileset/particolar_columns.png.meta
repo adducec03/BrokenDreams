@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e499c75ea32ab4998a92b12b7a0f585d
+guid: 94e6bf05a8213484b8a2d1c1ede82c96
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3241558256841684705
-    second: wall_up_0
+      213: 9143440777193862343
+    second: particolar_columns_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wall_up_0
+      name: particolar_columns_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e678c16f045cfc20800000000000000
-      internalID: 3241558256841684705
+      spriteID: 7c4367d51f604ee70800000000000000
+      internalID: 9143440777193862343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particolar_columns_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d4446e7c159b2645b1de5f7b2a7a475
+      internalID: -2096621049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particolar_columns_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 493132c46700fed4c9b5924cec67c095
+      internalID: -222948080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particolar_columns_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db321c2e9c712944a26d131ff47ca32
+      internalID: 2066877486
       vertices: []
       indices: 
       edges: []
@@ -138,7 +191,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 222b6d8ba73e65f49a76e29c8e9f11a4
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +201,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      wall_up_0: 3241558256841684705
+      particolar_columns_0: 9143440777193862343
+      particolar_columns_1: -2096621049
+      particolar_columns_2: -222948080
+      particolar_columns_3: 2066877486
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

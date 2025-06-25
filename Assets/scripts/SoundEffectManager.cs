@@ -9,16 +9,18 @@ public class SoundEffectManager : MonoBehaviour
 
     private static AudioSource audioSource;
     private static SoundEffectLibrary soundEffectLibrary;
-    [SerializeField] private Slider sfxSlider;
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             audioSource = GetComponent<AudioSource>();
             soundEffectLibrary = GetComponent<SoundEffectLibrary>();
             DontDestroyOnLoad(gameObject);
+            
+            float savedVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+            audioSource.volume = savedVolume;
         }
         else
         {
@@ -35,18 +37,9 @@ public class SoundEffectManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        sfxSlider.onValueChanged.AddListener(delegate {OnValueChanged(); });
-    }
-
     public static void SetVolume(float volume)
     {
-        audioSource.volume = volume;
-    }
-
-    public void OnValueChanged()
-    {
-        SetVolume(sfxSlider.value);
+        if (audioSource != null)
+            audioSource.volume = volume;
     }
 }

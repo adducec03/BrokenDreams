@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40abca08232cd4870ac17259dcd44694
+guid: 25db4ed7f9dd8dc40a5497c6ffcd9f08
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5931860601165972004
-    second: wall_up_1_0
+      213: -1424749436503610361
+    second: potion_treasure_wall_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wall_up_1_0
+      name: potion_treasure_wall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42202a5d9c3325250800000000000000
-      internalID: 5931860601165972004
+      spriteID: 70ca347afe54a3ce0800000000000000
+      internalID: -1424749436503610361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: potion_treasure_wall_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3e1481a1f53d5f4eba3b63f7cb803a3
+      internalID: 438044755
       vertices: []
       indices: 
       edges: []
@@ -138,7 +147,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f844f9bb7998e2044892c4ce228d5f17
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +157,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      wall_up_1_0: 5931860601165972004
+      potion_treasure_wall_0: -1424749436503610361
+      potion_treasure_wall_1: 438044755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

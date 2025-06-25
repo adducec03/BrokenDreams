@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f20eeb2bd45ed4854b6fc8dc34a455a3
+guid: 93966e88407b716498c419df98c20d6b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6067802987096507569
-    second: wall_down_0
+      213: -2776641145042435119
+    second: upper_wall_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wall_down_0
+      name: upper_wall_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,15 +108,15 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b401fc0baa253450800000000000000
-      internalID: 6067802987096507569
+      spriteID: 1d3030107936779d0800000000000000
+      internalID: -2776641145042435119
       vertices: []
       indices: 
       edges: []
@@ -138,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ea4886f7f294f90448ffa3700ebff18e
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      wall_down_0: 6067802987096507569
+      upper_wall_0: -2776641145042435119
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
