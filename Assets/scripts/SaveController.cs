@@ -72,6 +72,7 @@ public class SaveController : MonoBehaviour
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
 
             GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
+            Time.timeScale = 1f;
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
             LoadChestStates(saveData.chestSaveData);
             LoadSceneItemsState(saveData.sceneItemsSaveData);
