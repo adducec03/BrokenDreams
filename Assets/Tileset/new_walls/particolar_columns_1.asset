@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: wall_up_1_0
+  m_Name: particolar_columns_1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 5931860601165972004, guid: 40abca08232cd4870ac17259dcd44694, type: 3}
+  m_Sprite: {fileID: -2096621049, guid: 94e6bf05a8213484b8a2d1c1ede82c96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
