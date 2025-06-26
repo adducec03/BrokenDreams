@@ -2,30 +2,39 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public float speed = 15f;
+    public float speed = 0.5f;
     public float lifetime = 5f;
 
-    void Start()
+    private bool isActive = false;
+
+    public void Initialize()
     {
         Destroy(gameObject, lifetime);
+        Invoke(nameof(Activate), 0.1f); // Ritarda attivazione trigger
+    }
+
+    void Activate()
+    {
+        isActive = true;
     }
 
     void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        // ✅ Movimento lungo -transform.right per correggere il prefab
+        transform.position += -transform.right * speed * Time.deltaTime;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
+        if (!isActive) return;
+
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Colpito il player!");
-            // Qui potresti chiamare player.Damage()
+            Debug.Log("Il player è stato colpito!");
             Destroy(gameObject);
         }
         else if (!other.isTrigger)
         {
-            // Colpito un muro o altro
             Destroy(gameObject);
         }
     }

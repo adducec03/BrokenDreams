@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 85965845cbf7f5c4289b46d08c01d633
+guid: 04ab6d0a2a77ec949a1980c8cbde1b8c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4304554197422672680
-    second: Pergamena_Aperta_0
+      213: -765150924802650856
+    second: arrow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pergamena_Aperta_0
+      name: arrow_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 0
         y: 4
-        width: 39
-        height: 41
+        width: 16
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d4743293c62344c0800000000000000
-      internalID: -4304554197422672680
+      spriteID: 81d839fa943a165f0800000000000000
+      internalID: -765150924802650856
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: df11b248ca8482645bff347c66f15178
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pergamena_Aperta_0: -4304554197422672680
+      arrow_0: -765150924802650856
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
