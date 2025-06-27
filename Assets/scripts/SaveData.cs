@@ -9,5 +9,7 @@ public class SaveData
     public List<ChestSaveData> chestSaveData;
     public List<SceneItemSaveData> sceneItemsSaveData;
     public List<EnemySaveData> enemySaveData;
-
+    public float playerHealth;
+    public float playerShield;
+    public int playerLives;
 }

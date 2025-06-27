@@ -11,7 +11,6 @@ public class SaveController : MonoBehaviour
     private List<CollectibleItem> sceneItems = new List<CollectibleItem>();
     private List<EnemySaveState> enemies = new List<EnemySaveState>();
 
-
     void Start()
     {
         InitializeComponents();
@@ -25,7 +24,6 @@ public class SaveController : MonoBehaviour
         chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
         sceneItems = FindObjectsByType<CollectibleItem>(FindObjectsSortMode.None).ToList();
         enemies = FindObjectsByType<EnemySaveState>(FindObjectsSortMode.None).ToList();
-
     }
 
     public void RegisterSceneItem(CollectibleItem item)
@@ -39,13 +37,18 @@ public class SaveController : MonoBehaviour
 
     public void SaveGame()
     {
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+
         SaveData saveData = new SaveData
         {
-            playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
+            playerPosition = playerStats.transform.position,
             inventorySaveData = inventoryController.GetInventoryItems(),
             chestSaveData = GetChestsState(),
+            sceneItemsSaveData = GetSceneItemsState(),
             enemySaveData = GetEnemiesState(),
-            sceneItemsSaveData = GetSceneItemsState()
+            playerHealth = playerStats.currentHealth,
+            playerShield = playerStats.currentShield,
+            playerLives = playerStats.lives
         };
 
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
@@ -53,16 +56,11 @@ public class SaveController : MonoBehaviour
 
     private List<ChestSaveData> GetChestsState()
     {
-        List<ChestSaveData> chestStates = new List<ChestSaveData>();
-        foreach (Chest chest in chests)
+        return chests.Select(chest => new ChestSaveData
         {
-            chestStates.Add(new ChestSaveData
-            {
-                chestID = chest.ChestID,
-                isOpened = chest.IsOpened
-            });
-        }
-        return chestStates;
+            chestID = chest.ChestID,
+            isOpened = chest.IsOpened
+        }).ToList();
     }
 
     private List<SceneItemSaveData> GetSceneItemsState()
@@ -70,14 +68,34 @@ public class SaveController : MonoBehaviour
         return sceneItems.Select(item => item.GetSaveData()).ToList();
     }
 
+    private List<EnemySaveData> GetEnemiesState()
+    {
+        return enemies.Select(enemy => enemy.GetSaveData()).ToList();
+    }
+
     public void LoadGame()
     {
         if (File.Exists(saveLocation))
         {
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
+            PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
 
-            GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
+            playerStats.transform.position = saveData.playerPosition;
             Time.timeScale = 1f;
+
+            // Carica salute/scudo/vite
+            playerStats.currentHealth = saveData.playerHealth;
+            playerStats.currentShield = saveData.playerShield;
+            playerStats.lives = saveData.playerLives;
+
+            // Aggiorna UI
+            playerStats.healthBarGame.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
+            playerStats.shieldBarGame.SetShield(playerStats.currentShield, playerStats.maxShield);
+            playerStats.healthBarMenu.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
+            playerStats.shieldBarMenu.SetShield(playerStats.currentShield, playerStats.maxShield);
+            playerStats.heartsManager.UpdateHearts(playerStats.lives);
+
+            // Carica gli altri sistemi
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
             LoadChestStates(saveData.chestSaveData);
             LoadSceneItemsState(saveData.sceneItemsSaveData);
@@ -94,10 +112,10 @@ public class SaveController : MonoBehaviour
     {
         foreach (Chest chest in chests)
         {
-            ChestSaveData chestSaveData = chestStates.FirstOrDefault(c => c.chestID == chest.ChestID);
-            if (chestSaveData != null)
+            ChestSaveData data = chestStates.FirstOrDefault(c => c.chestID == chest.ChestID);
+            if (data != null)
             {
-                chest.SetOpened(chestSaveData.isOpened);
+                chest.SetOpened(data.isOpened);
             }
         }
     }
@@ -112,11 +130,6 @@ public class SaveController : MonoBehaviour
                 item.LoadFromSave(data);
             }
         }
-    }
-
-    private List<EnemySaveData> GetEnemiesState()
-    {
-        return enemies.Select(e => e.GetSaveData()).ToList();
     }
 
     private void LoadEnemiesState(List<EnemySaveData> savedEnemies)
@@ -139,5 +152,4 @@ public class SaveController : MonoBehaviour
             Debug.Log("Salvataggio eliminato.");
         }
     }
-
 }
