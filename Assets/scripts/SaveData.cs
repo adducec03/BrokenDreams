@@ -8,4 +8,6 @@ public class SaveData
     public List<InventorySaveData> inventorySaveData;
     public List<ChestSaveData> chestSaveData;
     public List<SceneItemSaveData> sceneItemsSaveData;
+    public List<EnemySaveData> enemySaveData;
+
 }
