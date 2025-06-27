@@ -9,6 +9,8 @@ public class SaveController : MonoBehaviour
     private InventoryController inventoryController;
     private Chest[] chests;
     private List<CollectibleItem> sceneItems = new List<CollectibleItem>();
+    private List<EnemySaveState> enemies = new List<EnemySaveState>();
+
 
     void Start()
     {
@@ -22,6 +24,8 @@ public class SaveController : MonoBehaviour
         inventoryController = FindFirstObjectByType<InventoryController>();
         chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
         sceneItems = FindObjectsByType<CollectibleItem>(FindObjectsSortMode.None).ToList();
+        enemies = FindObjectsByType<EnemySaveState>(FindObjectsSortMode.None).ToList();
+
     }
 
     public void RegisterSceneItem(CollectibleItem item)
@@ -40,6 +44,7 @@ public class SaveController : MonoBehaviour
             playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
             inventorySaveData = inventoryController.GetInventoryItems(),
             chestSaveData = GetChestsState(),
+            enemySaveData = GetEnemiesState(),
             sceneItemsSaveData = GetSceneItemsState()
         };
 
@@ -76,6 +81,7 @@ public class SaveController : MonoBehaviour
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
             LoadChestStates(saveData.chestSaveData);
             LoadSceneItemsState(saveData.sceneItemsSaveData);
+            LoadEnemiesState(saveData.enemySaveData);
         }
         else
         {
@@ -104,6 +110,23 @@ public class SaveController : MonoBehaviour
             if (data != null)
             {
                 item.LoadFromSave(data);
+            }
+        }
+    }
+
+    private List<EnemySaveData> GetEnemiesState()
+    {
+        return enemies.Select(e => e.GetSaveData()).ToList();
+    }
+
+    private void LoadEnemiesState(List<EnemySaveData> savedEnemies)
+    {
+        foreach (EnemySaveState enemy in enemies)
+        {
+            EnemySaveData data = savedEnemies.FirstOrDefault(e => e.enemyID == enemy.enemyID);
+            if (data != null)
+            {
+                enemy.LoadFromSave(data);
             }
         }
     }

@@ -35,6 +35,11 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
+        // Notifico il salvataggio della morte del nemico
+        EnemySaveState saveState = GetComponent<EnemySaveState>();
+        if (saveState != null)
+            saveState.MarkAsDefeated();
+
         // Blocca altre azioni e avvia animazione di morte
         if (animator != null)
             animator.SetTrigger("Die");
