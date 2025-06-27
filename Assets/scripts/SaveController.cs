@@ -107,4 +107,14 @@ public class SaveController : MonoBehaviour
             }
         }
     }
+
+    public void DeleteSaveData()
+    {
+        if (File.Exists(saveLocation))
+        {
+            File.Delete(saveLocation);
+            Debug.Log("Salvataggio eliminato.");
+        }
+    }
+
 }
