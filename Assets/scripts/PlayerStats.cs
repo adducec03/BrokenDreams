@@ -78,6 +78,12 @@ public class PlayerStats : MonoBehaviour
         else
         {
             Debug.Log("Game Over! Ricomincia il livello.");
+
+            SaveController saveController = FindFirstObjectByType<SaveController>();
+            if (saveController != null)
+            {
+                saveController.DeleteSaveData();
+            }
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
