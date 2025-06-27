@@ -4,7 +4,7 @@ public class Arrow : MonoBehaviour
 {
     public float speed = 0.5f;
     public float lifetime = 5f;
-    public float stuckDuration = 2f;
+    public float stuckDuration = 0.3f;
 
     private bool isActive = false;
     private bool isStuck = false;
