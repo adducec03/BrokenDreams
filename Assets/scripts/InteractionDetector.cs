@@ -19,11 +19,9 @@ public class InteractionDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"OnTriggerEnter2D con {collision.gameObject.name}");
 
         if(collision.TryGetComponent(out IInteractable interactable) && interactable.CanInteract())
         {
-            Debug.Log("Trovato un oggetto interagibile!");
             interactableInRange = interactable;
         }
     }

@@ -10,6 +10,8 @@ public class SaveController : MonoBehaviour
     private Chest[] chests;
     private List<CollectibleItem> sceneItems = new List<CollectibleItem>();
     private List<EnemySaveState> enemies = new List<EnemySaveState>();
+    private HashSet<string> activatedPressurePads = new HashSet<string>();
+
 
     void Start()
     {
@@ -31,7 +33,6 @@ public class SaveController : MonoBehaviour
         if (!sceneItems.Any(i => i.itemID == item.itemID))
         {
             sceneItems.Add(item);
-            Debug.Log("Item registrato: " + item.itemID);
         }
     }
 
@@ -48,9 +49,9 @@ public class SaveController : MonoBehaviour
             enemySaveData = GetEnemiesState(),
             playerHealth = playerStats.currentHealth,
             playerShield = playerStats.currentShield,
-            playerLives = playerStats.lives
+            playerLives = playerStats.lives,
+            activatedPressurePads = activatedPressurePads.ToList()
         };
-
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
     }
 
@@ -78,7 +79,9 @@ public class SaveController : MonoBehaviour
         if (File.Exists(saveLocation))
         {
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
+            activatedPressurePads = new HashSet<string>(saveData.activatedPressurePads);
             PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+            
 
             playerStats.transform.position = saveData.playerPosition;
             Time.timeScale = 1f;
@@ -149,7 +152,22 @@ public class SaveController : MonoBehaviour
         if (File.Exists(saveLocation))
         {
             File.Delete(saveLocation);
-            Debug.Log("Salvataggio eliminato.");
         }
     }
+
+    public bool IsPressurePadActivated(string id)
+    {
+        return activatedPressurePads.Contains(id);
+    }
+
+    public void SetPressurePadActivated(string id, bool state)
+    {
+        if (string.IsNullOrWhiteSpace(id)) return;
+
+        if (state)
+            activatedPressurePads.Add(id);
+        else
+            activatedPressurePads.Remove(id);
+    }
+
 }
