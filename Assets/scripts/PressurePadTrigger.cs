@@ -4,13 +4,15 @@ public class PressurePadTrigger : MonoBehaviour
 {
     public string pressurePadID;
 
-    [Header("Porta da aprire dopo aver sconfitto i nemici")]
+    [Header("Muro da far scomparire dopo aver sconfitto i nemici")]
     public GameObject doorToOpen;
 
     [Header("Nemici da attivare")]
     public GameObject[] enemiesToSpawn;
 
     private Animator padAnimator;
+    private Animator doorAnimator;
+
     private int playersOnPad = 0;
     private bool activated = false;
     private bool doorOpened = false;
@@ -20,7 +22,10 @@ public class PressurePadTrigger : MonoBehaviour
         padAnimator = GetComponent<Animator>();
 
         if (doorToOpen != null)
+        {
             doorToOpen.SetActive(true);
+            doorAnimator = doorToOpen.GetComponent<Animator>();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -63,10 +68,16 @@ public class PressurePadTrigger : MonoBehaviour
     {
         if (activated && !doorOpened && AreAllEnemiesDefeated())
         {
-            if (doorToOpen != null)
-                doorToOpen.SetActive(false); // O apri con animazione
-
             doorOpened = true;
+
+            if (doorAnimator != null)
+            {
+                doorAnimator.SetBool("shouldDisappear", true); // Trigger dissolvenza
+            }
+            else if (doorToOpen != null)
+            {
+                doorToOpen.SetActive(false); // fallback: sparizione istantanea
+            }
         }
     }
 
