@@ -13,4 +13,6 @@ public class SaveData
     public float playerShield;
     public int playerLives;
     public List<string> activatedPressurePads = new List<string>();
+    public List<string> disabledWalls = new List<string>();
+
 }

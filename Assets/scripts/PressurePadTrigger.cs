@@ -1,32 +1,65 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class PressurePadTrigger : MonoBehaviour
 {
     public string pressurePadID;
 
     [Header("Muro da far scomparire dopo aver sconfitto i nemici")]
-    public GameObject doorToOpen;
+    public GameObject wallToDisable;
 
     [Header("Nemici da attivare")]
     public GameObject[] enemiesToSpawn;
 
     private Animator padAnimator;
-    private Animator doorAnimator;
+    private Animator wallAnimator;
+    private GhostWallController ghostWall;
 
     private int playersOnPad = 0;
     private bool activated = false;
-    private bool doorOpened = false;
+    private bool wallDisabled = false;
 
     void Start()
     {
         padAnimator = GetComponent<Animator>();
 
-        if (doorToOpen != null)
+        if (wallToDisable != null)
         {
-            doorToOpen.SetActive(true);
-            doorAnimator = doorToOpen.GetComponent<Animator>();
+            wallAnimator = wallToDisable.GetComponent<Animator>();
+            ghostWall = wallToDisable.GetComponent<GhostWallController>();
+        }
+
+        // Controlla lo stato DOPO che il SaveController ha avuto il tempo di caricare
+        StartCoroutine(DelayedLoadState());
+    }
+
+    IEnumerator DelayedLoadState()
+    {
+        Debug.Log($"[PAD] Carico stato: activated={activated}, wallDisabled={wallDisabled}");
+
+        yield return new WaitForSeconds(0.1f); // oppure WaitForEndOfFrame se preferisci
+
+        var save = FindFirstObjectByType<SaveController>();
+        if (save != null)
+        {
+            if (save.IsPressurePadActivated(pressurePadID))
+            {
+                activated = true;
+            }
+
+            if (save.IsWallDisabled(pressurePadID))
+            {
+                wallDisabled = true;
+
+                if (wallToDisable != null)
+                {
+                    wallToDisable.SetActive(false);
+                }
+            }
         }
     }
+
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,7 +70,6 @@ public class PressurePadTrigger : MonoBehaviour
             if (padAnimator != null)
                 padAnimator.SetBool("isPressed", true);
 
-            // Attiva nemici e salva stato solo la prima volta
             if (!activated)
             {
                 activated = true;
@@ -66,18 +98,21 @@ public class PressurePadTrigger : MonoBehaviour
 
     void Update()
     {
-        if (activated && !doorOpened && AreAllEnemiesDefeated())
+        if (activated && !wallDisabled && AreAllEnemiesDefeated())
         {
-            doorOpened = true;
+            wallDisabled = true;
 
-            if (doorAnimator != null)
+            if (wallAnimator != null)
             {
-                doorAnimator.SetBool("shouldDisappear", true); // Trigger dissolvenza
+                wallAnimator.SetBool("shouldDisappear", true);
             }
-            else if (doorToOpen != null)
+            else if (wallToDisable != null)
             {
-                doorToOpen.SetActive(false); // fallback: sparizione istantanea
+                wallToDisable.SetActive(false); // fallback
             }
+            var save = FindFirstObjectByType<SaveController>();
+            if (save != null)
+                save.SetWallDisabled(pressurePadID, true);
         }
     }
 
@@ -89,4 +124,20 @@ public class PressurePadTrigger : MonoBehaviour
 
         return true;
     }
+
+    public bool IsActivated()
+    {
+        return activated;
+    }
+
+    public bool IsWallDisabled()
+    {
+        return wallDisabled;
+    }
+
+    public string GetPadID()
+    {
+        return pressurePadID;
+    }
+
 }
