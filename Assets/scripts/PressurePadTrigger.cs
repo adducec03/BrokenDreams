@@ -12,6 +12,9 @@ public class PressurePadTrigger : MonoBehaviour
     [Header("Nemici da attivare")]
     public GameObject[] enemiesToSpawn;
 
+    [Header("Effetti visivi e sonori")]
+    public GameObject spawnEffectPrefab; // Prefab della nuvoletta
+
     private Animator padAnimator;
     private Animator wallAnimator;
     private GhostWallController ghostWall;
@@ -36,8 +39,6 @@ public class PressurePadTrigger : MonoBehaviour
 
     IEnumerator DelayedLoadState()
     {
-        Debug.Log($"[PAD] Carico stato: activated={activated}, wallDisabled={wallDisabled}");
-
         yield return new WaitForSeconds(0.1f); // oppure WaitForEndOfFrame se preferisci
 
         var save = FindFirstObjectByType<SaveController>();
@@ -75,8 +76,25 @@ public class PressurePadTrigger : MonoBehaviour
                 activated = true;
 
                 foreach (GameObject enemy in enemiesToSpawn)
+                {
                     if (enemy != null)
+                    {
                         enemy.SetActive(true);
+
+                        // Effetto visivo
+                        if (spawnEffectPrefab != null)
+                        {
+                            Instantiate(spawnEffectPrefab, enemy.transform.position, Quaternion.identity);
+                        }
+
+                        // Suono
+                        SoundEffectManager.Play("SpawnEffect");
+
+                        // Attendi 5 secondi prima di attivare il movimento
+                        StartCoroutine(DelayEnemyMovement(enemy, 1f));
+                    }
+                }
+
 
                 var save = FindFirstObjectByType<SaveController>();
                 if (save != null)
@@ -139,5 +157,25 @@ public class PressurePadTrigger : MonoBehaviour
     {
         return pressurePadID;
     }
+    private IEnumerator DelayEnemyMovement(GameObject enemy, float delay)
+    {
+        var movement = enemy.GetComponent<EnemyAttack>();
+        var agent = enemy.GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+        if (movement != null)
+            movement.enabled = false;
+
+        if (agent != null)
+            agent.enabled = false;
+
+        yield return new WaitForSeconds(delay);
+
+        if (agent != null)
+            agent.enabled = true;
+
+        if (movement != null)
+            movement.enabled = true;
+    }
+
 
 }
