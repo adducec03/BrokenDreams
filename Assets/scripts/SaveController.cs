@@ -11,6 +11,7 @@ public class SaveController : MonoBehaviour
     private List<CollectibleItem> sceneItems = new List<CollectibleItem>();
     private List<EnemySaveState> enemies = new List<EnemySaveState>();
     private HashSet<string> activatedPressurePads = new HashSet<string>();
+    private HashSet<string> disabledWallIDs = new HashSet<string>();
 
 
     void Start()
@@ -50,7 +51,8 @@ public class SaveController : MonoBehaviour
             playerHealth = playerStats.currentHealth,
             playerShield = playerStats.currentShield,
             playerLives = playerStats.lives,
-            activatedPressurePads = activatedPressurePads.ToList()
+            activatedPressurePads = activatedPressurePads.ToList(),
+            disabledWalls = disabledWallIDs.ToList()
         };
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
     }
@@ -79,12 +81,17 @@ public class SaveController : MonoBehaviour
         if (File.Exists(saveLocation))
         {
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
-            activatedPressurePads = new HashSet<string>(saveData.activatedPressurePads);
-            PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-            
 
+            // Carica 
+            activatedPressurePads = new HashSet<string>(saveData.activatedPressurePads);
+            disabledWallIDs = new HashSet<string>(saveData.disabledWalls);
+
+            // Carica le statistiche del Player salvate nel file
+            PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+
+            // Posiziona il player nella posizione in cui era stato salvato
             playerStats.transform.position = saveData.playerPosition;
-            Time.timeScale = 1f;
+            Time.timeScale = 1f;                       // Serve per settare la Cinemachine alla nuova posizione del Player
 
             // Carica salute/scudo/vite
             playerStats.currentHealth = saveData.playerHealth;
@@ -162,12 +169,29 @@ public class SaveController : MonoBehaviour
 
     public void SetPressurePadActivated(string id, bool state)
     {
+        Debug.Log($"[SAVE] SetPressurePadActivated: {id} = {state}");
         if (string.IsNullOrWhiteSpace(id)) return;
 
         if (state)
             activatedPressurePads.Add(id);
         else
             activatedPressurePads.Remove(id);
+    }
+
+    public void SetWallDisabled(string id, bool state)
+    {
+        Debug.Log($"[SAVE] SetWallDisabled: {id} = {state}");
+        if (string.IsNullOrWhiteSpace(id)) return;
+
+        if (state)
+            disabledWallIDs.Add(id);
+        else
+            disabledWallIDs.Remove(id);
+    }
+
+    public bool IsWallDisabled(string id)
+    {
+        return disabledWallIDs.Contains(id);
     }
 
 }
