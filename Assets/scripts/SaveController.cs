@@ -169,7 +169,6 @@ public class SaveController : MonoBehaviour
 
     public void SetPressurePadActivated(string id, bool state)
     {
-        Debug.Log($"[SAVE] SetPressurePadActivated: {id} = {state}");
         if (string.IsNullOrWhiteSpace(id)) return;
 
         if (state)
@@ -180,7 +179,6 @@ public class SaveController : MonoBehaviour
 
     public void SetWallDisabled(string id, bool state)
     {
-        Debug.Log($"[SAVE] SetWallDisabled: {id} = {state}");
         if (string.IsNullOrWhiteSpace(id)) return;
 
         if (state)
