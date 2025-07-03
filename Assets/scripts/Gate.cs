@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour, IInteractable
 {
+    private MessageDisplay messageDisplay; // L'oggetto per far stampare dei log direttamente sullo schermo
     public string requiredItemID = "1"; // L'ID dell'oggetto chiave
     public Animator animator;             // Animatore per l'apertura, se presente
     public string openTrigger = "Open";   // Nome del trigger nell'Animator
 
     private bool isOpen = false;
+
+
+    void Start()
+    {
+        messageDisplay = FindFirstObjectByType<MessageDisplay>();
+    }
 
     public void Interact()
     {
@@ -20,7 +27,7 @@ public class Gate : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.Log("Hai bisogno della chiave per aprire questo cancello.");
+            messageDisplay.ShowMessage("Hai bisogno della chiave per aprire questo cancello.");
         }
     }
 
@@ -44,7 +51,7 @@ public class Gate : MonoBehaviour, IInteractable
         if (col != null)
             col.enabled = false;
 
-        Debug.Log("Cancello aperto!");
+        messageDisplay.ShowMessage("Cancello aperto!");
     }
 
 }
