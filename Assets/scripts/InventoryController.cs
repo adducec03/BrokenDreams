@@ -28,7 +28,7 @@ public class InventoryController : MonoBehaviour
 
     public bool AddItem(GameObject itemPrefab)
     {
-        foreach(Transform slotTransform in inventoryPanel.transform)
+        foreach (Transform slotTransform in inventoryPanel.transform)
         {
             Slot slot = slotTransform.GetComponent<Slot>();
             if (slot != null && slot.currentItem == null)
@@ -46,13 +46,13 @@ public class InventoryController : MonoBehaviour
     public List<InventorySaveData> GetInventoryItems()
     {
         List<InventorySaveData> invData = new List<InventorySaveData>();
-        foreach(Transform slotTransform in inventoryPanel.transform)
+        foreach (Transform slotTransform in inventoryPanel.transform)
         {
             Slot slot = slotTransform.GetComponent<Slot>();
-            if(slot.currentItem != null)
+            if (slot.currentItem != null)
             {
                 Item item = slot.currentItem.GetComponent<Item>();
-                invData.Add(new InventorySaveData {itemID = item.ID, slotIndex = slotTransform.GetSiblingIndex()});
+                invData.Add(new InventorySaveData { itemID = item.ID, slotIndex = slotTransform.GetSiblingIndex() });
             }
         }
         return invData;
@@ -109,4 +109,22 @@ public class InventoryController : MonoBehaviour
             }
         }
     }
+    
+    public bool HasItem(string itemID)
+    {
+        foreach (Transform slotTransform in inventoryPanel.transform)
+        {
+            Slot slot = slotTransform.GetComponent<Slot>();
+            if (slot != null && slot.currentItem != null)
+            {
+                Item item = slot.currentItem.GetComponent<Item>();
+                if (item != null && item.ID.ToString() == itemID)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
