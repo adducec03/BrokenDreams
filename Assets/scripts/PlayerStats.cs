@@ -30,7 +30,7 @@ public class PlayerStats : MonoBehaviour
 
         heartsManager = FindFirstObjectByType<HeartsManager>();
         heartsManager.UpdateHearts(lives);
-        
+
         // Inizializza barre della salute
         healthBarGame.SetHealth(currentHealth, maxHealth);
         healthBarMenu.SetHealth(currentHealth, maxHealth);
@@ -122,5 +122,15 @@ public class PlayerStats : MonoBehaviour
 
         Debug.Log("Scudo attivato. Valore: " + currentShield);
     }
+    
+    public void Heal(float percent)
+    {
+        float amount = maxHealth * percent;
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        healthBarGame.SetHealth(currentHealth, maxHealth);
+        healthBarMenu.SetHealth(currentHealth, maxHealth);
+        Debug.Log($"Guarito di {amount}. Salute attuale: {currentHealth}/{maxHealth}");
+    }
+
 
 }
