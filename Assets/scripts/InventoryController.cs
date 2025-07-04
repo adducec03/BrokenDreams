@@ -36,6 +36,17 @@ public class InventoryController : MonoBehaviour
                 GameObject newItem = Instantiate(itemPrefab, slot.transform);
                 newItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 slot.currentItem = newItem;
+
+                Item itemComponent = newItem.GetComponent<Item>();
+                if (itemComponent != null && itemComponent.ID == 2)
+                {
+                    Debug.Log("[Inventory] Pozione scudo aggiunta. Attivazione scudo...");
+                    PlayerStats player = FindFirstObjectByType<PlayerStats>();
+                    if (player != null)
+                    {
+                        player.EnableShield();
+                    }
+                }
                 return true;
             }
         }

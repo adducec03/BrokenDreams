@@ -22,52 +22,57 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        currentShield = maxShield;
+        currentShield = 0f;
+
+        // Disattiva UI scudo
+        shieldBarGame.gameObject.SetActive(false);
+        shieldBarMenu.gameObject.SetActive(false);
+
         heartsManager = FindFirstObjectByType<HeartsManager>();
         heartsManager.UpdateHearts(lives);
+        
+        // Inizializza barre della salute
+        healthBarGame.SetHealth(currentHealth, maxHealth);
+        healthBarMenu.SetHealth(currentHealth, maxHealth);
     }
 
     public void TakeDamage(float damage)
     {
-        // 1. Riduci prima lo scudo
-        if (currentShield > 0)
+        Debug.Log("Danno ricevuto: " + damage);
+
+        // Usa lo scudo solo se attivo
+        if (shieldBarGame.gameObject.activeSelf && currentShield > 0)
         {
             float shieldDamage = Mathf.Min(damage, currentShield);
             currentShield -= shieldDamage;
-            damage -= shieldDamage; // Rimuovi la parte assorbita dallo scudo
+            damage -= shieldDamage;
+
             shieldBarGame.SetShield(currentShield, maxShield);
             shieldBarMenu.SetShield(currentShield, maxShield);
+            Debug.Log("Danno assorbito dallo scudo. Rimane: " + currentShield);
         }
 
-        // 2. Se resta del danno, colpisci la salute
+        // Se rimane danno, applicalo alla salute
         if (damage > 0)
         {
             currentHealth -= damage;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
             healthBarGame.SetHealth(currentHealth, maxHealth);
             healthBarMenu.SetHealth(currentHealth, maxHealth);
+
+            Debug.Log("Danno applicato alla salute. Rimane: " + currentHealth);
         }
 
-        // 3. Controllo morte
         if (currentHealth <= 0)
         {
             Die();
         }
     }
 
-
-    void Update()
-    {
-    if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Spazio premuto, danno applicato!");
-            TakeDamage(15);
-        }
-    }
-
     void Die()
     {
-        lives=lives-1;
+        lives = lives - 1;
         heartsManager.UpdateHearts(lives);
 
         if (lives > 0)
@@ -99,4 +104,23 @@ public class PlayerStats : MonoBehaviour
         healthBarMenu.SetHealth(currentHealth, maxHealth);
         shieldBarMenu.SetShield(currentShield, maxShield);
     }
+
+    public void EnableShield()
+    {
+        currentShield = maxShield;
+        currentHealth = maxHealth;
+
+        // Mostra le barre dello scudo
+        shieldBarGame.gameObject.SetActive(true);
+        shieldBarMenu.gameObject.SetActive(true);
+
+        // Aggiorna tutte le barre
+        shieldBarGame.SetShield(currentShield, maxShield);
+        shieldBarMenu.SetShield(currentShield, maxShield);
+        healthBarGame.SetHealth(currentHealth, maxHealth);
+        healthBarMenu.SetHealth(currentHealth, maxHealth);
+
+        Debug.Log("Scudo attivato. Valore: " + currentShield);
+    }
+
 }

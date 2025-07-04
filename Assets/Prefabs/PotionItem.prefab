@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -8070276051229288497}
   - component: {fileID: 1474247241194919604}
   - component: {fileID: 5384823648592618664}
+  - component: {fileID: 7615007324318938120}
   m_Layer: 0
   m_Name: PotionItem
   m_TagString: Item
@@ -222,3 +223,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemID: 
+--- !u!114 &7615007324318938120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816319765568316944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1158654a86fff24890becb22b7c5d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
