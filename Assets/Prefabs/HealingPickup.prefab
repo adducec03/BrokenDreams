@@ -138,5 +138,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healingPercentage: 0.25
-  fullHealthMessage: "Il tuo stato di salute \xE8 al massimo, torna quando ricevi
-    qualche danno!"
+  fullHealthMessage: Il tuo stato di salute e' al massimo, torna quando ricevi qualche
+    danno!
