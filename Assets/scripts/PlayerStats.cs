@@ -17,6 +17,11 @@ public class PlayerStats : MonoBehaviour
     public HealthBar healthBarMenu;
     public ShieldBar shieldBarMenu;
     public HeartsManager heartsManager;
+    public GameObject gameOverPanel;
+    public SoundtrackVolumeController normalMusicController;
+    public SoundtrackVolumeController gameOverMusicController;
+
+
 
 
     void Start()
@@ -82,14 +87,33 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
-            Debug.Log("Game Over! Ricomincia il livello.");
+            // Ferma la musica normale
+            if (normalMusicController != null)
+                normalMusicController.GetComponent<AudioSource>().Stop();
 
+            // Avvia musica Game Over
+            if (gameOverMusicController != null)
+                gameOverMusicController.GetComponent<AudioSource>().Play();
+
+            // Disabilita il PauseMenu
+            menuController menuController = FindFirstObjectByType<menuController>();
+            menuController.menuButton.gameObject.SetActive(false);
+
+            // Mostra la UI del GameOver
+            if (gameOverPanel != null)
+            {
+                gameOverPanel.SetActive(true);
+            }
+
+            // Ferma il tempo
+            Time.timeScale = 0f;
+
+            // Elimina il salvataggio
             SaveController saveController = FindFirstObjectByType<SaveController>();
             if (saveController != null)
             {
                 saveController.DeleteSaveData();
             }
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -122,7 +146,7 @@ public class PlayerStats : MonoBehaviour
 
         Debug.Log("Scudo attivato. Valore: " + currentShield);
     }
-    
+
     public void Heal(float percent)
     {
         float amount = maxHealth * percent;
@@ -132,5 +156,28 @@ public class PlayerStats : MonoBehaviour
         Debug.Log($"Guarito di {amount}. Salute attuale: {currentHealth}/{maxHealth}");
     }
 
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f; // Riattiva il tempo
+
+        // Ferma musica Game Over, riavvia quella normale
+        if (gameOverMusicController != null)
+            gameOverMusicController.GetComponent<AudioSource>().Stop();
+
+        if (normalMusicController != null)
+            normalMusicController.GetComponent<AudioSource>().Play();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f; // Riattiva il tempo nel caso fosse fermo
+
+        if (gameOverMusicController != null)
+            gameOverMusicController.GetComponent<AudioSource>().Stop();
+
+        SceneManager.LoadScene("MainMenu");
+    }
 
 }
