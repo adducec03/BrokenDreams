@@ -191,8 +191,6 @@ public class PlayerStats : MonoBehaviour
             {
                 saveController.DeleteSaveData();
             }
-
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Unarmed_Hurt1_0: -8936824445328720252
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
