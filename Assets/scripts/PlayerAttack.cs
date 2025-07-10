@@ -10,10 +10,13 @@ public class PlayerAttack : MonoBehaviour
 
     private Vector2 lastMoveDirection = Vector2.right; // default verso destra
     private PlayerMovement movementScript;
+    private Animator animator;
+
 
     void Start()
     {
         movementScript = GetComponent<PlayerMovement>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -41,6 +44,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
+        animator.SetTrigger("Attack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)
