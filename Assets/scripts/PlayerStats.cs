@@ -159,12 +159,32 @@ public class PlayerStats : MonoBehaviour
 
         if (lives > 0)
         {
-            Debug.Log("Respawn al checkpoint. Vite rimaste: " + lives);
             Respawn();
         }
         else
         {
-            Debug.Log("Game Over! Ricomincia il livello.");
+            // Ferma la musica normale
+            if (normalMusicController != null)
+                normalMusicController.GetComponent<AudioSource>().Stop();
+
+            // Avvia musica Game Over
+            if (gameOverMusicController != null)
+                gameOverMusicController.GetComponent<AudioSource>().Play();
+
+            // Disabilita il PauseMenu
+            menuController menuController = FindFirstObjectByType<menuController>();
+            menuController.menuButton.gameObject.SetActive(false);
+
+            // Mostra la UI del GameOver
+            if (gameOverPanel != null)
+            {
+                gameOverPanel.SetActive(true);
+            }
+
+            // Ferma il tempo
+            Time.timeScale = 0f;
+
+            // Elimina il salvataggio
 
             SaveController saveController = FindFirstObjectByType<SaveController>();
             if (saveController != null)
@@ -172,7 +192,7 @@ public class PlayerStats : MonoBehaviour
                 saveController.DeleteSaveData();
             }
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
