@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Unarmed_Idle1_0: 3600115214673668765
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

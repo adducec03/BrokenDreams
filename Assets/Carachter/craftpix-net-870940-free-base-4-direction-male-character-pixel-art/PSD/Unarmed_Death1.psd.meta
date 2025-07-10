@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Unarmed_Death1_0: 8061356940091228030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
