@@ -22,6 +22,11 @@ public class PlayerStats : MonoBehaviour
     private bool isDead = false;
     private Rigidbody2D rb;
 
+    public GameObject gameOverPanel;
+    public SoundtrackVolumeController normalMusicController;
+    public SoundtrackVolumeController gameOverMusicController;
+
+
 
 
     void Start()
@@ -171,5 +176,28 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void RestartLevel()
+    {
+        Time.timeScale = 1f; // Riattiva il tempo
+
+        // Ferma musica Game Over, riavvia quella normale
+        if (gameOverMusicController != null)
+            gameOverMusicController.GetComponent<AudioSource>().Stop();
+
+        if (normalMusicController != null)
+            normalMusicController.GetComponent<AudioSource>().Play();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f; // Riattiva il tempo nel caso fosse fermo
+
+        if (gameOverMusicController != null)
+            gameOverMusicController.GetComponent<AudioSource>().Stop();
+
+        SceneManager.LoadScene("MainMenu");
+    }
 
 }
