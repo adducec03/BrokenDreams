@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -17,10 +18,15 @@ public class PlayerStats : MonoBehaviour
     public HealthBar healthBarMenu;
     public ShieldBar shieldBarMenu;
     public HeartsManager heartsManager;
+    private Animator animator;
+    private bool isDead = false;
+    private Rigidbody2D rb;
+
 
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         currentShield = 0f;
 
@@ -34,10 +40,17 @@ public class PlayerStats : MonoBehaviour
         // Inizializza barre della salute
         healthBarGame.SetHealth(currentHealth, maxHealth);
         healthBarMenu.SetHealth(currentHealth, maxHealth);
+
+        animator = GetComponentInChildren<Animator>();
+
     }
 
     public void TakeDamage(float damage)
     {
+        if (isDead) return;
+
+        animator.SetTrigger("Hurt");
+
         Debug.Log("Danno ricevuto: " + damage);
 
         // Usa lo scudo solo se attivo
@@ -72,25 +85,21 @@ public class PlayerStats : MonoBehaviour
 
     void Die()
     {
-        lives = lives - 1;
+        if (isDead) return;
+        isDead = true;
+
+        animator.ResetTrigger("Hurt");
+        animator.SetTrigger("Die");
+        lives--;
         heartsManager.UpdateHearts(lives);
 
-        if (lives > 0)
-        {
-            Debug.Log("Respawn al checkpoint. Vite rimaste: " + lives);
-            Respawn();
-        }
-        else
-        {
-            Debug.Log("Game Over! Ricomincia il livello.");
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<PlayerAttack>().enabled = false;
 
-            SaveController saveController = FindFirstObjectByType<SaveController>();
-            if (saveController != null)
-            {
-                saveController.DeleteSaveData();
-            }
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
+
+        StartCoroutine(DeathDelay());
     }
 
     void Respawn()
@@ -98,6 +107,13 @@ public class PlayerStats : MonoBehaviour
         transform.position = respawnPoint.position;
         currentHealth = maxHealth;
         currentShield = maxShield;
+        isDead = false;
+
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<PlayerAttack>().enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
+        animator.Play("Idle");
 
         healthBarGame.SetHealth(currentHealth, maxHealth);
         shieldBarGame.SetShield(currentShield, maxShield);
@@ -122,7 +138,7 @@ public class PlayerStats : MonoBehaviour
 
         Debug.Log("Scudo attivato. Valore: " + currentShield);
     }
-    
+
     public void Heal(float percent)
     {
         float amount = maxHealth * percent;
@@ -130,6 +146,29 @@ public class PlayerStats : MonoBehaviour
         healthBarGame.SetHealth(currentHealth, maxHealth);
         healthBarMenu.SetHealth(currentHealth, maxHealth);
         Debug.Log($"Guarito di {amount}. Salute attuale: {currentHealth}/{maxHealth}");
+    }
+
+    IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(1.2f); // durata dell’animazione "Die"
+
+        if (lives > 0)
+        {
+            Debug.Log("Respawn al checkpoint. Vite rimaste: " + lives);
+            Respawn();
+        }
+        else
+        {
+            Debug.Log("Game Over! Ricomincia il livello.");
+
+            SaveController saveController = FindFirstObjectByType<SaveController>();
+            if (saveController != null)
+            {
+                saveController.DeleteSaveData();
+            }
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
 
