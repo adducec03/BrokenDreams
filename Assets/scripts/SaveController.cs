@@ -22,7 +22,7 @@ public class SaveController : MonoBehaviour
 
     private void InitializeComponents()
     {
-        saveLocation = Path.Combine(Application.persistentDataPath, "saveData.json");
+        saveLocation = Path.Combine(Application.persistentDataPath, $"save_{SessionManager.currentUsername}.json");
         inventoryController = FindFirstObjectByType<InventoryController>();
         chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
         sceneItems = FindObjectsByType<CollectibleItem>(FindObjectsSortMode.None).ToList();
