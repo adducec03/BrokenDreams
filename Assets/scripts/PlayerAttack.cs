@@ -43,15 +43,29 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void Attack()
-    {
-        animator.SetTrigger("Attack");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+{
+    animator.SetTrigger("Attack");
 
-        foreach (Collider2D enemy in hitEnemies)
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
+    foreach (Collider2D enemy in hitEnemies)
+    {
+        // Tenta di colpire un nemico normale
+        EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+        if (enemyHealth != null)
         {
-            enemy.GetComponent<EnemyHealth>()?.TakeDamage(attackDamage);
+            enemyHealth.TakeDamage(attackDamage);
+            continue;
+        }
+
+        // Tenta di colpire il boss
+        BossAI boss = enemy.GetComponent<BossAI>();
+        if (boss != null)
+        {
+            boss.TakeDamage(attackDamage);
         }
     }
+}
 
     void OnDrawGizmosSelected()
     {
