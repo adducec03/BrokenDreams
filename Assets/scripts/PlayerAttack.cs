@@ -29,6 +29,12 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void TriggerAttack()
+    {
+        Attack();
+    }
+
+
     void UpdateAttackPointDirection()
     {
         Vector2 inputDir = movementScript.GetLastDirection(); // metodo che restituisce l’ultima direzione
