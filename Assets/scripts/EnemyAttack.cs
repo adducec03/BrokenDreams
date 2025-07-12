@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class EnemyAttack : MonoBehaviour
 {
     public float visionRange = 6f;
-    public float attackRange = 0f;
+    public float attackRange = 5f;
     public int attackDamage = 10;
     public float attackRate = 1f;
     public Transform player;
@@ -55,11 +55,12 @@ public class EnemyAttack : MonoBehaviour
 
             if (distance <= attackRange)
             {
-                if (agent.hasPath)
-                    agent.ResetPath();
+                if (agent.isOnNavMesh)
+                    agent.isStopped = true;
 
-                animator.SetFloat("Speed", 0);
                 rb.linearVelocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+                animator.SetFloat("Speed", 0);
 
                 if (target == player && Time.time >= nextAttackTime)
                 {
@@ -71,6 +72,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 if (!isAttacking && agent.isOnNavMesh)
                 {
+                    agent.isStopped = false;
                     agent.SetDestination(target.position);
                     animator.SetFloat("Speed", agent.velocity.magnitude);
                 }
