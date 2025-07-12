@@ -4,7 +4,7 @@ using System.Collections;
 
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class BossAI : MonoBehaviour
+public class SlimesAI : MonoBehaviour
 {
     public Transform player;
     public float visionRange = 8f;
@@ -18,9 +18,6 @@ public class BossAI : MonoBehaviour
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
     private bool isDead = false;
-    public GameObject minionPrefab;
-    public Transform[] spawnPoints;
-    public float summonInterval = 10f;
 
     void Start()
     {
@@ -44,7 +41,6 @@ public class BossAI : MonoBehaviour
             Debug.LogError("Boss non trovato sulla NavMesh!");
         }
 
-        StartCoroutine(SpawnMinionsRoutine());
     }
 
 
@@ -85,35 +81,7 @@ public class BossAI : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnMinionsRoutine()
-    {
-        while (!isDead)
-        {
-            yield return new WaitForSeconds(summonInterval);
-            SpawnMinion();
-        }
-    }
 
-
-    void SpawnMinion()
-    {
-        int i = Random.Range(0, spawnPoints.Length);
-        if (spawnPoints == null || spawnPoints.Length == 0)
-        {
-            Debug.LogError("spawnPoints è nullo o vuoto!");
-            return;
-        }
-
-        for (int j = 0; j < spawnPoints.Length; j++)
-        {
-            if (spawnPoints[j] == null)
-            {
-                Debug.LogError($"spawnPoints[{j}] non è assegnato!");
-                return;
-            }
-        }
-        Instantiate(minionPrefab, spawnPoints[i].position, Quaternion.identity);
-    }
 
     void Attack()
     {
@@ -130,7 +98,11 @@ public class BossAI : MonoBehaviour
 
     void DealDamage()
     {
-        if (player == null) return;
+        if (player == null)
+        {
+            Debug.LogWarning("Player non trovato durante l'attacco.");
+            return;
+        }
 
         float distance = Vector3.Distance(transform.position, player.position);
         if (distance <= attackRange)
