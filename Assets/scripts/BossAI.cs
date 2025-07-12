@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class BossAI : MonoBehaviour
@@ -10,13 +12,15 @@ public class BossAI : MonoBehaviour
     public float attackCooldown = 2f;
     public int maxHealth = 100;
     public int attackDamage = 20;
-
     private int currentHealth;
     private Animator animator;
     private NavMeshAgent agent;
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
     private bool isDead = false;
+    public GameObject minionPrefab;
+    public Transform[] spawnPoints;
+    public float summonInterval = 10f;
 
     void Start()
     {
@@ -39,7 +43,10 @@ public class BossAI : MonoBehaviour
         {
             Debug.LogError("Boss non trovato sulla NavMesh!");
         }
+
+        StartCoroutine(SpawnMinionsRoutine());
     }
+
 
     void Update()
     {
@@ -76,6 +83,22 @@ public class BossAI : MonoBehaviour
             scale.x = Mathf.Sign(direction.x) * Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
+    }
+
+    IEnumerator SpawnMinionsRoutine()
+    {
+        while (!isDead)
+        {
+            yield return new WaitForSeconds(summonInterval);
+            SpawnMinion();
+        }
+    }
+
+
+    void SpawnMinion()
+    {
+        int i = Random.Range(0, spawnPoints.Length);
+        Instantiate(minionPrefab, spawnPoints[i].position, Quaternion.identity);
     }
 
     void Attack()
