@@ -50,9 +50,12 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
+        animator.ResetTrigger("Attack");
         animator.SetTrigger("Attack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+
+        bool hasHit = false;
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -61,6 +64,7 @@ public class PlayerAttack : MonoBehaviour
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(attackDamage);
+                hasHit = true;
                 continue;
             }
 
@@ -69,15 +73,26 @@ public class PlayerAttack : MonoBehaviour
             if (boss != null)
             {
                 boss.TakeDamage(attackDamage);
+                hasHit = true;
             }
 
-            // Tenta di colpire uno slime generato dal boss
+            // Tenta di colpire uno slime
             SlimesAI minion = enemy.GetComponent<SlimesAI>();
             if (minion != null)
             {
-                Debug.Log("Sto infliggendo danno allo slime!");
                 minion.TakeDamage(attackDamage);
+                hasHit = true;
             }
+        }
+
+        // 🎵 Suono in base all'esito
+        if (hasHit)
+        {
+            SoundEffectManager.Play("PlayerSwordHit"); // suono quando colpisci
+        }
+        else
+        {
+            SoundEffectManager.Play("PlayerSwordSwoosh"); // suono quando manchi
         }
     }
 

@@ -167,7 +167,7 @@ public class BossAI : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Die() chiamato");
+        GetComponent<Collider2D>().enabled = false;
         isDead = true;
         SoundEffectManager.Play("GolemDeath");
         agent.ResetPath();

@@ -10,12 +10,9 @@ public class EnemyAttack : MonoBehaviour
     public float attackRate = 1f;
     public Transform player;
 
-    private Transform target;
     private Rigidbody2D rb;
     private NavMeshAgent agent;
     private Animator animator;
-    private LayerMask obstacleMask;
-
     private float nextAttackTime = 0f;
     private bool isAttacking = false;
 
@@ -27,61 +24,42 @@ public class EnemyAttack : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        obstacleMask = LayerMask.GetMask("NotWalkable");
-
         if (player == null)
             Debug.LogError("Player non assegnato!");
     }
 
     void FixedUpdate()
     {
-        if (player == null) return;
+        if (player == null || isAttacking) return;
 
-        UpdateSpriteFlip();
+        float distance = Vector2.Distance(transform.position, player.position);
 
-        // Target prioritario: il player visibile
-        if (IsPlayerVisible())
+        if (distance <= visionRange)
         {
-            target = player;
-        }
-        else
-        {
-            FindLatestVisibleTrail();
-        }
-
-        if (target != null)
-        {
-            float distance = Vector2.Distance(transform.position, target.position);
-
-            if (distance <= attackRange)
+            if (distance <= attackRange && Time.time >= nextAttackTime)
             {
-                if (agent.isOnNavMesh)
-                    agent.isStopped = true;
-
-                rb.linearVelocity = Vector2.zero;
-                rb.angularVelocity = 0f;
-                animator.SetFloat("Speed", 0);
-
-                if (target == player && Time.time >= nextAttackTime)
-                {
-                    Attack();
-                    nextAttackTime = Time.time + 1f / attackRate;
-                }
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
             }
             else
             {
-                if (!isAttacking && agent.isOnNavMesh)
+                if (agent.isOnNavMesh)
                 {
                     agent.isStopped = false;
-                    agent.SetDestination(target.position);
+                    agent.SetDestination(player.position);
                     animator.SetFloat("Speed", agent.velocity.magnitude);
                 }
             }
+
+            UpdateSpriteFlip();
         }
         else
         {
-            agent.ResetPath();
-            animator.SetFloat("Speed", 0);
+            if (agent.isOnNavMesh)
+            {
+                agent.ResetPath();
+                animator.SetFloat("Speed", 0f);
+            }
         }
     }
 
@@ -90,11 +68,19 @@ public class EnemyAttack : MonoBehaviour
         isAttacking = true;
         animator.SetTrigger("Attack");
 
+        // Ferma il movimento
+        if (agent.isOnNavMesh)
+            agent.isStopped = true;
+
+        rb.linearVelocity = Vector2.zero;
+
         PlayerStats stats = player.GetComponent<PlayerStats>();
         if (stats != null)
         {
             stats.TakeDamage(attackDamage);
         }
+
+        SoundEffectManager.Play("SkeletonAttack");
 
         Invoke(nameof(ResetAttack), 0.6f); // Adatta alla durata dell’animazione
     }
@@ -106,45 +92,12 @@ public class EnemyAttack : MonoBehaviour
 
     void UpdateSpriteFlip()
     {
-        if (agent.velocity.x != 0)
+        Vector3 direction = player.position - transform.position;
+        if (direction.x != 0)
         {
             Vector3 scale = transform.localScale;
-            scale.x = agent.velocity.x > 0 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+            scale.x = Mathf.Sign(direction.x) * Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
-    }
-
-    bool IsPlayerVisible()
-    {
-        if (Vector2.Distance(transform.position, player.position) > visionRange)
-            return false;
-
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position, obstacleMask);
-        return hit.collider == null || hit.collider.CompareTag("Player");
-    }
-
-    void FindLatestVisibleTrail()
-    {
-        GameObject[] trails = GameObject.FindGameObjectsWithTag("TrailPoint");
-        Transform latest = null;
-        float shortestDist = Mathf.Infinity;
-
-        foreach (var trail in trails)
-        {
-            float dist = Vector2.Distance(transform.position, trail.transform.position);
-            if (dist <= visionRange && HasLineOfSight(trail.transform.position) && dist < shortestDist)
-            {
-                shortestDist = dist;
-                latest = trail.transform;
-            }
-        }
-
-        target = latest;
-    }
-
-    bool HasLineOfSight(Vector2 pos)
-    {
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, pos, obstacleMask);
-        return hit.collider == null || hit.collider.CompareTag("TrailPoint");
     }
 }
