@@ -95,6 +95,7 @@ public class EnemyAttack : MonoBehaviour
         {
             stats.TakeDamage(attackDamage);
         }
+        SoundEffectManager.Play("SkeletonAttack");
 
         Invoke(nameof(ResetAttack), 0.6f); // Adatta alla durata dell’animazione
     }

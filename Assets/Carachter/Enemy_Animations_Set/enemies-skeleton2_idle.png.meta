@@ -131,10 +131,10 @@ TextureImporter:
       name: enemies-skeleton2_idle_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 2
-        width: 18
-        height: 17
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +153,10 @@ TextureImporter:
       name: enemies-skeleton2_idle_1
       rect:
         serializedVersion: 2
-        x: 39
-        y: 2
-        width: 18
-        height: 17
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +175,10 @@ TextureImporter:
       name: enemies-skeleton2_idle_2
       rect:
         serializedVersion: 2
-        x: 71
-        y: 2
-        width: 18
-        height: 18
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: enemies-skeleton2_idle_3
       rect:
         serializedVersion: 2
-        x: 103
-        y: 2
-        width: 18
-        height: 18
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,10 +219,10 @@ TextureImporter:
       name: enemies-skeleton2_idle_4
       rect:
         serializedVersion: 2
-        x: 135
-        y: 2
-        width: 18
-        height: 17
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,10 +241,10 @@ TextureImporter:
       name: enemies-skeleton2_idle_5
       rect:
         serializedVersion: 2
-        x: 167
-        y: 2
-        width: 18
-        height: 17
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f42c7db0702cc42d5a3b5efd83bdd696
     internalID: 0
     vertices: []
     indices: 
