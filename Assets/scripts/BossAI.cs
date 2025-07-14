@@ -126,6 +126,8 @@ public class BossAI : MonoBehaviour
         // Infliggi danno dopo breve delay (match animazione)
         Invoke(nameof(DealDamage), 0.5f);
         Invoke(nameof(EndAttack), 1f);
+
+
     }
 
     void DealDamage()
@@ -167,6 +169,7 @@ public class BossAI : MonoBehaviour
     {
         Debug.Log("Die() chiamato");
         isDead = true;
+        SoundEffectManager.Play("GolemDeath");
         agent.ResetPath();
         animator.SetFloat("Speed", 0f);
         animator.ResetTrigger("Attack");
