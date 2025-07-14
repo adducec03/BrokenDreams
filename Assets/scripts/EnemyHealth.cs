@@ -34,6 +34,8 @@ public class EnemyHealth : MonoBehaviour
     {
         if (isDead) return;
         isDead = true;
+        SoundEffectManager.Play("SkeletonDeath");
+        GetComponent<Collider2D>().enabled = false;
 
         // Notifico il salvataggio della morte del nemico
         EnemySaveState saveState = GetComponent<EnemySaveState>();
@@ -42,7 +44,11 @@ public class EnemyHealth : MonoBehaviour
 
         // Blocca altre azioni e avvia animazione di morte
         if (animator != null)
+        {
+            animator.ResetTrigger("Attack");
+            animator.ResetTrigger("Hit");
             animator.SetTrigger("Die");
+        }
 
         // Disattiva AI o movimento
         GetComponent<NavMeshAgent>().enabled = false;
