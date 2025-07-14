@@ -89,6 +89,8 @@ public class SlimesAI : MonoBehaviour
         agent.ResetPath();
         animator.SetFloat("Speed", 0f);
         animator.SetTrigger("Attack");
+        SoundEffectManager.Play("SlimeAttack");
+
         lastAttackTime = Time.time;
 
         // Infliggi danno dopo breve delay (match animazione)
@@ -138,6 +140,8 @@ public class SlimesAI : MonoBehaviour
     void Die()
     {
         Debug.Log("Die() chiamato");
+        SoundEffectManager.Play("SlimeDeath");
+        GetComponent<Collider2D>().enabled = false;
         isDead = true;
         agent.ResetPath();
         animator.SetFloat("Speed", 0f);

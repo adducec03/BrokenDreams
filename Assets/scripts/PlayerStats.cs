@@ -104,6 +104,8 @@ public class PlayerStats : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Static;
 
+        SoundEffectManager.Play("PlayerDeath");
+
         StartCoroutine(DeathDelay());
     }
 
