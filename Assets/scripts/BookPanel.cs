@@ -22,6 +22,7 @@ public class BookPanel : MonoBehaviour
     public GameObject shieldBarUI;
     public GameObject livesPanelUI;
     public Volume blurVolume; // Riferimento al volume del blur
+    public GameObject AttackButton; // Riferimento al bottone di attacco
 
     void Start()
     {
@@ -57,6 +58,7 @@ public class BookPanel : MonoBehaviour
         healthBarUI.SetActive(false);
         shieldBarUI.SetActive(false);
         livesPanelUI.SetActive(false);
+        AttackButton.SetActive(false);
 
         if (playerMovementScript != null)
             playerMovementScript.enabled = false;
@@ -125,6 +127,7 @@ public class BookPanel : MonoBehaviour
         healthBarUI.SetActive(true);
         shieldBarUI.SetActive(true);
         livesPanelUI.SetActive(true);
+        AttackButton.SetActive(true);
 
         if (playerMovementScript != null)
             playerMovementScript.enabled = true;

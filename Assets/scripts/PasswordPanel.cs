@@ -18,6 +18,7 @@ public class PasswordPanel : MonoBehaviour
     public GameObject healthBarUI;
     public GameObject shieldBarUI;
     public GameObject livesPanelUI;
+    public GameObject AttackButton;
     public Volume blurVolume; // Riferimento al volume del blur
 
 
@@ -47,6 +48,7 @@ public class PasswordPanel : MonoBehaviour
         healthBarUI.SetActive(false);
         shieldBarUI.SetActive(false);
         livesPanelUI.SetActive(false); // Nasconde il pannello delle vite quando il menu è aperto
+        AttackButton.SetActive(false);
 
         var placeholder = passwordInput.placeholder as TextMeshProUGUI;
         if (placeholder != null)
@@ -116,6 +118,7 @@ public class PasswordPanel : MonoBehaviour
         healthBarUI.SetActive(true);
         shieldBarUI.SetActive(true);
         livesPanelUI.SetActive(true); // Mostra il pannello delle vite quando il menu è chiuso
+        AttackButton.SetActive(true);
 
         if (playerMovementScript != null)
         {
