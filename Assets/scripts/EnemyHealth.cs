@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (isDead) return;
         isDead = true;
-        SoundEffectManager.Play("SkeletonDeath");
+        SoundEffectManager.PlayAtPosition("SkeletonDeath", transform.position, 1f, 8f);
         GetComponent<Collider2D>().enabled = false;
 
         // Notifico il salvataggio della morte del nemico

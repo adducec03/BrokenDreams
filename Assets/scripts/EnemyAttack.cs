@@ -80,7 +80,7 @@ public class EnemyAttack : MonoBehaviour
             stats.TakeDamage(attackDamage);
         }
 
-        SoundEffectManager.Play("SkeletonAttack");
+        SoundEffectManager.PlayAtPosition("SkeletonAttack", transform.position, 1f, 8f);
 
         Invoke(nameof(ResetAttack), 0.6f); // Adatta alla durata dell’animazione
     }

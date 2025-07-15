@@ -4,11 +4,11 @@ public class EnemySoundEvents : MonoBehaviour
 {
     public void PlayFootstepSound()
     {
-        SoundEffectManager.Play("SkeletonWalk");
+        SoundEffectManager.PlayAtPosition("SkeletonWalk",transform.position, 1f, 8f);
     }
 
     public void PlaySlimeFootstepSound()
     {
-        SoundEffectManager.Play("SlimeWalk");
+        SoundEffectManager.PlayAtPosition("SlimeWalk", transform.position, 1f, 8f);
     }
 }

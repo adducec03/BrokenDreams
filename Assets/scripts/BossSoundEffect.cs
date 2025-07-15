@@ -4,7 +4,7 @@ public class BossSoundEffect : MonoBehaviour
 {
     public void PlayFootstepSound()
     {
-        SoundEffectManager.Play("GolemWalk");
+        SoundEffectManager.PlayAtPosition("GolemWalk",transform.position, 1f, 8f);
     }
 
     public void PlayAttackSound()

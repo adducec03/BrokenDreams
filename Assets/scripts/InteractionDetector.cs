@@ -12,9 +12,23 @@ public class InteractionDetector : MonoBehaviour
     {
         if (context.performed && passwordPanel != null && !passwordPanel.IsPanelActive())
         {
-            interactableInRange?.Interact();
+            // Ottieni posizione del tocco/click sullo schermo
+            Vector2 screenPos = Touchscreen.current != null 
+                ? Touchscreen.current.primaryTouch.position.ReadValue()
+                : Mouse.current.position.ReadValue();
+
+            // Converti in coordinate mondo
+            Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+
+            // Fai raycast o overlap check
+            Collider2D hit = Physics2D.OverlapPoint(worldPos);
+            if (hit != null && hit.TryGetComponent(out IInteractable interactable) && interactable.CanInteract())
+            {
+                interactable.Interact();
+            }
         }
     }
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)
