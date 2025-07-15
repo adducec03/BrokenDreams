@@ -35,7 +35,7 @@ public class Chest : MonoBehaviour, IInteractable
 
     public bool TryUnlock(string enteredPassword)
     {
-        if (enteredPassword == requiredPassword)
+        if (enteredPassword.Trim().ToLower() == requiredPassword.Trim().ToLower())
         {
             OpenChest();
             return true;
