@@ -3,23 +3,24 @@ using UnityEngine;
 public class Gate : MonoBehaviour, IInteractable
 {
     [SerializeField] private BossAI bossAI;
-    private MessageDisplay messageDisplay; // L'oggetto per far stampare dei log direttamente sullo schermo
-    public string requiredItemID = "1"; // L'ID dell'oggetto chiave
-    public Animator animator;             // Animatore per l'apertura, se presente
-    public string openTrigger = "Open";   // Nome del trigger nell'Animator
-
+    private MessageDisplay messageDisplay;
+    public string requiredItemID = "1";
+    public Animator animator;
+    public string openTrigger = "Open";
+    public string closeTrigger = "Close";
     private bool isOpen = false;
-
-
+    private bool isLockedForever = false; // ✅ nuova variabile
+    private Collider2D col;
 
     void Start()
     {
         messageDisplay = FindFirstObjectByType<MessageDisplay>();
+        col = GetComponent<Collider2D>();
     }
 
     public void Interact()
     {
-        if (isOpen) return;
+        if (isOpen || isLockedForever) return; // ✅ blocca se è chiuso definitivamente
 
         InventoryController inventory = FindFirstObjectByType<InventoryController>();
 
@@ -35,8 +36,7 @@ public class Gate : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        // Permetti l'interazione solo se il cancello è ancora chiuso
-        return !isOpen;
+        return !isOpen && !isLockedForever;
     }
 
     private void OpenGate()
@@ -46,16 +46,31 @@ public class Gate : MonoBehaviour, IInteractable
         if (animator != null)
             animator.SetTrigger(openTrigger);
 
-        Collider2D col = GetComponent<Collider2D>();
         if (col != null)
             col.enabled = false;
 
         messageDisplay.ShowMessage("Cancello aperto!");
 
+        // Avvia la chiusura automatica
+        Invoke(nameof(CloseGate), 3f);
+        
         if (bossAI != null)
             bossAI.StartSummoning();
     }
 
+    private void CloseGate()
+    {
+        if (animator != null)
+            animator.SetTrigger(closeTrigger);
+
+        if (col != null)
+            col.enabled = true;
+
+        isOpen = false;
+
+        // ❌ Rende il cancello definitivamente non interagibile
+        isLockedForever = true;
 
 
+    }
 }
