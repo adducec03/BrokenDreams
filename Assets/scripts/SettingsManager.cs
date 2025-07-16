@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
+
 
 public class SettingsManager : MonoBehaviour
 {
@@ -10,6 +12,10 @@ public class SettingsManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource musicSource;
+
+    [SerializeField]
+    private Light2D globalLight;
+
 
     void Start()
     {
@@ -55,8 +61,13 @@ public class SettingsManager : MonoBehaviour
 
     public void UpdateBrightness(float value)
     {
-        RenderSettings.ambientLight = Color.white * value;
+        // Mappa il valore dello slider (0 → 1) all’intervallo 4 → 15
+        float mappedRadius = Mathf.Lerp(8f, 20f, value);
+        globalLight.pointLightOuterRadius = mappedRadius;
+
         PlayerPrefs.SetFloat("Brightness", value);
         PlayerPrefs.Save();
     }
+
+
 }
