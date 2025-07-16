@@ -23,8 +23,8 @@ public class BossAI : MonoBehaviour
     public float summonInterval = 10f;
     public HealthBar healthBarBoss;
     public GameObject healthBarUI;
-    
-    
+
+
 
     void Start()
     {
@@ -187,5 +187,12 @@ public class BossAI : MonoBehaviour
         animator.SetTrigger("Die");
         animator.SetTrigger("Die");
         Destroy(gameObject, 2f);
+        StartCoroutine(RemoveBossHealthBarWithDelay());
+    }
+    
+    private IEnumerator RemoveBossHealthBarWithDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        healthBarUI.SetActive(false);
     }
 }
