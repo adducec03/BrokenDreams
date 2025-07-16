@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour, IInteractable
 {
+    [SerializeField] private BossAI bossAI;
     private MessageDisplay messageDisplay; // L'oggetto per far stampare dei log direttamente sullo schermo
     public string requiredItemID = "1"; // L'ID dell'oggetto chiave
     public Animator animator;             // Animatore per l'apertura, se presente
     public string openTrigger = "Open";   // Nome del trigger nell'Animator
 
     private bool isOpen = false;
+
 
 
     void Start()
@@ -42,16 +44,18 @@ public class Gate : MonoBehaviour, IInteractable
         isOpen = true;
 
         if (animator != null)
-        {
             animator.SetTrigger(openTrigger);
-        }
 
-        // Disattiva il collider così il player può passare
         Collider2D col = GetComponent<Collider2D>();
         if (col != null)
             col.enabled = false;
 
         messageDisplay.ShowMessage("Cancello aperto!");
+
+        if (bossAI != null)
+            bossAI.StartSummoning();
     }
+
+
 
 }
