@@ -44,7 +44,12 @@ public class BossAI : MonoBehaviour
             Debug.LogError("Boss non trovato sulla NavMesh!");
         }
 
-        StartCoroutine(SpawnMinionsRoutine());
+    }
+
+    public void StartSummoning()
+    {
+        if (!isDead)
+            StartCoroutine(SpawnMinionsRoutine());
     }
 
 
