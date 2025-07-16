@@ -23,6 +23,7 @@ public class BossAI : MonoBehaviour
     public float summonInterval = 10f;
     public HealthBar healthBarBoss;
     public GameObject healthBarUI;
+    public GameObject crackEffectPrefab;
 
 
 
@@ -130,6 +131,7 @@ public class BossAI : MonoBehaviour
         agent.ResetPath();
         animator.SetFloat("Speed", 0f);
         animator.SetTrigger("Attack");
+        Invoke(nameof(SpawnCrackEffect), 0.5f);
         lastAttackTime = Time.time;
 
         // Infliggi danno dopo breve delay (match animazione)
@@ -189,10 +191,25 @@ public class BossAI : MonoBehaviour
         Destroy(gameObject, 2f);
         StartCoroutine(RemoveBossHealthBarWithDelay());
     }
-    
+
     private IEnumerator RemoveBossHealthBarWithDelay()
     {
         yield return new WaitForSeconds(1f);
         healthBarUI.SetActive(false);
     }
+
+    void SpawnCrackEffect()
+{
+    if (crackEffectPrefab != null)
+    {
+        // Calcola direzione frontale basata sulla scala X
+        float direction = Mathf.Sign(transform.localScale.x); // +1 = destra, -1 = sinistra
+
+        // Calcola posizione più avanti nella direzione in cui guarda
+        Vector3 spawnOffset = new Vector3(direction * 1f, -0.5f, 0); // avanti e leggermente in basso
+        Vector3 spawnPosition = transform.position + spawnOffset;
+
+        Instantiate(crackEffectPrefab, spawnPosition, Quaternion.identity);
+    }
+}
 }
