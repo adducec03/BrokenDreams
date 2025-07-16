@@ -24,6 +24,7 @@ public class BossAI : MonoBehaviour
     public HealthBar healthBarBoss;
     public GameObject healthBarUI;
     public GameObject crackEffectPrefab;
+    public GameObject spawnEffectPrefab;
 
 
 
@@ -107,13 +108,13 @@ public class BossAI : MonoBehaviour
 
     void SpawnMinion()
     {
-        int i = Random.Range(0, spawnPoints.Length);
         if (spawnPoints == null || spawnPoints.Length == 0)
         {
             Debug.LogError("spawnPoints è nullo o vuoto!");
             return;
         }
 
+        // Controlla che tutti i punti siano validi
         for (int j = 0; j < spawnPoints.Length; j++)
         {
             if (spawnPoints[j] == null)
@@ -122,7 +123,26 @@ public class BossAI : MonoBehaviour
                 return;
             }
         }
-        Instantiate(minionPrefab, spawnPoints[i].position, Quaternion.identity);
+
+        int i = Random.Range(0, spawnPoints.Length);
+        Vector3 spawnPosition = spawnPoints[i].position;
+
+        StartCoroutine(SpawnMinionWithEffect(spawnPosition));
+    }
+
+    IEnumerator SpawnMinionWithEffect(Vector3 position)
+    {
+        // Istanzia l'effetto visivo di spawn (particelle, flash, ecc.)
+        if (spawnEffectPrefab != null)
+        {
+            Instantiate(spawnEffectPrefab, position, Quaternion.identity);
+            SoundEffectManager.Play("SpawnEffect");
+        }
+
+        // Attendi leggermente (es. 0.3 secondi) prima di generare lo slime
+        yield return new WaitForSeconds(0.3f);
+
+        Instantiate(minionPrefab, position, Quaternion.identity);
     }
 
     void Attack()
@@ -199,17 +219,17 @@ public class BossAI : MonoBehaviour
     }
 
     void SpawnCrackEffect()
-{
-    if (crackEffectPrefab != null)
     {
-        // Calcola direzione frontale basata sulla scala X
-        float direction = Mathf.Sign(transform.localScale.x); // +1 = destra, -1 = sinistra
+        if (crackEffectPrefab != null)
+        {
+            // Calcola direzione frontale basata sulla scala X
+            float direction = Mathf.Sign(transform.localScale.x); // +1 = destra, -1 = sinistra
 
-        // Calcola posizione più avanti nella direzione in cui guarda
-        Vector3 spawnOffset = new Vector3(direction * 1f, -0.5f, 0); // avanti e leggermente in basso
-        Vector3 spawnPosition = transform.position + spawnOffset;
+            // Calcola posizione più avanti nella direzione in cui guarda
+            Vector3 spawnOffset = new Vector3(direction * 1f, -0.5f, 0); // avanti e leggermente in basso
+            Vector3 spawnPosition = transform.position + spawnOffset;
 
-        Instantiate(crackEffectPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(crackEffectPrefab, spawnPosition, Quaternion.identity);
+        }
     }
-}
 }
