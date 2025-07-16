@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Gate : MonoBehaviour, IInteractable
 {
@@ -57,6 +58,15 @@ public class Gate : MonoBehaviour, IInteractable
 
         if (bossAI != null)
             bossAI.StartSummoning();
+
+        if (bossAI != null && bossAI.healthBarUI != null)
+            StartCoroutine(ShowBossHealthBarWithDelay(bossAI));
+    }
+
+    private IEnumerator ShowBossHealthBarWithDelay(BossAI boss)
+    {
+        yield return new WaitForSeconds(1f);
+        boss.healthBarUI.SetActive(true);
     }
 
     private void CloseGate()
@@ -68,7 +78,7 @@ public class Gate : MonoBehaviour, IInteractable
             col.enabled = true;
 
         SoundEffectManager.Play("CloseGate");
-        
+
 
         isOpen = false;
 

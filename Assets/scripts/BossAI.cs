@@ -21,6 +21,10 @@ public class BossAI : MonoBehaviour
     public GameObject minionPrefab;
     public Transform[] spawnPoints;
     public float summonInterval = 10f;
+    public HealthBar healthBarBoss;
+    public GameObject healthBarUI;
+    
+    
 
     void Start()
     {
@@ -161,7 +165,8 @@ public class BossAI : MonoBehaviour
 
         currentHealth -= amount;
         animator.SetTrigger("Hurt");
-        //animator.ResetTrigger("Hurt");
+        healthBarBoss.SetHealth(currentHealth, maxHealth);
+
         Debug.Log("Boss ha subito danni: " + amount);
 
         if (currentHealth <= 0)
