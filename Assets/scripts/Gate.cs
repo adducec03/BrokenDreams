@@ -10,8 +10,10 @@ public class Gate : MonoBehaviour, IInteractable
     public string openTrigger = "Open";
     public string closeTrigger = "Close";
     private bool isOpen = false;
-    private bool isLockedForever = false; // ✅ nuova variabile
+    private bool isLockedForever = false;
     private Collider2D col;
+    public Transform checkpointTargetPosition; // Dove vuoi spostare il checkpoint
+    public GameObject checkpointObject;
 
     void Start()
     {
@@ -21,7 +23,7 @@ public class Gate : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (isOpen || isLockedForever) return; // ✅ blocca se è chiuso definitivamente
+        if (isOpen || isLockedForever) return;
 
         InventoryController inventory = FindFirstObjectByType<InventoryController>();
 
@@ -52,6 +54,12 @@ public class Gate : MonoBehaviour, IInteractable
             col.enabled = false;
 
         messageDisplay.ShowMessage("Cancello aperto!");
+
+        if (checkpointObject != null && checkpointTargetPosition != null)
+        {
+            checkpointObject.transform.position = checkpointTargetPosition.position;
+            Debug.Log("Checkpoint aggiornato dopo l'apertura del cancello.");
+        }
 
         // Avvia la chiusura automatica
         Invoke(nameof(CloseGate), 3f);
