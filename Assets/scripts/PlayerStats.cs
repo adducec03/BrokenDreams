@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth;
 
-    public float maxShield = 50f;
+    public float maxShield = 100f;
     public float currentShield;
 
     public HealthBar healthBarGame;
@@ -140,10 +140,12 @@ public class PlayerStats : MonoBehaviour
         // Aggiorna tutte le barre
         shieldBarGame.SetShield(currentShield, maxShield);
         shieldBarMenu.SetShield(currentShield, maxShield);
+        maxHealth = 300f;
         healthBarGame.SetHealth(currentHealth, maxHealth);
         healthBarMenu.SetHealth(currentHealth, maxHealth);
 
         Debug.Log("Scudo attivato. Valore: " + currentShield);
+        Debug.Log("Salute aumentata. Valore: " + currentHealth);
     }
 
     public void Heal(float percent)
