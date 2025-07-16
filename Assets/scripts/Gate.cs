@@ -42,6 +42,7 @@ public class Gate : MonoBehaviour, IInteractable
     private void OpenGate()
     {
         isOpen = true;
+        SoundEffectManager.Play("OpenGate");
 
         if (animator != null)
             animator.SetTrigger(openTrigger);
@@ -53,7 +54,7 @@ public class Gate : MonoBehaviour, IInteractable
 
         // Avvia la chiusura automatica
         Invoke(nameof(CloseGate), 3f);
-        
+
         if (bossAI != null)
             bossAI.StartSummoning();
     }
@@ -65,6 +66,9 @@ public class Gate : MonoBehaviour, IInteractable
 
         if (col != null)
             col.enabled = true;
+
+        SoundEffectManager.Play("CloseGate");
+        
 
         isOpen = false;
 
