@@ -14,5 +14,6 @@ public class SaveData
     public int playerLives;
     public List<string> activatedPressurePads = new List<string>();
     public List<string> disabledWalls = new List<string>();
+    public List<string> usedHealingPickups = new List<string>();
 
 }
