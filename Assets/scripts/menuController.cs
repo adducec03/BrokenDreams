@@ -72,6 +72,7 @@ public class menuController : MonoBehaviour
 
     public void ExitGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
