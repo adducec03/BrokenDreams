@@ -27,7 +27,7 @@ public class menuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             menuCanvas.SetActive(!menuCanvas.activeSelf);
         }
@@ -51,7 +51,7 @@ public class menuController : MonoBehaviour
         shieldBarUI.SetActive(false);
         livesPanelUI.SetActive(false); // Nasconde il pannello delle vite quando il menu è aperto
 
-        
+
 
     }
 
@@ -70,7 +70,9 @@ public class menuController : MonoBehaviour
         livesPanelUI.SetActive(true);
     }
 
-    public void ExitGame(){
+    public void ExitGame()
+    {
         SceneManager.LoadScene("MainMenu");
     }
+
 }

@@ -210,6 +210,7 @@ public class BossAI : MonoBehaviour
         animator.SetTrigger("Die");
         Destroy(gameObject, 2f);
         StartCoroutine(RemoveBossHealthBarWithDelay());
+        StartCoroutine(LoadMainMenuWithDelay());
     }
 
     private IEnumerator RemoveBossHealthBarWithDelay()
@@ -230,6 +231,21 @@ public class BossAI : MonoBehaviour
             Vector3 spawnPosition = transform.position + spawnOffset;
 
             Instantiate(crackEffectPrefab, spawnPosition, Quaternion.identity);
+        }
+    }
+
+
+    IEnumerator LoadMainMenuWithDelay()
+    {
+        yield return new WaitForSeconds(2.5f); // tempo per l'animazione
+
+        if (SceneTransitionManagerLevel1.Instance != null)
+        {
+            SceneTransitionManagerLevel1.Instance.StartSceneTransition("MainMenu");
+        }
+        else
+        {
+            Debug.LogError("SceneTransitionManager non trovato!");
         }
     }
 }
