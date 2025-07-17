@@ -12,6 +12,8 @@ public class SaveController : MonoBehaviour
     private List<EnemySaveState> enemies = new List<EnemySaveState>();
     private HashSet<string> activatedPressurePads = new HashSet<string>();
     private HashSet<string> disabledWallIDs = new HashSet<string>();
+    private HashSet<string> usedHealingPickups = new HashSet<string>();
+    public bool isDataLoaded { get; private set; } = false;
 
 
     void Start()
@@ -52,7 +54,8 @@ public class SaveController : MonoBehaviour
             playerShield = playerStats.currentShield,
             playerLives = playerStats.lives,
             activatedPressurePads = activatedPressurePads.ToList(),
-            disabledWalls = disabledWallIDs.ToList()
+            disabledWalls = disabledWallIDs.ToList(),
+            usedHealingPickups = usedHealingPickups.ToList()
         };
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
     }
@@ -97,6 +100,7 @@ public class SaveController : MonoBehaviour
             playerStats.currentHealth = saveData.playerHealth;
             playerStats.currentShield = saveData.playerShield;
             playerStats.lives = saveData.playerLives;
+            usedHealingPickups = new HashSet<string>(saveData.usedHealingPickups);
 
             // Aggiorna UI
             playerStats.healthBarGame.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
@@ -110,12 +114,14 @@ public class SaveController : MonoBehaviour
             LoadChestStates(saveData.chestSaveData);
             LoadSceneItemsState(saveData.sceneItemsSaveData);
             LoadEnemiesState(saveData.enemySaveData);
+            isDataLoaded = true;
         }
         else
         {
             inventoryController.SetInventoryItems(new List<InventorySaveData>());
             SaveGame();
         }
+        
     }
 
     private void LoadChestStates(List<ChestSaveData> chestStates)
@@ -190,6 +196,25 @@ public class SaveController : MonoBehaviour
     public bool IsWallDisabled(string id)
     {
         return disabledWallIDs.Contains(id);
+    }
+
+    public bool IsHealingUsed(string id)
+    {
+        return usedHealingPickups.Contains(id);
+    }
+
+    public void SetHealingUsed(string id, bool state)
+    {
+
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            Debug.Log("fallito");
+            return;
+        }
+        Debug.Log($"Setting healing used for {id} to {state}");
+        usedHealingPickups.Add(id);
+        Debug.Log($"📦 Healing usati dopo l'aggiunta di {id}: {string.Join(", ", usedHealingPickups)}");
+
     }
 
 }
