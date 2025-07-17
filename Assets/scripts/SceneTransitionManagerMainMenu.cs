@@ -3,19 +3,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class SceneTransitionManager : MonoBehaviour
+public class SceneTransitionManagerMainMenu : MonoBehaviour
 {
     public CanvasGroup transitionPanel;
     public float fadeDuration = 1f;
 
-    public static SceneTransitionManager Instance;
+    public static SceneTransitionManagerMainMenu Instance;
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // Opzionale
+            //DontDestroyOnLoad(gameObject);  // Opzionale
         }
         else
         {
@@ -31,6 +31,7 @@ public class SceneTransitionManager : MonoBehaviour
     IEnumerator FadeAndLoad(string sceneName)
     {
         transitionPanel.gameObject.SetActive(true);
+        
 
         // Fade-out (nero)
         yield return StartCoroutine(Fade(0f, 1f));

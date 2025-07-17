@@ -46,7 +46,7 @@ public class MainMenuController : MonoBehaviour
 
     public void SelectLevelOne()
     {
-        SceneTransitionManager.Instance.StartSceneTransition("Level1");
+        SceneTransitionManagerMainMenu.Instance.StartSceneTransition("Level1");
     }
 
     public void SelectLevelTwo()
