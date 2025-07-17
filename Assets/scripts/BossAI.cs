@@ -26,6 +26,7 @@ public class BossAI : MonoBehaviour
     public GameObject crackEffectPrefab;
     public GameObject spawnEffectPrefab;
     public SceneTransitionManagerLevel1 SceneTransitionManagerLevel1;
+    private AudioSource ambientLoopSource;
 
 
 
@@ -37,6 +38,7 @@ public class BossAI : MonoBehaviour
 
         animator = GetComponentInChildren<Animator>();
         currentHealth = maxHealth;
+        ambientLoopSource = SoundEffectManager.PlayLoopAtPosition("GolemBreath", transform.position, 12f, 50f);
 
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -209,6 +211,11 @@ public class BossAI : MonoBehaviour
         animator.ResetTrigger("Hurt");
         animator.SetTrigger("Die");
         animator.SetTrigger("Die");
+        if (ambientLoopSource != null)
+        {
+            ambientLoopSource.Stop();
+            Destroy(ambientLoopSource.gameObject);
+        }
         Destroy(gameObject, 10f);
         StartCoroutine(RemoveBossHealthBarWithDelay());
         StartCoroutine(HandleAfterBossDeath());
@@ -217,7 +224,7 @@ public class BossAI : MonoBehaviour
     IEnumerator HandleAfterBossDeath()
     {
 
-        
+
 
         // Blocca il player
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -240,7 +247,7 @@ public class BossAI : MonoBehaviour
             {
                 anim.SetBool("isWalking", false); // imposta animazione su idle
             }
-            
+
         }
 
         yield return new WaitForSeconds(2f); // aspetta un attimo per atmosfera
