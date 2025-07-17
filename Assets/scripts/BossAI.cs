@@ -25,6 +25,7 @@ public class BossAI : MonoBehaviour
     public GameObject healthBarUI;
     public GameObject crackEffectPrefab;
     public GameObject spawnEffectPrefab;
+    public SceneTransitionManagerLevel1 SceneTransitionManagerLevel1;
 
 
 
@@ -208,7 +209,7 @@ public class BossAI : MonoBehaviour
         animator.ResetTrigger("Hurt");
         animator.SetTrigger("Die");
         animator.SetTrigger("Die");
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 10f);
         StartCoroutine(RemoveBossHealthBarWithDelay());
         StartCoroutine(LoadMainMenuWithDelay());
     }
@@ -237,11 +238,13 @@ public class BossAI : MonoBehaviour
 
     IEnumerator LoadMainMenuWithDelay()
     {
+        Debug.LogError("Porca madonna");
         yield return new WaitForSeconds(2.5f); // tempo per l'animazione
 
-        if (SceneTransitionManagerLevel1.Instance != null)
+        Debug.LogError("Porco dio");
+        if (SceneTransitionManagerLevel1 != null)
         {
-            SceneTransitionManagerLevel1.Instance.StartSceneTransition("MainMenu");
+            SceneTransitionManagerLevel1.StartSceneTransition("MainMenu");
         }
         else
         {

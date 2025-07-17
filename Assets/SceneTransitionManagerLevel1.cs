@@ -8,9 +8,8 @@ public class SceneTransitionManagerLevel1 : MonoBehaviour
     public CanvasGroup transitionPanel;
     public float fadeDuration = 1f;
 
-    public static SceneTransitionManagerLevel1 Instance;
 
-    void Awake()
+    /*void Awake()
     {
         if (Instance == null)
         {
@@ -21,7 +20,7 @@ public class SceneTransitionManagerLevel1 : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
     public void StartSceneTransition(string sceneName)
     {
