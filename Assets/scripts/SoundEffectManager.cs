@@ -9,6 +9,7 @@ public class SoundEffectManager : MonoBehaviour
 
     private static AudioSource audioSource;
     private static SoundEffectLibrary soundEffectLibrary;
+    private static List<AudioSource> activeLoopSources = new List<AudioSource>();
 
     private void Awake()
     {
@@ -41,8 +42,14 @@ public class SoundEffectManager : MonoBehaviour
     {
         if (audioSource != null)
             audioSource.volume = volume;
+
+        foreach (AudioSource loopSource in activeLoopSources)
+        {
+            if (loopSource != null)
+                loopSource.volume = volume;
+        }
     }
-    
+
     public static void PlayAtPosition(string soundName, Vector3 position, float minDistance = 1f, float maxDistance = 10f)
     {
         AudioClip audioClip = soundEffectLibrary.GetRandomClip(soundName);
@@ -61,6 +68,38 @@ public class SoundEffectManager : MonoBehaviour
 
             GameObject.Destroy(tempGO, audioClip.length);
         }
+    }
+
+    public static AudioSource PlayLoopAtPosition(string soundName, Vector3 position, float minDistance, float maxDistance)
+    {
+        AudioClip audioClip = soundEffectLibrary.GetRandomClip(soundName);
+        if (audioClip == null) return null;
+
+        GameObject loopGO = new GameObject("LoopAudio_" + soundName);
+        loopGO.transform.position = position;
+
+        AudioSource loopSource = loopGO.AddComponent<AudioSource>();
+        loopSource.clip = audioClip;
+        loopSource.spatialBlend = 1f;
+        loopSource.minDistance = minDistance;
+        loopSource.maxDistance = maxDistance;
+        loopSource.loop = true;
+        loopSource.volume = audioSource.volume;
+
+
+        loopSource.rolloffMode = AudioRolloffMode.Custom;
+        AnimationCurve customCurve = new AnimationCurve(
+            new Keyframe(0f, 1f, 0f, 0f),        // Piatta, senza pendenza iniziale
+            new Keyframe(18f, 1f, 0f, 0f),   // Ancora piatta in ingresso, ma in uscita inizia a calare
+            new Keyframe(33f, 0.3f, -0.015f, -0.015f), // Punto intermedio con discesa dolce
+            new Keyframe(70f, 0f, 0f, 0f)    // Fine curva, tangente quasi piatta
+        );
+        loopSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, customCurve);
+
+        loopSource.Play();
+        activeLoopSources.Add(loopSource);
+
+        return loopSource;
     }
 
 }
