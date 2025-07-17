@@ -211,7 +211,57 @@ public class BossAI : MonoBehaviour
         animator.SetTrigger("Die");
         Destroy(gameObject, 10f);
         StartCoroutine(RemoveBossHealthBarWithDelay());
+        StartCoroutine(HandleAfterBossDeath());
+    }
+
+    IEnumerator HandleAfterBossDeath()
+    {
+
+        
+
+        // Blocca il player
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            PlayerMovement controller = player.GetComponent<PlayerMovement>();
+            if (controller != null)
+            {
+                controller.enabled = false; // Disattiva input
+            }
+
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+
+            Animator anim = player.GetComponentInChildren<Animator>();
+            if (anim != null)
+            {
+                anim.SetBool("isWalking", false); // imposta animazione su idle
+            }
+            
+        }
+
+        yield return new WaitForSeconds(2f); // aspetta un attimo per atmosfera
+
+        KillAllSlimes();
+
         StartCoroutine(LoadMainMenuWithDelay());
+    }
+
+    void KillAllSlimes()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            SlimesAI slime = enemy.GetComponent<SlimesAI>();
+            if (slime != null)
+            {
+                slime.Die();
+            }
+        }
     }
 
     private IEnumerator RemoveBossHealthBarWithDelay()
@@ -238,10 +288,8 @@ public class BossAI : MonoBehaviour
 
     IEnumerator LoadMainMenuWithDelay()
     {
-        Debug.LogError("Porca madonna");
         yield return new WaitForSeconds(2.5f); // tempo per l'animazione
 
-        Debug.LogError("Porco dio");
         if (SceneTransitionManagerLevel1 != null)
         {
             SceneTransitionManagerLevel1.StartSceneTransition("MainMenu");

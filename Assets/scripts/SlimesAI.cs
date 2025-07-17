@@ -137,7 +137,7 @@ public class SlimesAI : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("Die() chiamato");
         SoundEffectManager.Play("SlimeDeath");
