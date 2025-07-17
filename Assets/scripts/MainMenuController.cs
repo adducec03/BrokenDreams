@@ -1,33 +1,34 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class MainMenuController : MonoBehaviour
 {
     public GameObject mainPanel;
     public GameObject settingsPanel;
     public GameObject playPanel;
-    
+    public GameObject loadingPanel;
 
     public void Start()
     {
-        playPanel.SetActive(false);  //Assicurati che il pannello del tasto Play sia nascosto all'inizio
-        settingsPanel.SetActive(false); // Assicurati che il pannello delle impostazioni sia nascosto all'inizio
-        mainPanel.SetActive(true); // Assicurati che il pannello principale sia visibile all'inizio
+        playPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        mainPanel.SetActive(true);
+        if (loadingPanel != null) loadingPanel.SetActive(false); // Nascondi all'avvio
     }
 
     public void PlayGame()
     {
-        settingsPanel.SetActive(false); // Nasconde il pannello delle impostazioni quando il playPanel è aperto
-        mainPanel.SetActive(false); // Nasconde il pannello principale quando il playPanel è aperto
+        settingsPanel.SetActive(false);
+        mainPanel.SetActive(false);
         playPanel.SetActive(true);
-        
     }
 
     public void OpenSettings()
     {
         settingsPanel.SetActive(true);
-        mainPanel.SetActive(false); // Nasconde il pannello principale quando le impostazioni sono aperte
-        playPanel.SetActive(false); // Nasconde il pannello del tasto play quando le impostazioni sono aperte
+        mainPanel.SetActive(false);
+        playPanel.SetActive(false);
     }
 
     public void QuitGame()
@@ -40,26 +41,40 @@ public class MainMenuController : MonoBehaviour
     {
         playPanel.SetActive(false);
         settingsPanel.SetActive(false);
-        mainPanel.SetActive(true); // Mostra di nuovo il pannello principale quando le impostazioni sono chiuse
+        mainPanel.SetActive(true);
     }
 
     public void SelectLevelOne()
     {
-        SceneManager.LoadScene("Level1");
+        SceneTransitionManager.Instance.StartSceneTransition("Level1");
     }
 
     public void SelectLevelTwo()
     {
-        SceneManager.LoadScene("LivelliInCostruzione");
+        StartCoroutine(LoadLevelAsync("LivelliInCostruzione"));
     }
 
     public void SelectLevelThree()
     {
-        SceneManager.LoadScene("LivelliInCostruzione");
+        StartCoroutine(LoadLevelAsync("LivelliInCostruzione"));
     }
 
     public void SelectLevelFour()
     {
-        SceneManager.LoadScene("LivelliInCostruzione");
+        StartCoroutine(LoadLevelAsync("LivelliInCostruzione"));
+    }
+
+    // 👇 Metodo di caricamento con schermata
+    private IEnumerator LoadLevelAsync(string sceneName)
+    {
+        if (loadingPanel != null)
+            loadingPanel.SetActive(true);
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }
