@@ -2870,7 +2870,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionPanel: {fileID: 1479129360}
-  transitionPanelName: TransitionPanel
   fadeDuration: 1
 --- !u!1 &976512581
 GameObject:
