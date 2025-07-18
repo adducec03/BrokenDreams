@@ -9,8 +9,9 @@ public class UIManager : MonoBehaviour
     public GameObject textPanel;
     public TextMeshProUGUI textDisplay;
 
-    [Header("Controlli menu")]
+    [Header("Controlli UI")]
     public menuController pauseMenuController;
+
 
     private bool wasMenuActive;
 
@@ -24,10 +25,15 @@ public class UIManager : MonoBehaviour
 
     public void ShowText(string content)
     {
-        if (pauseMenuController != null)
-        {
-            pauseMenuController.menuCanvas.SetActive(false);
-        }
+        // Nasconde tutti gli elementi UI (Anche se sono gia disattivati, fa un controllo ulteriore. Utile per permettere alla pergamena di essere aperta anche dalla scena e non solo dall'inventario)
+        pauseMenuController.menuCanvas.SetActive(false);
+        pauseMenuController.attackButtonUI.SetActive(false);
+        pauseMenuController.menuButton.gameObject.SetActive(false);
+        pauseMenuController.healthBarUI.SetActive(false);
+        pauseMenuController.shieldBarUI.SetActive(false);
+        pauseMenuController.livesPanelUI.SetActive(false);
+        pauseMenuController.joystick.SetActive(false);
+        Time.timeScale = 0f;
 
         textPanel.SetActive(true);
         textDisplay.text = content;
