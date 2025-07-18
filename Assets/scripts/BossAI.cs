@@ -28,6 +28,7 @@ public class BossAI : MonoBehaviour
     public SceneTransitionManagerLevel1 SceneTransitionManagerLevel1;
     private AudioSource ambientLoopSource;
     private bool hasIncreasedSpawnRate = false;
+    public GameObject auraObject;
 
 
 
@@ -40,6 +41,10 @@ public class BossAI : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         currentHealth = maxHealth;
         ambientLoopSource = SoundEffectManager.PlayLoopAtPosition("GolemBreath", transform.position, 12f, 50f);
+        if(auraObject != null)
+        {
+            auraObject.SetActive(false);
+        }
 
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -200,6 +205,11 @@ public class BossAI : MonoBehaviour
         {
             hasIncreasedSpawnRate = true;
             summonInterval /= 2f;  // dimezza l'intervallo → raddoppia la frequenza
+            if(auraObject != null)
+        {
+            auraObject.SetActive(true);
+        }
+            
             Debug.Log("⚠️ Boss sotto metà vita! Spawn più frequente: " + summonInterval + "s");
         }
 
@@ -220,6 +230,10 @@ public class BossAI : MonoBehaviour
         animator.ResetTrigger("Hurt");
         animator.SetTrigger("Die");
         animator.SetTrigger("Die");
+        if(auraObject != null)
+        {
+            auraObject.SetActive(false);
+        }
         if (ambientLoopSource != null)
         {
             ambientLoopSource.Stop();
