@@ -70,6 +70,7 @@ public class PressurePadTrigger : MonoBehaviour
 
             if (padAnimator != null)
                 padAnimator.SetBool("isPressed", true);
+                SoundEffectManager.Play("PressurePlateSound");
 
             if (!activated)
             {

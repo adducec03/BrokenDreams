@@ -42,6 +42,7 @@ public class HealingPickup : MonoBehaviour
             }
 
             player.Heal(healingPercentage);
+            SoundEffectManager.Play("HealingPointSound");
 
             // Salva come usato
             saveController.SetHealingUsed(healingID, true);

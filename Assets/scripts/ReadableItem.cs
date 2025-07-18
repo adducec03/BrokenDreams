@@ -9,6 +9,7 @@ public class ReadableItem : Item, IInteractable, IPointerClickHandler
     public void Interact()
     {
         UIManager.Instance.ShowText(testoPergamena);
+        SoundEffectManager.Play("PageSound");
     }
 
     public bool CanInteract()
@@ -19,5 +20,6 @@ public class ReadableItem : Item, IInteractable, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         UIManager.Instance.ShowText(testoPergamena);
+        SoundEffectManager.Play("PageSound");
     }
 }
