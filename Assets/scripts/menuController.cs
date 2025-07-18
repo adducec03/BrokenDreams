@@ -14,6 +14,7 @@ public class menuController : MonoBehaviour
     public GameObject shieldBarUI;
     public GameObject livesPanelUI;
     public GameObject attackButtonUI; // Riferimento al bottone di attacco
+    public static bool isMenuOpen = false; // Variabile che indica se il menu è aperto oppure no (serve per disabilitare le interazioni con gli oggetti)
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,6 +39,7 @@ public class menuController : MonoBehaviour
         // Inverte la visibilità del menu
         bool isMenuActive = !menuCanvas.activeSelf;
         menuCanvas.SetActive(isMenuActive);
+        isMenuOpen = isMenuActive;
 
         Time.timeScale = 0f;    // Pausa il gioco quando il menu è attivo, ripristina la velocità del gioco quando il menu è nascosto
         blurVolume.enabled = isMenuActive;
@@ -58,6 +60,8 @@ public class menuController : MonoBehaviour
     public void ReturnToGame()
     {
         menuCanvas.SetActive(false);  // Nasconde il menu
+        isMenuOpen = false;
+        
         Time.timeScale = 1f;          // Ripristina la velocità del gioco (se il gioco era messo in pausa)
         blurVolume.enabled = false; // Disabilita il blur quando il menu è chiuso
         menuButton.gameObject.SetActive(true); // Mostra il pulsante del menu

@@ -10,10 +10,12 @@ public class InteractionDetector : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (menuController.isMenuOpen) return;
+        
         if (context.performed && passwordPanel != null && !passwordPanel.IsPanelActive())
         {
             // Ottieni posizione del tocco/click sullo schermo
-            Vector2 screenPos = Touchscreen.current != null 
+            Vector2 screenPos = Touchscreen.current != null
                 ? Touchscreen.current.primaryTouch.position.ReadValue()
                 : Mouse.current.position.ReadValue();
 
