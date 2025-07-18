@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth;
 
-    public float maxShield = 200f;
+    public float maxShield = 300f;
     public float currentShield;
 
     public HealthBar healthBarGame;
@@ -139,30 +139,33 @@ public class PlayerStats : MonoBehaviour
 
     public void EnableShield()
     {
-        currentShield = maxShield;
-        currentHealth = maxHealth;
-
-        // Mostra le barre dello scudo
-        shieldBarGame.gameObject.SetActive(true);
-        shieldBarMenu.gameObject.SetActive(true);
-
         // Aggiorna tutte le barre
+        maxHealth = 300f;
+        currentHealth = maxHealth;
+        currentShield = maxShield;
         shieldBarGame.SetShield(currentShield, maxShield);
         shieldBarMenu.SetShield(currentShield, maxShield);
-        maxHealth = 300f;
         healthBarGame.SetHealth(currentHealth, maxHealth);
         healthBarMenu.SetHealth(currentHealth, maxHealth);
 
+        // Mostra le barre dello scudo
+        shieldBarGame.gameObject.SetActive(true);
+        shieldBarMenu.gameObject.SetActive(true);        
+
+        // Abilita animazione Aura
         if (auraObject != null && auraObjectUI != null)
         {
             auraObject.SetActive(true);
             auraObjectUI.SetActive(true);
         }
 
+        // Abilita suono Aura
         EnableAuraSound();
 
-        Debug.Log("Scudo attivato. Valore: " + currentShield);
-        Debug.Log("Salute aumentata. Valore: " + currentHealth);
+        // Aumenta il danno che può infliggere il player
+        PlayerAttack attack = GetComponent<PlayerAttack>();
+        attack.attackDamage = 30;
+
     }
 
     public void Heal(float percent)
