@@ -113,6 +113,8 @@ public class SaveController : MonoBehaviour
                 playerStats.shieldBarMenu.gameObject.SetActive(true);
                 if (playerStats.auraObject != null) playerStats.auraObject.SetActive(true);
                 if (playerStats.auraObjectUI != null) playerStats.auraObjectUI.SetActive(true);
+                SoundEffectManager.PlayLoopOnObject("AuraSound", GameObject.FindGameObjectWithTag("Player"));
+
             }
 
             // Rimuovi dalla scena gli HealingPickups già usati
@@ -137,7 +139,7 @@ public class SaveController : MonoBehaviour
             inventoryController.SetInventoryItems(new List<InventorySaveData>());
             SaveGame();
         }
-        
+
     }
 
     private void LoadChestStates(List<ChestSaveData> chestStates)

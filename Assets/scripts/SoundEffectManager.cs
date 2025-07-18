@@ -102,4 +102,25 @@ public class SoundEffectManager : MonoBehaviour
         return loopSource;
     }
 
+    public static AudioSource PlayLoopOnObject(string soundName, GameObject parent)
+    {
+        AudioClip audioClip = soundEffectLibrary.GetRandomClip(soundName);
+        if (audioClip == null) return null;
+
+        GameObject loopGO = new GameObject("LoopAudio_" + soundName);
+        loopGO.transform.SetParent(parent.transform);
+        loopGO.transform.localPosition = Vector3.zero;
+
+        AudioSource loopSource = loopGO.AddComponent<AudioSource>();
+        loopSource.clip = audioClip;
+        loopSource.spatialBlend = 0f; // 2D sound
+        loopSource.loop = true;
+        loopSource.volume = audioSource.volume;
+
+        loopSource.Play();
+        activeLoopSources.Add(loopSource);
+
+        return loopSource;
+    }
+
 }
