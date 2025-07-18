@@ -56,6 +56,7 @@ public class SaveController : MonoBehaviour
             maxHealth = playerStats.maxHealth,
             maxShield = playerStats.maxShield,
             isShieldActive = playerStats.shieldBarGame.gameObject.activeSelf,
+            playerAttackDamage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().attackDamage,
             activatedPressurePads = activatedPressurePads.ToList(),
             disabledWalls = disabledWallIDs.ToList(),
             usedHealingPickups = usedHealingPickups.ToList()
@@ -105,6 +106,9 @@ public class SaveController : MonoBehaviour
             playerStats.currentHealth = saveData.playerHealth;
             playerStats.currentShield = saveData.playerShield;
             playerStats.lives = saveData.playerLives;
+            PlayerAttack attack = playerStats.GetComponent<PlayerAttack>();
+            attack.attackDamage = saveData.playerAttackDamage;
+
 
             // Attiva aura e UI se lo scudo era attivo
             if (saveData.isShieldActive)

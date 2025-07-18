@@ -18,5 +18,6 @@ public class SaveData
     public float maxHealth;
     public float maxShield;
     public bool isShieldActive;
+    public int playerAttackDamage;
 
 }
