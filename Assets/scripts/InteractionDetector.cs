@@ -8,10 +8,15 @@ public class InteractionDetector : MonoBehaviour
     private IInteractable interactableInRange = null;
     public PasswordPanel passwordPanel;
 
+    [Header("Distanza massima di interazione")]
+    public float interactionRange = 2f;
+    public Transform playerTransform;
+
     public void OnInteract(InputAction.CallbackContext context)
     {
+        // Blocca l'interazione se il menù è attivo
         if (menuController.isMenuOpen) return;
-        
+
         if (context.performed && passwordPanel != null && !passwordPanel.IsPanelActive())
         {
             // Ottieni posizione del tocco/click sullo schermo
@@ -26,7 +31,12 @@ public class InteractionDetector : MonoBehaviour
             Collider2D hit = Physics2D.OverlapPoint(worldPos);
             if (hit != null && hit.TryGetComponent(out IInteractable interactable) && interactable.CanInteract())
             {
-                interactable.Interact();
+                float distance = Vector2.Distance(playerTransform.position, hit.transform.position);
+                if (distance <= interactionRange)
+                { 
+                    interactable.Interact();
+                }
+                
             }
         }
     }
