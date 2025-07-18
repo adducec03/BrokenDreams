@@ -25,6 +25,8 @@ public class PlayerStats : MonoBehaviour
     public GameObject gameOverPanel;
     public SoundtrackVolumeController normalMusicController;
     public SoundtrackVolumeController gameOverMusicController;
+    public GameObject auraObject;
+    public GameObject auraObjectUI;
 
 
 
@@ -47,6 +49,11 @@ public class PlayerStats : MonoBehaviour
         healthBarMenu.SetHealth(currentHealth, maxHealth);
 
         animator = GetComponentInChildren<Animator>();
+        if (auraObject != null && auraObjectUI != null)
+        {
+            auraObject.SetActive(false);
+            auraObjectUI.SetActive(false);
+        }
 
     }
 
@@ -144,6 +151,12 @@ public class PlayerStats : MonoBehaviour
         healthBarGame.SetHealth(currentHealth, maxHealth);
         healthBarMenu.SetHealth(currentHealth, maxHealth);
 
+        if (auraObject != null && auraObjectUI != null)
+        {
+            auraObject.SetActive(true);
+            auraObjectUI.SetActive(true);
+        }
+
         Debug.Log("Scudo attivato. Valore: " + currentShield);
         Debug.Log("Salute aumentata. Valore: " + currentHealth);
     }
@@ -211,7 +224,7 @@ public class PlayerStats : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    
+
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1f; // Riattiva il tempo nel caso fosse fermo
