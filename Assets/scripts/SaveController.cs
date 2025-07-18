@@ -113,7 +113,7 @@ public class SaveController : MonoBehaviour
                 playerStats.shieldBarMenu.gameObject.SetActive(true);
                 if (playerStats.auraObject != null) playerStats.auraObject.SetActive(true);
                 if (playerStats.auraObjectUI != null) playerStats.auraObjectUI.SetActive(true);
-                SoundEffectManager.PlayLoopOnObject("AuraSound", GameObject.FindGameObjectWithTag("Player"));
+                playerStats.EnableAuraSound();
 
             }
 
