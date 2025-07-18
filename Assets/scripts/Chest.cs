@@ -46,6 +46,7 @@ public class Chest : MonoBehaviour, IInteractable
     private void OpenChest()
     {
         SetOpened(true);
+        SoundEffectManager.Play("ChestOpening");
 
         if (itemPrefab)
         {
@@ -65,7 +66,7 @@ public class Chest : MonoBehaviour, IInteractable
                 saveController.RegisterSceneItem(collectible);
             }
 
-            droppedItem.tag = "Item";            
+            droppedItem.tag = "Item";
         }
     }
 

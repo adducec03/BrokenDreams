@@ -127,6 +127,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -297,7 +310,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BIG inverted hourglass26_0: -945447874937779378
+      BIG inverted hourglass26_1: -437756249128547518
+      BIG inverted hourglass26_2: -3625381636684613761
+      BIG inverted hourglass26_3: -9151292636915176739
+      BIG inverted hourglass26_4: -6036064307278994641
+      BIG inverted hourglass26_5: 6989591938532087737
+      BIG inverted hourglass26_6: -1222965330727732320
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
