@@ -15,5 +15,8 @@ public class SaveData
     public List<string> activatedPressurePads = new List<string>();
     public List<string> disabledWalls = new List<string>();
     public List<string> usedHealingPickups = new List<string>();
+    public float maxHealth;
+    public float maxShield;
+    public bool isShieldActive;
 
 }
