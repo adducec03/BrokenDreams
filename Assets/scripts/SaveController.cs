@@ -53,6 +53,9 @@ public class SaveController : MonoBehaviour
             playerHealth = playerStats.currentHealth,
             playerShield = playerStats.currentShield,
             playerLives = playerStats.lives,
+            maxHealth = playerStats.maxHealth,
+            maxShield = playerStats.maxShield,
+            isShieldActive = playerStats.shieldBarGame.gameObject.activeSelf,
             activatedPressurePads = activatedPressurePads.ToList(),
             disabledWalls = disabledWallIDs.ToList(),
             usedHealingPickups = usedHealingPickups.ToList()
@@ -97,9 +100,22 @@ public class SaveController : MonoBehaviour
             Time.timeScale = 1f;                       // Serve per settare la Cinemachine alla nuova posizione del Player
 
             // Carica salute/scudo/vite
+            playerStats.maxHealth = saveData.maxHealth;
+            playerStats.maxShield = saveData.maxShield;
             playerStats.currentHealth = saveData.playerHealth;
             playerStats.currentShield = saveData.playerShield;
             playerStats.lives = saveData.playerLives;
+
+            // Attiva aura e UI se lo scudo era attivo
+            if (saveData.isShieldActive)
+            {
+                playerStats.shieldBarGame.gameObject.SetActive(true);
+                playerStats.shieldBarMenu.gameObject.SetActive(true);
+                if (playerStats.auraObject != null) playerStats.auraObject.SetActive(true);
+                if (playerStats.auraObjectUI != null) playerStats.auraObjectUI.SetActive(true);
+            }
+
+            // Rimuovi dalla scena gli HealingPickups già usati
             usedHealingPickups = new HashSet<string>(saveData.usedHealingPickups);
 
             // Aggiorna UI
