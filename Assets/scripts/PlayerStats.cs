@@ -27,6 +27,8 @@ public class PlayerStats : MonoBehaviour
     public SoundtrackVolumeController gameOverMusicController;
     public GameObject auraObject;
     public GameObject auraObjectUI;
+    private AudioSource auraLoopSource;
+
 
 
 
@@ -157,6 +159,8 @@ public class PlayerStats : MonoBehaviour
             auraObjectUI.SetActive(true);
         }
 
+        SoundEffectManager.PlayLoopOnObject("AuraSound", GameObject.FindGameObjectWithTag("Player"));
+
         Debug.Log("Scudo attivato. Valore: " + currentShield);
         Debug.Log("Salute aumentata. Valore: " + currentHealth);
     }
@@ -233,6 +237,24 @@ public class PlayerStats : MonoBehaviour
             gameOverMusicController.GetComponent<AudioSource>().Stop();
 
         SceneManager.LoadScene("MainMenu");
+    }
+
+
+    public void EnableAuraSound()
+    {
+        if (auraLoopSource == null)
+        {
+            auraLoopSource = SoundEffectManager.PlayLoopOnObject("AuraSound", this.gameObject);
+        }
+    }
+
+    public void StopAuraSound()
+    {
+        if (auraLoopSource != null)
+        {
+            auraLoopSource.Stop();
+            auraLoopSource = null;
+        }
     }
 
 }

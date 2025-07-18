@@ -15,6 +15,8 @@ public class menuController : MonoBehaviour
     public GameObject livesPanelUI;
     public GameObject attackButtonUI; // Riferimento al bottone di attacco
     public static bool isMenuOpen = false; // Variabile che indica se il menu è aperto oppure no (serve per disabilitare le interazioni con gli oggetti)
+    private PlayerStats playerStats;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,6 +25,8 @@ public class menuController : MonoBehaviour
         menuCanvas.SetActive(false);
         blurVolume.enabled = false; // Assicurati che il blur sia disabilitato all'inizio
         joystick.SetActive(true); // Assicurati che il joystick sia attivo all'inizio
+        playerStats = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerStats>();
+
     }
 
     // Update is called once per frame
@@ -41,6 +45,7 @@ public class menuController : MonoBehaviour
         menuCanvas.SetActive(isMenuActive);
         isMenuOpen = isMenuActive;
 
+        playerStats?.StopAuraSound();
         Time.timeScale = 0f;    // Pausa il gioco quando il menu è attivo, ripristina la velocità del gioco quando il menu è nascosto
         blurVolume.enabled = isMenuActive;
 
@@ -55,13 +60,15 @@ public class menuController : MonoBehaviour
 
 
 
+
+
     }
 
     public void ReturnToGame()
     {
         menuCanvas.SetActive(false);  // Nasconde il menu
         isMenuOpen = false;
-        
+
         Time.timeScale = 1f;          // Ripristina la velocità del gioco (se il gioco era messo in pausa)
         blurVolume.enabled = false; // Disabilita il blur quando il menu è chiuso
         menuButton.gameObject.SetActive(true); // Mostra il pulsante del menu
@@ -72,6 +79,7 @@ public class menuController : MonoBehaviour
         healthBarUI.SetActive(true);
         shieldBarUI.SetActive(true);
         livesPanelUI.SetActive(true);
+        playerStats?.EnableAuraSound();
     }
 
     public void ExitGame()
@@ -79,5 +87,6 @@ public class menuController : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+
 
 }
