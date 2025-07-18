@@ -22,10 +22,10 @@ public class menuController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerStats = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerStats>();
         menuCanvas.SetActive(false);
         blurVolume.enabled = false; // Assicurati che il blur sia disabilitato all'inizio
         joystick.SetActive(true); // Assicurati che il joystick sia attivo all'inizio
-        playerStats = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerStats>();
 
     }
 

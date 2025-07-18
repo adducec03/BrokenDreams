@@ -159,7 +159,7 @@ public class PlayerStats : MonoBehaviour
             auraObjectUI.SetActive(true);
         }
 
-        SoundEffectManager.PlayLoopOnObject("AuraSound", GameObject.FindGameObjectWithTag("Player"));
+        EnableAuraSound();
 
         Debug.Log("Scudo attivato. Valore: " + currentShield);
         Debug.Log("Salute aumentata. Valore: " + currentHealth);
