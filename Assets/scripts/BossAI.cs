@@ -10,8 +10,8 @@ public class BossAI : MonoBehaviour
     public float visionRange = 8f;
     public float attackRange = 1.5f;
     public float attackCooldown = 2f;
-    public int maxHealth = 100;
-    public int attackDamage = 20;
+    public int maxHealth = 1000;
+    public int attackDamage = 30;
     private int currentHealth;
     private Animator animator;
     private NavMeshAgent agent;
@@ -27,6 +27,7 @@ public class BossAI : MonoBehaviour
     public GameObject spawnEffectPrefab;
     public SceneTransitionManagerLevel1 SceneTransitionManagerLevel1;
     private AudioSource ambientLoopSource;
+    private bool hasIncreasedSpawnRate = false;
 
 
 
@@ -193,6 +194,14 @@ public class BossAI : MonoBehaviour
         healthBarBoss.SetHealth(currentHealth, maxHealth);
 
         Debug.Log("Boss ha subito danni: " + amount);
+
+        // Controlla se la salute è scesa sotto metà e se non abbiamo già cambiato la frequenza
+        if (!hasIncreasedSpawnRate && currentHealth <= maxHealth / 2)
+        {
+            hasIncreasedSpawnRate = true;
+            summonInterval /= 2f;  // dimezza l'intervallo → raddoppia la frequenza
+            Debug.Log("⚠️ Boss sotto metà vita! Spawn più frequente: " + summonInterval + "s");
+        }
 
         if (currentHealth <= 0)
         {

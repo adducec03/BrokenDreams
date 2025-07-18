@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth;
 
-    public float maxShield = 100f;
+    public float maxShield = 200f;
     public float currentShield;
 
     public HealthBar healthBarGame;
