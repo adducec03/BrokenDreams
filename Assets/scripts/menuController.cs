@@ -47,7 +47,8 @@ public class menuController : MonoBehaviour
         menuCanvas.SetActive(isMenuActive);
         isMenuOpen = isMenuActive;
 
-        playerStats?.StopAuraSound();
+        if (playerStats != null && playerStats.HasShield())
+            playerStats?.StopAuraSound();
         bossAI?.StopBreathSound();
         Time.timeScale = 0f;    // Pausa il gioco quando il menu è attivo, ripristina la velocità del gioco quando il menu è nascosto
         blurVolume.enabled = isMenuActive;
@@ -82,7 +83,8 @@ public class menuController : MonoBehaviour
         healthBarUI.SetActive(true);
         shieldBarUI.SetActive(true);
         livesPanelUI.SetActive(true);
-        playerStats?.EnableAuraSound();
+        if (playerStats != null && playerStats.HasShield())
+            playerStats?.EnableAuraSound();
         bossAI?.EnableBreathSound();
     }
 

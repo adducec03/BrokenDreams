@@ -28,7 +28,7 @@ public class PlayerStats : MonoBehaviour
     public GameObject auraObject;
     public GameObject auraObjectUI;
     private AudioSource auraLoopSource;
-
+    public bool hasShield = false;
 
 
 
@@ -53,8 +53,18 @@ public class PlayerStats : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         if (auraObject != null && auraObjectUI != null)
         {
-            auraObject.SetActive(false);
-            auraObjectUI.SetActive(false);
+            if (!hasShield)
+            {
+                Debug.Log("Aura object found, setting it inactive.");
+                auraObject.SetActive(false);
+                auraObjectUI.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("Aura object found, setting it active.");
+                auraObject.SetActive(true);
+                auraObjectUI.SetActive(true);
+            }
         }
 
     }
@@ -66,7 +76,7 @@ public class PlayerStats : MonoBehaviour
         {
             TakeDamage(1000f);
         }
-        if(Input.GetKeyDown(KeyCode.C)) // o il tuo tasto di attacco
+        if (Input.GetKeyDown(KeyCode.C)) // o il tuo tasto di attacco
         {
             Heal(1f);
         }
@@ -178,6 +188,7 @@ public class PlayerStats : MonoBehaviour
         // Aumenta il danno che può infliggere il player
         PlayerAttack attack = GetComponent<PlayerAttack>();
         attack.attackDamage = 30;
+        hasShield = true;
 
     }
 
@@ -271,6 +282,16 @@ public class PlayerStats : MonoBehaviour
             auraLoopSource.Stop();
             auraLoopSource = null;
         }
+    }
+
+    public bool HasShield()
+    {
+        return hasShield;
+    }
+
+    public void SetShieldState(bool state)
+    {
+        hasShield = state;
     }
 
 }
