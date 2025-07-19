@@ -16,6 +16,7 @@ public class menuController : MonoBehaviour
     public GameObject attackButtonUI; // Riferimento al bottone di attacco
     public static bool isMenuOpen = false; // Variabile che indica se il menu è aperto oppure no (serve per disabilitare le interazioni con gli oggetti)
     private PlayerStats playerStats;
+    private BossAI bossAI;
 
 
 
@@ -23,6 +24,7 @@ public class menuController : MonoBehaviour
     void Start()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerStats>();
+        bossAI = GameObject.FindGameObjectWithTag("Boss")?.GetComponent<BossAI>();
         menuCanvas.SetActive(false);
         blurVolume.enabled = false; // Assicurati che il blur sia disabilitato all'inizio
         joystick.SetActive(true); // Assicurati che il joystick sia attivo all'inizio
@@ -46,6 +48,7 @@ public class menuController : MonoBehaviour
         isMenuOpen = isMenuActive;
 
         playerStats?.StopAuraSound();
+        bossAI?.StopBreathSound();
         Time.timeScale = 0f;    // Pausa il gioco quando il menu è attivo, ripristina la velocità del gioco quando il menu è nascosto
         blurVolume.enabled = isMenuActive;
 
@@ -80,6 +83,7 @@ public class menuController : MonoBehaviour
         shieldBarUI.SetActive(true);
         livesPanelUI.SetActive(true);
         playerStats?.EnableAuraSound();
+        bossAI?.EnableBreathSound();
     }
 
     public void ExitGame()
