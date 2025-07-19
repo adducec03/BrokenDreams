@@ -29,6 +29,8 @@ public class BossAI : MonoBehaviour
     private AudioSource ambientLoopSource;
     private bool hasIncreasedSpawnRate = false;
     public GameObject auraObject;
+    private AudioSource breathLoopSource;
+
 
 
 
@@ -40,8 +42,8 @@ public class BossAI : MonoBehaviour
 
         animator = GetComponentInChildren<Animator>();
         currentHealth = maxHealth;
-        ambientLoopSource = SoundEffectManager.PlayLoopAtPosition("GolemBreath", transform.position, 12f, 50f);
-        if(auraObject != null)
+        EnableBreathSound();
+        if (auraObject != null)
         {
             auraObject.SetActive(false);
         }
@@ -205,11 +207,11 @@ public class BossAI : MonoBehaviour
         {
             hasIncreasedSpawnRate = true;
             summonInterval /= 2f;  // dimezza l'intervallo → raddoppia la frequenza
-            if(auraObject != null)
-        {
-            auraObject.SetActive(true);
-        }
-            
+            if (auraObject != null)
+            {
+                auraObject.SetActive(true);
+            }
+
             Debug.Log("⚠️ Boss sotto metà vita! Spawn più frequente: " + summonInterval + "s");
         }
 
@@ -230,14 +232,14 @@ public class BossAI : MonoBehaviour
         animator.ResetTrigger("Hurt");
         animator.SetTrigger("Die");
         animator.SetTrigger("Die");
-        if(auraObject != null)
+        if (auraObject != null)
         {
             auraObject.SetActive(false);
         }
-        if (ambientLoopSource != null)
+        if (breathLoopSource != null)
         {
-            ambientLoopSource.Stop();
-            Destroy(ambientLoopSource.gameObject);
+            breathLoopSource.Stop();
+            Destroy(breathLoopSource.gameObject);
         }
         Destroy(gameObject, 10f);
         StartCoroutine(RemoveBossHealthBarWithDelay());
@@ -246,9 +248,6 @@ public class BossAI : MonoBehaviour
 
     IEnumerator HandleAfterBossDeath()
     {
-
-
-
         // Blocca il player
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -327,6 +326,23 @@ public class BossAI : MonoBehaviour
         else
         {
             Debug.LogError("SceneTransitionManager non trovato!");
+        }
+    }
+
+    public void EnableBreathSound()
+    {
+        if (breathLoopSource == null)
+        {
+            breathLoopSource = SoundEffectManager.PlayLoopAtPosition("GolemBreath", transform.position, 12f, 50f);
+        }
+    }
+
+    public void StopBreathSound()
+    {
+        if (breathLoopSource != null)
+        {
+            breathLoopSource.Stop();
+            breathLoopSource = null;
         }
     }
 }

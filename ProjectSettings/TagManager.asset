@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Wall
   - TrailPoint
+  - Boss
   layers:
   - Default
   - TransparentFX
