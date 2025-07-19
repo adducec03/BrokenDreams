@@ -136,9 +136,9 @@ public class SaveController : MonoBehaviour
             playerStats.heartsManager.UpdateHearts(playerStats.lives);
 
             // Altri sistemi
+            LoadSceneItemsState(saveData.sceneItemsSaveData); // Usa collectedItemIDs!
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
             LoadChestStates(saveData.chestSaveData);
-            LoadSceneItemsState(saveData.sceneItemsSaveData); // Usa collectedItemIDs!
             LoadEnemiesState(saveData.enemySaveData);
 
             isDataLoaded = true;

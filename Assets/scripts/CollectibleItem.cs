@@ -51,6 +51,11 @@ public class CollectibleItem : MonoBehaviour
         if (saveController != null)
         {
             saveController.RegisterSceneItem(this);
+            if (saveController.IsItemCollected(itemID))
+            {
+                isCollected = true;
+                gameObject.SetActive(false);
+            }
         }
     }
 }
