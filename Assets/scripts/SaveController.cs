@@ -14,6 +14,8 @@ public class SaveController : MonoBehaviour
     private HashSet<string> disabledWallIDs = new HashSet<string>();
     private HashSet<string> usedHealingPickups = new HashSet<string>();
     public bool isDataLoaded { get; private set; } = false;
+    private HashSet<string> collectedItemIDs = new HashSet<string>();
+
 
 
     void Start()
@@ -89,28 +91,23 @@ public class SaveController : MonoBehaviour
         {
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
 
-            // Carica 
+            // Carica dati vari
             activatedPressurePads = new HashSet<string>(saveData.activatedPressurePads);
             disabledWallIDs = new HashSet<string>(saveData.disabledWalls);
 
-            // Carica le statistiche del Player salvate nel file
+            // Carica le statistiche del Player
             PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-
-            // Posiziona il player nella posizione in cui era stato salvato
             playerStats.transform.position = saveData.playerPosition;
-            Time.timeScale = 1f;                       // Serve per settare la Cinemachine alla nuova posizione del Player
+            Time.timeScale = 1f;
 
-            // Carica salute/scudo/vite
             playerStats.maxHealth = saveData.maxHealth;
             playerStats.maxShield = saveData.maxShield;
             playerStats.currentHealth = saveData.playerHealth;
             playerStats.currentShield = saveData.playerShield;
             playerStats.lives = saveData.playerLives;
-            PlayerAttack attack = playerStats.GetComponent<PlayerAttack>();
-            attack.attackDamage = saveData.playerAttackDamage;
+            playerStats.GetComponent<PlayerAttack>().attackDamage = saveData.playerAttackDamage;
 
-
-            // Attiva aura e UI se lo scudo era attivo
+            // Attiva aura se necessario
             if (saveData.isShieldActive)
             {
                 playerStats.shieldBarGame.gameObject.SetActive(true);
@@ -118,24 +115,31 @@ public class SaveController : MonoBehaviour
                 if (playerStats.auraObject != null) playerStats.auraObject.SetActive(true);
                 if (playerStats.auraObjectUI != null) playerStats.auraObjectUI.SetActive(true);
                 playerStats.EnableAuraSound();
-
             }
 
-            // Rimuovi dalla scena gli HealingPickups già usati
+            // Healing pickup usati
             usedHealingPickups = new HashSet<string>(saveData.usedHealingPickups);
 
-            // Aggiorna UI
+            // ✅ CARICA collected item ID PRIMA di chiamare LoadSceneItemsState
+            collectedItemIDs = new HashSet<string>(
+                saveData.sceneItemsSaveData
+                    .Where(i => i.isCollected)
+                    .Select(i => i.itemID)
+            );
+
+            // UI
             playerStats.healthBarGame.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
             playerStats.shieldBarGame.SetShield(playerStats.currentShield, playerStats.maxShield);
             playerStats.healthBarMenu.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
             playerStats.shieldBarMenu.SetShield(playerStats.currentShield, playerStats.maxShield);
             playerStats.heartsManager.UpdateHearts(playerStats.lives);
 
-            // Carica gli altri sistemi
+            // Altri sistemi
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
             LoadChestStates(saveData.chestSaveData);
-            LoadSceneItemsState(saveData.sceneItemsSaveData);
+            LoadSceneItemsState(saveData.sceneItemsSaveData); // Usa collectedItemIDs!
             LoadEnemiesState(saveData.enemySaveData);
+
             isDataLoaded = true;
         }
         else
@@ -143,7 +147,6 @@ public class SaveController : MonoBehaviour
             inventoryController.SetInventoryItems(new List<InventorySaveData>());
             SaveGame();
         }
-
     }
 
     private void LoadChestStates(List<ChestSaveData> chestStates)
@@ -237,6 +240,12 @@ public class SaveController : MonoBehaviour
         usedHealingPickups.Add(id);
         Debug.Log($"📦 Healing usati dopo l'aggiunta di {id}: {string.Join(", ", usedHealingPickups)}");
 
+    }
+
+
+    public bool IsItemCollected(string id)
+    {
+        return collectedItemIDs.Contains(id);
     }
 
 }

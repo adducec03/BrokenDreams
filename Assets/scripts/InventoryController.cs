@@ -9,6 +9,7 @@ public class InventoryController : MonoBehaviour
     public GameObject slotPrefab;
     public int slotCount;
     public GameObject[] itemPrefabs;
+    private bool inventoryAlreadyLoaded = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +27,7 @@ public class InventoryController : MonoBehaviour
         // }
     }
 
-    public bool AddItem(GameObject itemPrefab)
+    public bool AddItem(GameObject itemPrefab, bool fromLoad = false)
     {
         foreach (Transform slotTransform in inventoryPanel.transform)
         {
@@ -38,7 +39,7 @@ public class InventoryController : MonoBehaviour
                 slot.currentItem = newItem;
 
                 Item itemComponent = newItem.GetComponent<Item>();
-                if (itemComponent != null && itemComponent.ID == 2)
+                if (!fromLoad && itemComponent != null && itemComponent.ID == 2)
                 {
                     Debug.Log("[Inventory] Pozione scudo aggiunta. Attivazione scudo...");
                     PlayerStats player = FindFirstObjectByType<PlayerStats>();
@@ -47,6 +48,7 @@ public class InventoryController : MonoBehaviour
                         player.EnableShield();
                     }
                 }
+
                 return true;
             }
         }
@@ -71,11 +73,21 @@ public class InventoryController : MonoBehaviour
 
     public void SetInventoryItems(List<InventorySaveData> inventorySaveData)
     {
-        foreach (Transform child in inventoryPanel.transform)
+
+        if (inventoryAlreadyLoaded)
         {
-            Destroy(child.gameObject);
+            Debug.LogWarning("[Inventory] Inventory già caricato, annullata doppia istanza.");
+            return;
         }
 
+        inventoryAlreadyLoaded = true;
+        // Distruggi TUTTI gli slot esistenti
+        foreach (Transform slot in inventoryPanel.transform)
+        {
+            Destroy(slot.gameObject);
+        }
+
+        // Ricrea slot da zero
         for (int i = 0; i < slotCount; i++)
         {
             Instantiate(slotPrefab, inventoryPanel.transform);
@@ -94,9 +106,9 @@ public class InventoryController : MonoBehaviour
                     {
                         Destroy(child.gameObject);
                     }
+
                     GameObject item = Instantiate(itemPrefab, slot.transform);
 
-                    // 🔍 Fix temporaneo per debug: controlla che il prefab abbia RectTransform
                     RectTransform rect = item.GetComponent<RectTransform>();
                     if (rect != null)
                     {
@@ -118,9 +130,12 @@ public class InventoryController : MonoBehaviour
             {
                 Debug.LogWarning($"[InventoryController] Indice slot {data.slotIndex} fuori dal range (slotCount: {slotCount}).");
             }
+            Debug.Log($"[Inventory] Slot {data.slotIndex} → itemID {data.itemID}");
         }
+
+
     }
-    
+
     public bool HasItem(string itemID)
     {
         foreach (Transform slotTransform in inventoryPanel.transform)

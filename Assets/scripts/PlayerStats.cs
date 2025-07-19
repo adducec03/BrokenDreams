@@ -59,6 +59,19 @@ public class PlayerStats : MonoBehaviour
 
     }
 
+    public void Update()
+    {
+        //PER TESTING
+        if (Input.GetKeyDown(KeyCode.X)) // o il tuo tasto di attacco
+        {
+            TakeDamage(1000f);
+        }
+        if(Input.GetKeyDown(KeyCode.C)) // o il tuo tasto di attacco
+        {
+            Heal(1f);
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         if (isDead) return;
@@ -150,7 +163,7 @@ public class PlayerStats : MonoBehaviour
 
         // Mostra le barre dello scudo
         shieldBarGame.gameObject.SetActive(true);
-        shieldBarMenu.gameObject.SetActive(true);        
+        shieldBarMenu.gameObject.SetActive(true);
 
         // Abilita animazione Aura
         if (auraObject != null && auraObjectUI != null)
