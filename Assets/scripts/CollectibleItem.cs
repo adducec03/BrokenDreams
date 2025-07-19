@@ -5,6 +5,19 @@ public class CollectibleItem : MonoBehaviour
     public string itemID;
     private bool isCollected = false;
 
+    void Start()
+    {
+        SaveController saveController = FindFirstObjectByType<SaveController>();
+        if (saveController != null)
+        {
+            // Se è stato già raccolto, disattivalo immediatamente
+            if (saveController.IsItemCollected(itemID))
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
     public void MarkCollected()
     {
         isCollected = true;
