@@ -14,11 +14,6 @@ public class PlayerMovement : MonoBehaviour
     public bool playingFootsteps = false;
     public float footstepSpeed = 0.5f;
 
-    // Traccia del player
-    public GameObject trailPrefab;
-    public float trailInterval = 0.2f;
-    private float nextTrailTime = 0f;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -48,12 +43,6 @@ public class PlayerMovement : MonoBehaviour
             StopFootsteps();
         }
 
-        // Lascia la traccia ogni tot secondi
-        if (Time.time >= nextTrailTime)
-        {
-            LeaveTrail();
-            nextTrailTime = Time.time + trailInterval;
-        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -61,12 +50,6 @@ public class PlayerMovement : MonoBehaviour
         inputFromKeyboard = context.ReadValue<Vector2>();
     }
 
-    void LeaveTrail()
-    {
-        GameObject trail = Instantiate(trailPrefab, transform.position, Quaternion.identity);
-        trail.tag = "TrailPoint"; // Assegna il tag per il nemico
-        Destroy(trail, 5f); // La traccia scompare dopo 5 secondi
-    }
 
     void StartFootsteps()
     {
