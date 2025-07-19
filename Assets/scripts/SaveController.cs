@@ -57,7 +57,7 @@ public class SaveController : MonoBehaviour
             playerLives = playerStats.lives,
             maxHealth = playerStats.maxHealth,
             maxShield = playerStats.maxShield,
-            isShieldActive = playerStats.shieldBarGame.gameObject.activeSelf,
+            isShieldActive = playerStats.HasShield(),
             playerAttackDamage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().attackDamage,
             activatedPressurePads = activatedPressurePads.ToList(),
             disabledWalls = disabledWallIDs.ToList(),
@@ -115,6 +115,7 @@ public class SaveController : MonoBehaviour
                 if (playerStats.auraObject != null) playerStats.auraObject.SetActive(true);
                 if (playerStats.auraObjectUI != null) playerStats.auraObjectUI.SetActive(true);
                 playerStats.EnableAuraSound();
+                playerStats.SetShieldState(true);
             }
 
             // Healing pickup usati
