@@ -23,7 +23,13 @@ public class Gate : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (isOpen || isLockedForever) return;
+        if (isOpen) return;
+
+        if (isLockedForever)
+        {
+            messageDisplay.ShowMessage("Non puoi piu' uscire da qui!");
+            return;
+        }
 
         InventoryController inventory = FindFirstObjectByType<InventoryController>();
 
@@ -39,7 +45,7 @@ public class Gate : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        return !isOpen && !isLockedForever;
+        return !isOpen;
     }
 
     private void OpenGate()
@@ -58,7 +64,6 @@ public class Gate : MonoBehaviour, IInteractable
         if (checkpointObject != null && checkpointTargetPosition != null)
         {
             checkpointObject.transform.position = checkpointTargetPosition.position;
-            Debug.Log("Checkpoint aggiornato dopo l'apertura del cancello.");
         }
 
         // Avvia la chiusura automatica
@@ -90,9 +95,20 @@ public class Gate : MonoBehaviour, IInteractable
 
         isOpen = false;
 
-        // ❌ Rende il cancello definitivamente non interagibile
+        // Rende il cancello definitivamente non interagibile
         isLockedForever = true;
 
 
     }
+
+    public bool IsLockedForever() => isLockedForever;
+
+    public void LockForever()
+    {
+        isOpen = false;
+        isLockedForever = true;
+        if (col != null) col.enabled = true;
+        if (animator != null) animator.SetTrigger(closeTrigger);
+    }
+
 }

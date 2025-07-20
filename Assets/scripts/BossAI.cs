@@ -231,7 +231,7 @@ public class BossAI : MonoBehaviour
         animator.ResetTrigger("Attack");
         animator.ResetTrigger("Hurt");
         animator.SetTrigger("Die");
-        animator.SetTrigger("Die");
+
         if (auraObject != null)
         {
             auraObject.SetActive(false);
@@ -241,8 +241,17 @@ public class BossAI : MonoBehaviour
             breathLoopSource.Stop();
             Destroy(breathLoopSource.gameObject);
         }
+
         Destroy(gameObject, 10f);
         StartCoroutine(RemoveBossHealthBarWithDelay());
+
+        // Elimina il salvataggio
+        SaveController saveController = FindFirstObjectByType<SaveController>();
+        if (saveController != null)
+        {
+            saveController.DeleteSaveData();
+        }
+        
         StartCoroutine(HandleAfterBossDeath());
     }
 
@@ -345,4 +354,14 @@ public class BossAI : MonoBehaviour
             breathLoopSource = null;
         }
     }
+
+    public bool IsFightStarted() => healthBarUI.activeSelf;
+    public bool IsDead() => isDead;
+    public int GetCurrentHealth() => currentHealth;
+    public void SetCurrentHealth(int health)
+    {
+        currentHealth = health;
+        healthBarBoss.SetHealth(currentHealth, maxHealth);
+    }
+
 }
