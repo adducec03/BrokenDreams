@@ -29,6 +29,8 @@ public class InventoryController : MonoBehaviour
 
     public bool AddItem(GameObject itemPrefab, bool fromLoad = false)
     {
+        Debug.Log($"[AddItem] Aggiunta oggetto ID {itemPrefab.GetComponent<Item>().ID}, fromLoad: {fromLoad}");
+
         foreach (Transform slotTransform in inventoryPanel.transform)
         {
             Slot slot = slotTransform.GetComponent<Slot>();
@@ -52,7 +54,6 @@ public class InventoryController : MonoBehaviour
                 return true;
             }
         }
-        Debug.Log("Inventory is full!");
         return false;
     }
 
@@ -65,6 +66,7 @@ public class InventoryController : MonoBehaviour
             if (slot.currentItem != null)
             {
                 Item item = slot.currentItem.GetComponent<Item>();
+                Debug.Log($"{item.ID}");
                 invData.Add(new InventorySaveData { itemID = item.ID, slotIndex = slotTransform.GetSiblingIndex() });
             }
         }
@@ -76,7 +78,6 @@ public class InventoryController : MonoBehaviour
 
         if (inventoryAlreadyLoaded)
         {
-            Debug.LogWarning("[Inventory] Inventory già caricato, annullata doppia istanza.");
             return;
         }
 
@@ -114,23 +115,10 @@ public class InventoryController : MonoBehaviour
                     {
                         rect.anchoredPosition = Vector2.zero;
                     }
-                    else
-                    {
-                        Debug.LogError($"[InventoryController] Il prefab '{item.name}' non ha un RectTransform. Assicurati che sia un prefab UI!");
-                    }
-
+                    
                     slot.currentItem = item;
                 }
-                else
-                {
-                    Debug.LogError($"[InventoryController] Nessun prefab trovato per itemID: {data.itemID}. Controlla il tuo ItemDictionary.");
-                }
             }
-            else
-            {
-                Debug.LogWarning($"[InventoryController] Indice slot {data.slotIndex} fuori dal range (slotCount: {slotCount}).");
-            }
-            Debug.Log($"[Inventory] Slot {data.slotIndex} → itemID {data.itemID}");
         }
 
 

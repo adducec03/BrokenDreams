@@ -90,7 +90,6 @@ public class PasswordPanel : MonoBehaviour
 
         if (currentChest != null)
         {
-            Debug.Log($"Password inserita: {enteredPassword}");
 
             if (currentChest.TryUnlock(enteredPassword))
             {
@@ -98,7 +97,6 @@ public class PasswordPanel : MonoBehaviour
             }
             else
             {
-                Debug.Log("Password Errata");
                 errorMessageText.text = "Password Errata";
                 passwordInput.ActivateInputField();
                 passwordInput.Select();

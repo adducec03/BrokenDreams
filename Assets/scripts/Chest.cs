@@ -52,6 +52,8 @@ public class Chest : MonoBehaviour, IInteractable
         {
             GameObject droppedItem = Instantiate(itemPrefab, transform.position + Vector3.down, Quaternion.identity);
 
+            Debug.Log($"Istanziato prefab nella scena: {droppedItem.GetComponent<Item>().ID}");
+
             CollectibleItem collectible = droppedItem.GetComponent<CollectibleItem>();
             if (collectible == null)
             {
