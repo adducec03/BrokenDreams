@@ -23,9 +23,6 @@ public class EnemyAttack : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-
-        if (player == null)
-            Debug.LogError("Player non assegnato!");
     }
 
     void FixedUpdate()

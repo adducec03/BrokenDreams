@@ -86,8 +86,6 @@ public class PlayerStats : MonoBehaviour
 
         animator.SetTrigger("Hurt");
 
-        Debug.Log("Danno ricevuto: " + damage);
-
         // Usa lo scudo solo se attivo
         if (shieldBarGame.gameObject.activeSelf && currentShield > 0)
         {
@@ -97,7 +95,6 @@ public class PlayerStats : MonoBehaviour
 
             shieldBarGame.SetShield(currentShield, maxShield);
             shieldBarMenu.SetShield(currentShield, maxShield);
-            Debug.Log("Danno assorbito dallo scudo. Rimane: " + currentShield);
         }
 
         // Se rimane danno, applicalo alla salute
@@ -109,7 +106,6 @@ public class PlayerStats : MonoBehaviour
             healthBarGame.SetHealth(currentHealth, maxHealth);
             healthBarMenu.SetHealth(currentHealth, maxHealth);
 
-            Debug.Log("Danno applicato alla salute. Rimane: " + currentHealth);
         }
 
         if (currentHealth <= 0)
@@ -196,7 +192,6 @@ public class PlayerStats : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         healthBarGame.SetHealth(currentHealth, maxHealth);
         healthBarMenu.SetHealth(currentHealth, maxHealth);
-        Debug.Log($"Guarito di {amount}. Salute attuale: {currentHealth}/{maxHealth}");
     }
 
     IEnumerator DeathDelay()
