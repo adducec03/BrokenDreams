@@ -57,7 +57,7 @@ public class LoginUIManager : MonoBehaviour
     public void ConfirmRegister()
     {
         List<UserData> users = UserDatabase.LoadUsers();
-        string newUser = registerUsername.text.Trim();
+        string newUser = registerUsername.text.Trim().ToLower();
         string newPass = registerPassword.text;
 
         if (string.IsNullOrEmpty(newUser) || string.IsNullOrEmpty(newPass))
@@ -68,7 +68,7 @@ public class LoginUIManager : MonoBehaviour
 
         if (users.Exists(u => u.username == newUser))
         {
-            ShowMessage("Utente gia' registrato!",Color.red);
+            ShowMessage("Nome Utente gia' in uso! Utilizza un altro Username!!",Color.red);
             return;
         }
 
@@ -103,7 +103,7 @@ public class LoginUIManager : MonoBehaviour
         }
         else
         {
-            ShowMessage("Utente non trovato. registrati prima.", Color.red);
+            ShowMessage("Utente non trovato. Registrati prima.", Color.red);
         }
     }
 
