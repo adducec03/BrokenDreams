@@ -36,10 +36,6 @@ public class SlimesAI : MonoBehaviour
         {
             transform.position = hit.position;
         }
-        else
-        {
-            Debug.LogError("Boss non trovato sulla NavMesh!");
-        }
 
     }
 
@@ -102,7 +98,6 @@ public class SlimesAI : MonoBehaviour
     {
         if (player == null)
         {
-            Debug.LogWarning("Player non trovato durante l'attacco.");
             return;
         }
 
@@ -128,8 +123,6 @@ public class SlimesAI : MonoBehaviour
 
         currentHealth -= amount;
         animator.SetTrigger("Hurt");
-        //animator.ResetTrigger("Hurt");
-        Debug.Log("Boss ha subito danni: " + amount);
 
         if (currentHealth <= 0)
         {
@@ -139,7 +132,6 @@ public class SlimesAI : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Die() chiamato");
         SoundEffectManager.Play("SlimeDeath");
         GetComponent<Collider2D>().enabled = false;
         isDead = true;
