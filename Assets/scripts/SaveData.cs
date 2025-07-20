@@ -19,5 +19,9 @@ public class SaveData
     public float maxShield;
     public bool isShieldActive;
     public int playerAttackDamage;
+    public bool isBossFightStarted;
+    public bool isBossDead;
+    public int bossCurrentHealth;
+    public bool isBossGateLocked;
 
 }

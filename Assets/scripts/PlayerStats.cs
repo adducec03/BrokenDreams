@@ -55,13 +55,11 @@ public class PlayerStats : MonoBehaviour
         {
             if (!hasShield)
             {
-                Debug.Log("Aura object found, setting it inactive.");
                 auraObject.SetActive(false);
                 auraObjectUI.SetActive(false);
             }
             else
             {
-                Debug.Log("Aura object found, setting it active.");
                 auraObject.SetActive(true);
                 auraObjectUI.SetActive(true);
             }
@@ -233,7 +231,6 @@ public class PlayerStats : MonoBehaviour
             Time.timeScale = 0f;
 
             // Elimina il salvataggio
-
             SaveController saveController = FindFirstObjectByType<SaveController>();
             if (saveController != null)
             {

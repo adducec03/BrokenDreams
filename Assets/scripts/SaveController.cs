@@ -44,6 +44,8 @@ public class SaveController : MonoBehaviour
     public void SaveGame()
     {
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        BossAI boss = GameObject.FindFirstObjectByType<BossAI>();
+        Gate gate = FindFirstObjectByType<Gate>();
 
         SaveData saveData = new SaveData
         {
@@ -61,7 +63,12 @@ public class SaveController : MonoBehaviour
             playerAttackDamage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().attackDamage,
             activatedPressurePads = activatedPressurePads.ToList(),
             disabledWalls = disabledWallIDs.ToList(),
-            usedHealingPickups = usedHealingPickups.ToList()
+            usedHealingPickups = usedHealingPickups.ToList(),
+
+            isBossFightStarted = boss != null && boss.IsFightStarted(),
+            isBossDead = boss == null || boss.IsDead(),
+            bossCurrentHealth = boss != null ? boss.GetCurrentHealth() : 0,
+            isBossGateLocked = gate != null && gate.IsLockedForever()
         };
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
     }
@@ -134,6 +141,33 @@ public class SaveController : MonoBehaviour
             playerStats.healthBarMenu.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
             playerStats.shieldBarMenu.SetShield(playerStats.currentShield, playerStats.maxShield);
             playerStats.heartsManager.UpdateHearts(playerStats.lives);
+
+            // Carica lo stato salvato del boss
+            BossAI boss = FindFirstObjectByType<BossAI>();
+
+            if (boss != null)
+            {
+                if (saveData.isBossDead)
+                {
+                    Destroy(boss.gameObject);
+                }
+                else
+                {
+                    boss.SetCurrentHealth(saveData.bossCurrentHealth);
+                    if (saveData.isBossFightStarted)
+                    {
+                        boss.healthBarUI.SetActive(true);
+                        boss.StartSummoning();
+                    }
+                }
+            }
+
+            // Carica lo stato salvato del cancello
+            Gate gate = FindFirstObjectByType<Gate>();
+            if (gate != null && saveData.isBossGateLocked)
+            {
+                gate.LockForever();
+            }
 
             // Altri sistemi
             LoadSceneItemsState(saveData.sceneItemsSaveData); // Usa collectedItemIDs!
