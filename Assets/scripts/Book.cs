@@ -10,10 +10,13 @@ public class Book : MonoBehaviour, IInteractable
     public string bookTitle = "Titolo del Libro";
 
     private BookPanel bookPanel;
+    [SerializeField] private GameObject hintObject;
+
 
     void Start()
     {
         bookPanel = FindFirstObjectByType<BookPanel>();
+        hintObject.SetActive(false);
         BookID ??= GlobalHelper.GenerateUniqueID(gameObject);
     }
 
@@ -29,6 +32,22 @@ public class Book : MonoBehaviour, IInteractable
         if (bookPanel != null)
         {
             bookPanel.OpenBook(this);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && hintObject != null)
+        {
+            hintObject.SetActive(true);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && hintObject != null)
+        {
+            hintObject.SetActive(false);
         }
     }
 }
