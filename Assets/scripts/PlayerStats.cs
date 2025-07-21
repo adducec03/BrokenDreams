@@ -215,6 +215,7 @@ public class PlayerStats : MonoBehaviour
             // Disabilita il PauseMenu
             menuController menuController = FindFirstObjectByType<menuController>();
             menuController.menuButton.gameObject.SetActive(false);
+            menuController.attackButtonUI.gameObject.SetActive(false);
 
             // Mostra la UI del GameOver
             if (gameOverPanel != null)
