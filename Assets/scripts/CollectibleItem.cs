@@ -24,6 +24,10 @@ public class CollectibleItem : MonoBehaviour
         gameObject.SetActive(false);
         SoundEffectManager.Play("PageSound");
     }
+    public bool IsCollected()
+    {
+        return isCollected;
+    }
 
     public SceneItemSaveData GetSaveData()
     {
