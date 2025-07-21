@@ -14,11 +14,13 @@ public class Gate : MonoBehaviour, IInteractable
     private Collider2D col;
     public Transform checkpointTargetPosition; // Dove vuoi spostare il checkpoint
     public GameObject checkpointObject;
+    [SerializeField] private GameObject hintObject;
 
     void Start()
     {
         messageDisplay = FindFirstObjectByType<MessageDisplay>();
         col = GetComponent<Collider2D>();
+        hintObject.SetActive(false);
     }
 
     public void Interact()
@@ -39,7 +41,7 @@ public class Gate : MonoBehaviour, IInteractable
         }
         else
         {
-            messageDisplay.ShowMessage("Hai bisogno della chiave per aprire questo cancello.");
+            messageDisplay.ShowMessage("Hai bisogno della chiave nel tuo inventario per aprire questo cancello.");
         }
     }
 
@@ -109,6 +111,22 @@ public class Gate : MonoBehaviour, IInteractable
         isLockedForever = true;
         if (col != null) col.enabled = true;
         if (animator != null) animator.SetTrigger(closeTrigger);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && hintObject != null)
+        {
+            hintObject.SetActive(true);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && hintObject != null)
+        {
+            hintObject.SetActive(false);
+        }
     }
 
 }
