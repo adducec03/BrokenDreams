@@ -1,4 +1,4 @@
-# <div align="center"> PROGETTO MOBILE COMPUTING: BROKEN DREAMS </div>
+# <div align="center"> MOBILE COMPUTING PROJECT: BROKEN DREAMS </div>
 The following project is a small mobile game taken as a delivery for the Mobile Computing exam. It is the result of work carried out by myself and my colleague [Antonio Lanza](https://github.com/AntonioSouls) who worked with me in the entire realization of this project
 
 ## Game Plot
