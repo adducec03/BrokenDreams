@@ -8,6 +8,7 @@ public class Chest : MonoBehaviour, IInteractable
     public Sprite openedSprite;
     public string requiredPassword = "";
     private PasswordPanel passwordPanel;
+    Vector3 dropOffset = new Vector3(1.0f, -1.0f, 0);
 
     [TextArea] public string passwordPlaceholder = "";
     [SerializeField] private string optionalMessage = "";
@@ -50,9 +51,7 @@ public class Chest : MonoBehaviour, IInteractable
 
         if (itemPrefab)
         {
-            GameObject droppedItem = Instantiate(itemPrefab, transform.position + Vector3.down, Quaternion.identity);
-
-            Debug.Log($"Istanziato prefab nella scena: {droppedItem.GetComponent<Item>().ID}");
+            GameObject droppedItem = Instantiate(itemPrefab, transform.position + dropOffset, Quaternion.identity);
 
             CollectibleItem collectible = droppedItem.GetComponent<CollectibleItem>();
             if (collectible == null)
