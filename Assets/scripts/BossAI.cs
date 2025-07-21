@@ -280,10 +280,10 @@ public class BossAI : MonoBehaviour
             }
 
         }
+        KillAllSlimes();
 
         yield return new WaitForSeconds(2f); // aspetta un attimo per atmosfera
-
-        KillAllSlimes();
+        
 
         StartCoroutine(LoadMainMenuWithDelay());
     }
