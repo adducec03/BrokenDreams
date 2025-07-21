@@ -128,7 +128,7 @@ public class SaveController : MonoBehaviour
             // Healing pickup usati
             usedHealingPickups = new HashSet<string>(saveData.usedHealingPickups);
 
-            // ✅ CARICA collected item ID PRIMA di chiamare LoadSceneItemsState
+            // CARICA collected item ID PRIMA di chiamare LoadSceneItemsState
             collectedItemIDs = new HashSet<string>(
                 saveData.sceneItemsSaveData
                     .Where(i => i.isCollected)
@@ -271,9 +271,7 @@ public class SaveController : MonoBehaviour
             Debug.Log("fallito");
             return;
         }
-        Debug.Log($"Setting healing used for {id} to {state}");
         usedHealingPickups.Add(id);
-        Debug.Log($"📦 Healing usati dopo l'aggiunta di {id}: {string.Join(", ", usedHealingPickups)}");
 
     }
 
