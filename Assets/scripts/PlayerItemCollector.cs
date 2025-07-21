@@ -16,9 +16,13 @@ public class PlayerItemCollector : MonoBehaviour
     {
         if(collision.CompareTag("Item"))
         {
-            Item item = collision.GetComponent<Item>();
             CollectibleItem collectible = collision.GetComponent<CollectibleItem>();
 
+            // Controllo che l'oggetto con cui sto interagendo non sia già stato collezionato (serve per evitare il bug che involontariamente gli oggetti si duplicano nell'inventario)
+            if (collectible != null && collectible.IsCollected()) return;
+
+            // Colleziona l'Item con cui interagisce
+            Item item = collision.GetComponent<Item>();
             if(item != null)
             {
                 bool itemAdded = inventoryController.AddItem(collision.gameObject);

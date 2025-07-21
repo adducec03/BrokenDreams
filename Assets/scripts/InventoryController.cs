@@ -29,8 +29,6 @@ public class InventoryController : MonoBehaviour
 
     public bool AddItem(GameObject itemPrefab, bool fromLoad = false)
     {
-        Debug.Log($"[AddItem] Aggiunta oggetto ID {itemPrefab.GetComponent<Item>().ID}, fromLoad: {fromLoad}");
-
         foreach (Transform slotTransform in inventoryPanel.transform)
         {
             Slot slot = slotTransform.GetComponent<Slot>();
@@ -43,14 +41,12 @@ public class InventoryController : MonoBehaviour
                 Item itemComponent = newItem.GetComponent<Item>();
                 if (!fromLoad && itemComponent != null && itemComponent.ID == 2)
                 {
-                    Debug.Log("[Inventory] Pozione scudo aggiunta. Attivazione scudo...");
                     PlayerStats player = FindFirstObjectByType<PlayerStats>();
                     if (player != null)
                     {
                         player.EnableShield();
                     }
                 }
-
                 return true;
             }
         }
@@ -66,7 +62,6 @@ public class InventoryController : MonoBehaviour
             if (slot.currentItem != null)
             {
                 Item item = slot.currentItem.GetComponent<Item>();
-                Debug.Log($"{item.ID}");
                 invData.Add(new InventorySaveData { itemID = item.ID, slotIndex = slotTransform.GetSiblingIndex() });
             }
         }
