@@ -13,6 +13,32 @@ Only by retrieving the **magic key** can you access the core of emotion. Only by
 *Anger*. *Fear*. *Sadness*. *Depression*. One by one, you will face them. Only by overcoming them all will you be able to wake up and take charge of your life again.
 
 ## How to Install
+Clone the repository by running the following commands in your terminal:
+```
+git clone https://github.com/adducec03/BrokenDreams.git
+cd BrokenDreams
+```
+Then follow the appropriate procedure for your operating system
+
+### Android
+
+Open the project in Unity and select **file -> build profiles -> Android**. If you don't have it install the Android module in the Unity Hub. Then select the **Build** option and chose a directory where the .apk file will be saved.
+
+At this point when you have your .apk file install it on your Android device.
+
+### iOS
+Open the project in Unity and select **file -> build profiles -> iOS**. If you don't have it install the iOS module in the Unity Hub. Then select the **Build** option and chose a directory where the iOS build files will be saved.
+
+At this point connect your iPhone to your MacOS device and make sure you have an Apple account connected to XCode. To do so go to **XCode -> Settings -> Accounts** and login with your Apple ID.
+
+Then open XCode and in **Window -> Devices and Simulators** connect your iPhone to XCode.
+
+After that open the **Unity-iPhone.xcworkspace** file in XCode. You will see the Window with the project settings. Go to **Signing & Capabilities** and select your Apple ID in the filed **Team**. Then set the **Bundle Identifier** as **com.yourname.gamename**.
+
+At this point select the **Build** button at the top left of the window and start the build with your iPhone connected to the Mac via cable.
+
+Once the installation is complete go to your iPhone, unlock it and go to **Settings -> Generals -> VPN and Device Management** and authorize the developer of the app. Now you can open the game on your home screen and play it!
+
 ## Authors
 <a href="https://github.com/AntonioSouls">
   <img src="https://github.com/AntonioSouls.png" width="80">
