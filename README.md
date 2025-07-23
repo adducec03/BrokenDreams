@@ -12,6 +12,10 @@ Only by retrieving the **magic key** can you access the core of emotion. Only by
 
 *Anger*. *Fear*. *Sadness*. *Depression*. One by one, you will face them. Only by overcoming them all will you be able to wake up and take charge of your life again.
 
+<p align="center">
+  <img src="BrokenDreams_DemoVideo.gif" alt="Demo" />
+</p>
+
 ## How to Install
 Clone the repository by running the following commands in your terminal:
 ```
