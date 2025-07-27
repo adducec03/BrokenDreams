@@ -1,6 +1,8 @@
-[System.Serializable]
+using Firebase.Firestore;
+
+[FirestoreData]
 public class ChestSaveData
 {
-    public string chestID;
-    public bool isOpened;
+    [FirestoreProperty] public string chestID { get; set; }
+    [FirestoreProperty] public bool isOpened { get; set; }
 }

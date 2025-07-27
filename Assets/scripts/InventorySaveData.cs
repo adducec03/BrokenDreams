@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Firebase.Firestore;
 
-[System.Serializable]
+[FirestoreData]
 public class InventorySaveData
 {
-    public int itemID;
-    public int slotIndex;
+    [FirestoreProperty] public int itemID { get; set; }
+    [FirestoreProperty] public int slotIndex { get; set; }
 }

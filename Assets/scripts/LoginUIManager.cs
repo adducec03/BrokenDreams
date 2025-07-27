@@ -15,20 +15,56 @@ public class LoginUIManager : MonoBehaviour
     public GameObject registerPanel;
 
     [Header("Login Fields")]
-    public TMP_InputField loginUsername;
     public TMP_InputField loginPassword;
+    public TMP_InputField loginEmail;
 
     [Header("Register Fields")]
     public TMP_InputField registerUsername;
     public TMP_InputField registerPassword;
+    public TMP_InputField registerEmail;
+
+    [Header("Bottoni")]
+    public UnityEngine.UI.Button RegisterButton;
+    public UnityEngine.UI.Button LoginButton;
+
 
     [Header("Messaggi")]
     public TextMeshProUGUI messageText;
 
     private void Start()
     {
-        ShowMain(); // Mostra il menu iniziale
+        RegisterButton.interactable = false;
+        LoginButton.interactable = false;
+        ShowMain();
+
+        StartCoroutine(WaitForFirebaseReady());
     }
+
+
+    private IEnumerator WaitForFirebaseReady()
+    {
+        // Step 1: aspetta che FirebaseManager.Instance sia inizializzato
+        while (FirebaseManager.Instance == null)
+        {
+            messageText.text = "Inizializzazione Firebase...";
+            yield return null;
+        }
+
+        // Step 2: aspetta che Firebase abbia completato l'inizializzazione
+        while (!FirebaseManager.Instance.IsFirebaseReady)
+        {
+            messageText.text = "Inizializzazione Firebase...";
+            yield return null;
+        }
+
+        // Step 3: tutto pronto
+        RegisterButton.interactable = true;
+        LoginButton.interactable = true;
+        messageText.text = "";
+    }
+
+
+
 
     public void ShowMain()
     {
@@ -56,56 +92,56 @@ public class LoginUIManager : MonoBehaviour
 
     public void ConfirmRegister()
     {
-        List<UserData> users = UserDatabase.LoadUsers();
-        string newUser = registerUsername.text.Trim().ToLower();
-        string newPass = registerPassword.text;
+        string email = registerEmail.text.Trim().ToLower();
+        string password = registerPassword.text;
+        string username = registerUsername.text.Trim();
 
-        if (string.IsNullOrEmpty(newUser) || string.IsNullOrEmpty(newPass))
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(username))
         {
-            ShowMessage("Inserisci username e password validi.",Color.red);
+            ShowMessage("Compila tutti i campi", Color.red);
             return;
         }
 
-        if (users.Exists(u => u.username == newUser))
+        FirebaseManager.Instance.Register(email, password, username, (success, message) =>
         {
-            ShowMessage("Nome Utente gia' in uso! Utilizza un altro Username!!",Color.red);
-            return;
-        }
-
-        users.Add(new UserData { username = newUser, password = newPass });
-        UserDatabase.SaveUsers(users);
-
-        SessionManager.SetCurrentUser(newUser);
-        ShowMessage("Registrazione riuscita!", Color.green);
-        SceneManager.LoadScene("MainMenu");
+            if (success)
+            {
+                ShowMessage("Registrazione effettuata con successo!", Color.green);
+                SceneManager.LoadScene("MainMenu");
+            }
+            else
+            {
+                Debug.Log("In qualche modo entro qui");
+                ShowMessage(message, Color.red);
+            }
+        });
     }
 
     public void ConfirmLogin()
     {
-        List<UserData> users = UserDatabase.LoadUsers();
-        string user = loginUsername.text.Trim();
-        string pass = loginPassword.text;
+        string email = loginEmail.text.Trim().ToLower(); // oppure usa quello registrato
+        string password = loginPassword.text;
 
-        if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            ShowMessage("Inserisci username e password", Color.red);
+            ShowMessage("Inserisci email e password", Color.red);
             return;
         }
 
-        if (users.Exists(u => u.username == user && u.password == pass))
+        FirebaseManager.Instance.Login(email, password, (success, message) =>
         {
-            SessionManager.SetCurrentUser(user);
-            SceneManager.LoadScene("MainMenu");
-        }
-        else if (users.Exists(u => u.username == user))
-        {
-            ShowMessage("Password errata!", Color.red);
-        }
-        else
-        {
-            ShowMessage("Utente non trovato. Registrati prima.", Color.red);
-        }
+            if (success)
+            {
+                ShowMessage("Login avvenuto con successo", Color.green);
+                SceneManager.LoadScene("MainMenu");
+            }
+            else
+            {
+                ShowMessage(message, Color.red);
+            }
+        });
     }
+
 
     private void ShowMessage(string text, Color color, float duration = 2f)
     {

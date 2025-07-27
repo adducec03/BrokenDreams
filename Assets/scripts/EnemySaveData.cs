@@ -1,6 +1,8 @@
-[System.Serializable]
+using Firebase.Firestore;
+
+[FirestoreData]
 public class EnemySaveData
 {
-    public string enemyID;
-    public bool isDefeated;
+    [FirestoreProperty] public string enemyID { get; set; }
+    [FirestoreProperty] public bool isDefeated { get; set; }
 }

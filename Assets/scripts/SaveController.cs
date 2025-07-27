@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using Firebase.Extensions;
+
 
 public class SaveController : MonoBehaviour
 {
@@ -16,17 +18,19 @@ public class SaveController : MonoBehaviour
     public bool isDataLoaded { get; private set; } = false;
     private HashSet<string> collectedItemIDs = new HashSet<string>();
 
-
-
     void Start()
     {
         InitializeComponents();
-        LoadGame();
+
+        if (FirebaseManager.Instance != null && FirebaseManager.Instance.GetUserID() != null)
+            LoadGameFromFirestore();  // Carica da Firestore
+        else
+            LoadGame();               // Fallback locale
     }
 
     private void InitializeComponents()
     {
-        saveLocation = Path.Combine(Application.persistentDataPath, $"save_{SessionManager.currentUsername}.json");
+        saveLocation = Path.Combine(Application.persistentDataPath, $"save_{FirebaseManager.Instance.GetUsername()}.json");
         inventoryController = FindFirstObjectByType<InventoryController>();
         chests = FindObjectsByType<Chest>(FindObjectsSortMode.None);
         sceneItems = FindObjectsByType<CollectibleItem>(FindObjectsSortMode.None).ToList();
@@ -47,20 +51,26 @@ public class SaveController : MonoBehaviour
         BossAI boss = GameObject.FindFirstObjectByType<BossAI>();
         Gate gate = FindFirstObjectByType<Gate>();
 
+        Vector3 pos = playerStats.transform.position;
+
         SaveData saveData = new SaveData
         {
-            playerPosition = playerStats.transform.position,
-            inventorySaveData = inventoryController.GetInventoryItems(),
-            chestSaveData = GetChestsState(),
-            sceneItemsSaveData = GetSceneItemsState(),
-            enemySaveData = GetEnemiesState(),
+            playerX = pos.x,
+            playerY = pos.y,
+            playerZ = pos.z,
+            inventory = inventoryController.GetInventoryItems(),
+            chests = GetChestsState(),
+            sceneItems = GetSceneItemsState(),
+            enemies = GetEnemiesState(),
+
             playerHealth = playerStats.currentHealth,
             playerShield = playerStats.currentShield,
             playerLives = playerStats.lives,
             maxHealth = playerStats.maxHealth,
             maxShield = playerStats.maxShield,
             isShieldActive = playerStats.HasShield(),
-            playerAttackDamage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>().attackDamage,
+            playerAttackDamage = playerStats.GetComponent<PlayerAttack>().attackDamage,
+
             activatedPressurePads = activatedPressurePads.ToList(),
             disabledWalls = disabledWallIDs.ToList(),
             usedHealingPickups = usedHealingPickups.ToList(),
@@ -70,7 +80,22 @@ public class SaveController : MonoBehaviour
             bossCurrentHealth = boss != null ? boss.GetCurrentHealth() : 0,
             isBossGateLocked = gate != null && gate.IsLockedForever()
         };
-        File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
+
+        string userId = FirebaseManager.Instance.GetUserID();
+
+        FirebaseManager.Instance.DB
+            .Collection("users")
+            .Document(userId)
+            .Collection("data")
+            .Document("saveData")
+            .SetAsync(saveData)
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompletedSuccessfully)
+                    Debug.Log("Salvataggio completato su Firestore");
+                else
+                    Debug.LogError("Errore salvataggio Firestore: " + task.Exception);
+            });
     }
 
     private List<ChestSaveData> GetChestsState()
@@ -97,91 +122,85 @@ public class SaveController : MonoBehaviour
         if (File.Exists(saveLocation))
         {
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
-
-            // Carica dati vari
-            activatedPressurePads = new HashSet<string>(saveData.activatedPressurePads);
-            disabledWallIDs = new HashSet<string>(saveData.disabledWalls);
-
-            // Carica le statistiche del Player
-            PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-            playerStats.transform.position = saveData.playerPosition;
-            Time.timeScale = 1f;
-
-            playerStats.maxHealth = saveData.maxHealth;
-            playerStats.maxShield = saveData.maxShield;
-            playerStats.currentHealth = saveData.playerHealth;
-            playerStats.currentShield = saveData.playerShield;
-            playerStats.lives = saveData.playerLives;
-            playerStats.GetComponent<PlayerAttack>().attackDamage = saveData.playerAttackDamage;
-
-            // Attiva aura se necessario
-            if (saveData.isShieldActive)
-            {
-                playerStats.shieldBarGame.gameObject.SetActive(true);
-                playerStats.shieldBarMenu.gameObject.SetActive(true);
-                if (playerStats.auraObject != null) playerStats.auraObject.SetActive(true);
-                if (playerStats.auraObjectUI != null) playerStats.auraObjectUI.SetActive(true);
-                playerStats.EnableAuraSound();
-                playerStats.SetShieldState(true);
-            }
-
-            // Healing pickup usati
-            usedHealingPickups = new HashSet<string>(saveData.usedHealingPickups);
-
-            // CARICA collected item ID PRIMA di chiamare LoadSceneItemsState
-            collectedItemIDs = new HashSet<string>(
-                saveData.sceneItemsSaveData
-                    .Where(i => i.isCollected)
-                    .Select(i => i.itemID)
-            );
-
-            // UI
-            playerStats.healthBarGame.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
-            playerStats.shieldBarGame.SetShield(playerStats.currentShield, playerStats.maxShield);
-            playerStats.healthBarMenu.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
-            playerStats.shieldBarMenu.SetShield(playerStats.currentShield, playerStats.maxShield);
-            playerStats.heartsManager.UpdateHearts(playerStats.lives);
-
-            // Carica lo stato salvato del boss
-            BossAI boss = FindFirstObjectByType<BossAI>();
-
-            if (boss != null)
-            {
-                if (saveData.isBossDead)
-                {
-                    Destroy(boss.gameObject);
-                }
-                else
-                {
-                    boss.SetCurrentHealth(saveData.bossCurrentHealth);
-                    if (saveData.isBossFightStarted)
-                    {
-                        boss.healthBarUI.SetActive(true);
-                        boss.StartSummoning();
-                    }
-                }
-            }
-
-            // Carica lo stato salvato del cancello
-            Gate gate = FindFirstObjectByType<Gate>();
-            if (gate != null && saveData.isBossGateLocked)
-            {
-                gate.LockForever();
-            }
-
-            // Altri sistemi
-            LoadSceneItemsState(saveData.sceneItemsSaveData); // Usa collectedItemIDs!
-            inventoryController.SetInventoryItems(saveData.inventorySaveData);
-            LoadChestStates(saveData.chestSaveData);
-            LoadEnemiesState(saveData.enemySaveData);
-
-            isDataLoaded = true;
+            LoadSaveDataIntoGame(saveData);
         }
         else
         {
             inventoryController.SetInventoryItems(new List<InventorySaveData>());
             SaveGame();
         }
+    }
+
+    private void LoadSaveDataIntoGame(SaveData saveData)
+    {
+        activatedPressurePads = new HashSet<string>(saveData.activatedPressurePads);
+        disabledWallIDs = new HashSet<string>(saveData.disabledWalls);
+
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        playerStats.transform.position = new Vector3(saveData.playerX, saveData.playerY, saveData.playerZ);
+        Time.timeScale = 1f;
+
+        playerStats.maxHealth = saveData.maxHealth;
+        playerStats.maxShield = saveData.maxShield;
+        playerStats.currentHealth = saveData.playerHealth;
+        playerStats.currentShield = saveData.playerShield;
+        playerStats.lives = saveData.playerLives;
+        playerStats.GetComponent<PlayerAttack>().attackDamage = saveData.playerAttackDamage;
+
+        if (saveData.isShieldActive)
+        {
+            playerStats.shieldBarGame.gameObject.SetActive(true);
+            playerStats.shieldBarMenu.gameObject.SetActive(true);
+            if (playerStats.auraObject != null) playerStats.auraObject.SetActive(true);
+            if (playerStats.auraObjectUI != null) playerStats.auraObjectUI.SetActive(true);
+            playerStats.EnableAuraSound();
+            playerStats.SetShieldState(true);
+        }
+
+        usedHealingPickups = new HashSet<string>(saveData.usedHealingPickups);
+
+        collectedItemIDs = new HashSet<string>(
+            saveData.sceneItems
+                .Where(i => i.isCollected)
+                .Select(i => i.itemID)
+        );
+
+        playerStats.healthBarGame.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
+        playerStats.shieldBarGame.SetShield(playerStats.currentShield, playerStats.maxShield);
+        playerStats.healthBarMenu.SetHealth(playerStats.currentHealth, playerStats.maxHealth);
+        playerStats.shieldBarMenu.SetShield(playerStats.currentShield, playerStats.maxShield);
+        playerStats.heartsManager.UpdateHearts(playerStats.lives);
+
+        BossAI boss = FindFirstObjectByType<BossAI>();
+        if (boss != null)
+        {
+            if (saveData.isBossDead)
+            {
+                Destroy(boss.gameObject);
+            }
+            else
+            {
+                boss.SetCurrentHealth(saveData.bossCurrentHealth);
+                if (saveData.isBossFightStarted)
+                {
+                    boss.healthBarUI.SetActive(true);
+                    boss.StartSummoning();
+                }
+            }
+        }
+
+        Gate gate = FindFirstObjectByType<Gate>();
+        if (gate != null && saveData.isBossGateLocked)
+        {
+            gate.LockForever();
+        }
+
+        LoadSceneItemsState(saveData.sceneItems);
+        inventoryController.SetInventoryItems(saveData.inventory);
+        LoadChestStates(saveData.chests);
+        LoadEnemiesState(saveData.enemies);
+
+        isDataLoaded = true;
     }
 
     private void LoadChestStates(List<ChestSaveData> chestStates)
@@ -265,20 +284,41 @@ public class SaveController : MonoBehaviour
 
     public void SetHealingUsed(string id, bool state)
     {
-
         if (string.IsNullOrWhiteSpace(id))
         {
             Debug.Log("fallito");
             return;
         }
         usedHealingPickups.Add(id);
-
     }
-
 
     public bool IsItemCollected(string id)
     {
         return collectedItemIDs.Contains(id);
     }
 
+    public void LoadGameFromFirestore()
+    {
+        string userId = FirebaseManager.Instance.GetUserID();
+
+        FirebaseManager.Instance.DB
+            .Collection("users")
+            .Document(userId)
+            .Collection("data")
+            .Document("saveData")
+            .GetSnapshotAsync()
+            .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompletedSuccessfully && task.Result.Exists)
+                {
+                    SaveData saveData = task.Result.ConvertTo<SaveData>();
+                    LoadSaveDataIntoGame(saveData);
+                }
+                else
+                {
+                    Debug.Log("Nessun salvataggio trovato su Firestore. Creo uno nuovo.");
+                    SaveGame();
+                }
+            });
+    }
 }

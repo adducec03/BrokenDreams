@@ -1,6 +1,8 @@
-[System.Serializable]
+using Firebase.Firestore;
+
+[FirestoreData]
 public class SceneItemSaveData
 {
-    public string itemID;
-    public bool isCollected;
+    [FirestoreProperty] public string itemID { get; set; }
+    [FirestoreProperty] public bool isCollected { get; set; }
 }

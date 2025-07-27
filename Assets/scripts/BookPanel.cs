@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using UnityEngine.Rendering;
+using Firebase;
 
 public class BookPanel : MonoBehaviour
 {
@@ -140,9 +141,9 @@ public class BookPanel : MonoBehaviour
     {
         string rawText = currentBook.pages[pageIndex];
 
-        if (pageIndex == 0 && !string.IsNullOrEmpty(SessionManager.currentUsername))
+        if (pageIndex == 0 && !string.IsNullOrEmpty(FirebaseManager.Instance.GetUsername()))
         {
-            rawText = rawText.Replace("Giocatore", SessionManager.currentUsername);
+            rawText = rawText.Replace("Giocatore", FirebaseManager.Instance.GetUsername());
         }
 
         return rawText;
