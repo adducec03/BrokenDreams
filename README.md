@@ -43,6 +43,13 @@ At this point select the **Build** button at the top left of the window and star
 
 Once the installation is complete go to your iPhone, unlock it and go to **Settings -> Generals -> VPN and Device Management** and authorize the developer of the app. Now you can open the game on your home screen and play it!
 
+## License
+
+This project is public and freely accessible, but *all rights reserved*.
+Copying, modifying, distributing, or reusing the code *without written permission* is prohibited.
+
+© 2025 Antonio Lanza, Carmine Adduce. All Rights Reserved.
+
 ## Authors
 <a href="https://github.com/AntonioSouls">
   <img src="https://github.com/AntonioSouls.png" width="80">
